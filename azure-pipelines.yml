@@ -1,0 +1,85 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: CmdLine@2
+  displayName: 'Create & Start LocalDb instance ProjectsV13'
+  inputs:    
+    script: 'sqllocaldb create ProjectsV13 -s' 
+    failOnStderr: true
+
+- task: SqlDacpacDeploymentOnMachineGroup@0
+  displayName: 'Create Database using Dacpac File'
+  inputs:
+    TaskType: 'dacpac'
+    DacpacFile: '$(Build.SourcesDirectory)\MovieDb\bin\$(BuildConfiguration)\MovieDb.dacpac'
+    TargetMethod: 'publishProfile'
+    PublishProfile: '$(Build.SourcesDirectory)\MovieDb\MovieDb.publish.xml'
+
+- task: DotnetCoreCLI@2
+  displayName: 'Run Test Projects using DotNet Core CLI'
+  inputs:
+    command: test
+    publishTestResults: true
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(BuildConfiguration) --settings "$(Build.SourcesDirectory)\CodeCoverage.runsettings" --logger "trx" --collect "Code coverage"'
+    nobuild: false
+
+- task: PublishSymbols@2
+  displayName: 'Publish symbols path'
+  inputs:
+    SearchPattern: '**\bin\**\*.pdb'
+    PublishSymbols: false
+
+- task: CopyFiles@2
+  displayName: 'Copy Application Files to: Staging Directory'
+  inputs:
+    Contents: |
+     $(Build.SourcesDirectory)\MovieService\bin\$(buildConfiguration)\netcoreapp2.2\*.*     
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: CopyFiles@2
+  displayName: 'Copy Database DACPAC to: Staging Directory'
+  inputs:
+    Contents: |
+     $(Build.SourcesDirectory)\MovieDb\bin\$(BuildConfiguration)\MovieDb.dacpac
+    TargetFolder: '$(build.artifactstagingdirectory)\dacpacs'
+
+- task: CopyFiles@2
+  displayName: 'Copy Database Publish Profile XML to: Staging Directory'
+  inputs:
+    Contents: |
+     $(Build.SourcesDirectory)\MovieDb\MovieDb.Production.publish.xml
+    TargetFolder: '$(build.artifactstagingdirectory)\dacpacs'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: '$(Parameters.ArtifactName)'

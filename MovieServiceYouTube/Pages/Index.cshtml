@@ -1,0 +1,23 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+
+</div>
+
+<div class="text-center">
+    <h1 class="display-4">Azure DevOps Release Pipeline</h1>
+</div>
+<div>
+    @Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+</div>
+<div>
+    <h3>Learn how to Create a Release Pipeline in Azure DevOps and automate your deployment to Azure</h3>
+    @foreach (var movie in Model.Movies)
+    {
+        <p>@movie.Title</p>
+    }
+</div>
