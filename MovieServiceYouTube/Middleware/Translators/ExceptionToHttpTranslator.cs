@@ -16,9 +16,9 @@ namespace MovieServiceCore3.Middleware.Translators
             if (exception is MovieServiceBaseException movieServiceBaseException)
             {
                 httpContext.Features.Get<IHttpResponseFeature>().ReasonPhrase = movieServiceBaseException.Reason;
-                httpResponse.StatusCode = MapExceptionToStatusCode(exception);
             }
 
+            httpResponse.StatusCode = MapExceptionToStatusCode(exception);
             await httpResponse.WriteAsync(exception.Message);
         }
 
