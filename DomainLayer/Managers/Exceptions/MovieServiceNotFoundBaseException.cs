@@ -3,7 +3,6 @@ using System.Runtime.Serialization;
 
 namespace DomainLayer.Managers.Exceptions
 {
-
     [Serializable]
     public abstract class MovieServiceNotFoundBaseException : MovieServiceBusinessBaseException
     {

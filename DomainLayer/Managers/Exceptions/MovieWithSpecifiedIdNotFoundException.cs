@@ -1,9 +1,8 @@
 ﻿using System;
- using System.Runtime.Serialization;
+using System.Runtime.Serialization;
 
 namespace DomainLayer.Managers.Exceptions
 {
-
     [Serializable]
     public sealed class MovieWithSpecifiedIdNotFoundException : MovieServiceNotFoundBaseException
     {
