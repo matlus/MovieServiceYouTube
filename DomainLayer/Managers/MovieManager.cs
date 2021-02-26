@@ -74,9 +74,13 @@ namespace DomainLayer.Managers
         public async Task<IEnumerable<Movie>> GetMoviesByGenre(Genre genre)
         {
             GenreParser.Validate(genre);
-            var allMovies = await GetAllMovies().ConfigureAwait(false);
-            return allMovies.Where(m => m.Genre == genre);
-        }
+            var moviesFromImdbTask = ImdbServiceGateway.GetAllMovies();
+            var moviesFromDbMatchingGenreTask = DataFacade.GetMovieByGenre(genre);
+            await Task.WhenAll(moviesFromImdbTask, moviesFromDbMatchingGenreTask).ConfigureAwait(false);
+
+            var moviesMatchingGenre = moviesFromDbMatchingGenreTask.Result.ToList();
+            moviesMatchingGenre.AddRange(moviesFromImdbTask.Result.Where(m => m.Genre == genre));
+            return moviesMatchingGenre;        }
 
         [ExcludeFromCodeCoverage]
         private void Dispose(bool disposing)

@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using DomainLayer.Managers.DataLayer.DataManagers.CommandFactories;
+using DomainLayer.Managers.Enums;
 using DomainLayer.Managers.Exceptions;
 using DomainLayer.Managers.Extensions;
 using DomainLayer.Managers.Models;
@@ -101,6 +102,26 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
                 dbCommand = CommandFactoryMovies.CreateCommandForGetMovieById(dbConnection, id);
                 dbDataReader = await dbCommand.ExecuteReaderAsync().ConfigureAwait(false);
                 return await MapToMovie(dbDataReader).ConfigureAwait(false);
+            }
+            finally
+            {
+                dbDataReader.DisposeIfNotNull();
+                dbCommand.DisposeIfNotNull();
+                dbConnection.Dispose();
+            }
+        }
+
+        public async Task<IEnumerable<Movie>> GetMovieByGenre(Genre genre)
+        {
+            var dbConnection = CreateDbConnection();
+            DbCommand dbCommand = null;
+            DbDataReader dbDataReader = null;
+            try
+            {
+                await dbConnection.OpenAsync().ConfigureAwait(false);
+                dbCommand = CommandFactoryMovies.CreateCommandForGetMoviesByGenre(dbConnection, genre);
+                dbDataReader = await dbCommand.ExecuteReaderAsync().ConfigureAwait(false);
+                return await MapToMovies(dbDataReader).ConfigureAwait(false);
             }
             finally
             {

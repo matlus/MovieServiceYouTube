@@ -61,7 +61,7 @@ namespace AcceptanceTests
                 domainFacade.Dispose();
             }
         }
-       
+
         [TestMethod]
         [TestCategory("Acceptance Test")]
         public async Task GetMoviesByGenre_WhenCalledWithValidGenre_ShouldReturnMoviesFilteredByGenre()
@@ -94,6 +94,77 @@ namespace AcceptanceTests
 
         [TestMethod]
         [TestCategory("Acceptance Test")]
+        public async Task GetMoviesById_WhenCalledWithValidId_ShouldReturnMovieMatchingId()
+        {
+            // Arrange
+            var (domainFacade, testMediator) = CreateDomainFacade();
+            try
+            {
+                var expectedMovie = moviesInDb.First();
+                var expectedMovieId = await MovieTestDataGenerator.GetMovieIdByTitle(dbConnectionString, expectedMovie.Title);
+
+                // Act
+                var actualMovie = await domainFacade.GetMovieById(expectedMovieId);
+
+                // Assert
+                MovieAssertions.AssertMoviesAreEqual(new[] { expectedMovie }, new[] { actualMovie });
+            }
+            finally
+            {
+                domainFacade.Dispose();
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Acceptance Test")]
+        public async Task GetMoviesById_WhenCalledWithANonExistantMovieId_ShouldThrow()
+        {
+            // Arrange
+            var (domainFacade, testMediator) = CreateDomainFacade();
+            var nonExistantMovieId = -1;
+
+            try
+            {
+                // Act
+                _ = await domainFacade.GetMovieById(nonExistantMovieId);
+                Assert.Fail("We Were Expecting a MovieWithSpecifiedIdNotFoundException to be thrown, but no exception was thrown.");
+            }
+            catch (MovieWithSpecifiedIdNotFoundException e)
+            {
+                // Assert
+                StringAssert.Contains(e.Message, $"Id: {nonExistantMovieId}");
+            }
+            finally
+            {
+                domainFacade.Dispose();
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Acceptance Test")]
+        public async Task GetMoviesByGenre_WhenCalledWithAnInvalidGenre_ShouldThrow()
+        {
+            // Arrange
+            var (domainFacade, _) = CreateDomainFacade();
+            Genre invalidGenre = (Genre)1000;
+            try
+            {
+                // Act
+                await domainFacade.GetMoviesByGenre(invalidGenre);
+                Assert.Fail("We were expecting an InvalidGenreException expection to be thrown but no exception was thrown");
+            }
+            catch (InvalidGenreException e)
+            {
+                StringAssert.Contains(e.Message, $"{(int)invalidGenre} is not a valid Genre");
+            }
+            finally
+            {
+                domainFacade.Dispose();
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Acceptance Test")]
         public async Task GetAllMovies_ServiceEndpointIsNotFound_ShouldThrow()
         {
             // Arrange
@@ -101,13 +172,13 @@ namespace AcceptanceTests
             try
             {
                 testMediator.ExceptionInformation
-                    = new ExceptionInformation { ExceptionReason = ExceptionReason.NotFond } ;
+                    = new ExceptionInformation { ExceptionReason = ExceptionReason.NotFond };
 
                 // Act
                 await domainFacade.GetAllMovies();
                 Assert.Fail("We were expecting an exception of type ImdbServiceNotFoundException to be thrown, but no exception was thrown");
             }
-            catch(ImdbServiceNotFoundException e)
+            catch (ImdbServiceNotFoundException e)
             {
                 // Assert
                 AssertEx.EnsureExceptionMessageContains(e, "resulted in a Not Found Status Code");
@@ -173,29 +244,6 @@ namespace AcceptanceTests
 
         [TestMethod]
         [TestCategory("Acceptance Test")]
-        public async Task GetMoviesByGenre_WhenCalledWithAnInvalidGenre_ShouldThrow()
-        {
-            // Arrange
-            var (domainFacade, _) = CreateDomainFacade();
-            Genre invalidGenre = (Genre)1000;
-            try
-            {
-                // Act
-                await domainFacade.GetMoviesByGenre(invalidGenre);
-                Assert.Fail("We were expecting an InvalidGenreException expection to be thrown but no exception was thrown");
-            }
-            catch(InvalidGenreException e)
-            {
-                StringAssert.Contains(e.Message, $"{(int)invalidGenre} is not a valid Genre");
-            }
-            finally
-            {
-                domainFacade.Dispose();
-            }
-        }
-
-        [TestMethod]
-        [TestCategory("Acceptance Test")]
         public async Task CreateMovie_WhenCalledWithAValidMovieNonExistent_Succeed()
         {
             // Arrange
@@ -230,7 +278,8 @@ namespace AcceptanceTests
                 await domainFacade.CreateMovie(expectedMovie);
                 Assert.Fail("We were expecting a DuplicateMovieException exception to be thrown, but no exception was thrown");
 
-            } catch(DuplicateMovieException e)
+            }
+            catch (DuplicateMovieException e)
             {
                 // Assert
                 StringAssert.Contains(e.Message, $"Title: {expectedMovie.Title} already exists");
@@ -430,7 +479,7 @@ namespace AcceptanceTests
             // Arrange
             var minimumYear = 1900;
             var (domainFacade, _) = CreateDomainFacade();
-            var invalidMovie = new Movie(title: RandomStringGenerator.GetRandomAciiString(50), imageUrl: "http://someurl", genre: Genre.Action, year: minimumYear -1);
+            var invalidMovie = new Movie(title: RandomStringGenerator.GetRandomAciiString(50), imageUrl: "http://someurl", genre: Genre.Action, year: minimumYear - 1);
             try
             {
                 // Act

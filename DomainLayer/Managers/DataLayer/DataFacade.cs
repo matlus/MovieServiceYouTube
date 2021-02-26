@@ -1,4 +1,5 @@
 ﻿using DomainLayer.Managers.DataLayer.DataManagers;
+using DomainLayer.Managers.Enums;
 using DomainLayer.Managers.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -25,6 +26,11 @@ namespace DomainLayer.Managers.DataLayer
         public Task<Movie> GetMovieById(int id)
         {
             return MovieDataManager.GetMovieById(id);
+        }
+
+        public Task<IEnumerable<Movie>> GetMovieByGenre(Genre genre)
+        {
+            return MovieDataManager.GetMovieByGenre(genre);
         }
 
         public Task<IEnumerable<Movie>> GetAllMovies()

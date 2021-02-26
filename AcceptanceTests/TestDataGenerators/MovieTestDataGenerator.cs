@@ -50,6 +50,26 @@ namespace AcceptanceTests.TestDataGenerators
             }
         }
 
+        public static async Task<int> GetMovieIdByTitle(string dbConnectionString, string title)
+        {
+            DbConnection dbConnection = null;
+            DbCommand dbCommand = null;
+            try
+            {
+                dbConnection = CreateDbConnection(dbConnectionString);
+                await dbConnection.OpenAsync();
+                dbCommand = dbConnection.CreateCommand();
+                dbCommand.CommandType = CommandType.Text;
+                dbCommand.CommandText = $"SELECT Id FROM dbo.MovieVw WHERE Title = '{title}'";
+                return (int)await dbCommand.ExecuteScalarAsync();
+            }
+            finally
+            {
+                dbCommand?.Dispose();
+                dbConnection.Dispose();
+            }
+        }
+
         private static IEnumerable<Movie> MapToMovies(DbDataReader dbDataReader)
         {
             var movies = new List<Movie>();

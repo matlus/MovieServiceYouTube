@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace DomainLayer.Managers.Exceptions
 {
     [Serializable]
+    [ExcludeFromCodeCoverage]
     public abstract class MovieServiceNotFoundBaseException : MovieServiceBusinessBaseException
     {
         protected MovieServiceNotFoundBaseException() { }
