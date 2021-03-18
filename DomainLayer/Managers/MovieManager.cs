@@ -80,7 +80,8 @@ namespace DomainLayer.Managers
 
             var moviesMatchingGenre = moviesFromDbMatchingGenreTask.Result.ToList();
             moviesMatchingGenre.AddRange(moviesFromImdbTask.Result.Where(m => m.Genre == genre));
-            return moviesMatchingGenre;        }
+            return moviesMatchingGenre;
+        }
 
         [ExcludeFromCodeCoverage]
         private void Dispose(bool disposing)

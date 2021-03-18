@@ -11,7 +11,7 @@ namespace DomainLayer.Managers.DataLayer.DataManagers.CommandFactories
 {
     internal static class CommandFactoryMovies
     {
-        private static readonly SqlMetaData[] s_sqlMetaDataCreateMovies = new SqlMetaData[]
+        private static readonly SqlMetaData[] SqlMetaDataCreateMovies = new SqlMetaData[]
         {
             new SqlMetaData("Title", SqlDbType.VarChar, 50),
             new SqlMetaData("Genre", SqlDbType.VarChar, 50),
@@ -131,7 +131,7 @@ namespace DomainLayer.Managers.DataLayer.DataManagers.CommandFactories
 
         private static IEnumerable<SqlDataRecord> ConvertToSqlDataRecord(IEnumerable<Movie> movies)
         {
-            var sqlDataRecord = new SqlDataRecord(s_sqlMetaDataCreateMovies);
+            var sqlDataRecord = new SqlDataRecord(SqlMetaDataCreateMovies);
 
             foreach (var movie in movies)
             {
