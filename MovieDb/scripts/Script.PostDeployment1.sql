@@ -13,16 +13,16 @@ SET	IDENTITY_INSERT [dbo].[Movie] ON
 INSERT
 INTO	[dbo].[Movie]
 		([Id], [Title], [Year], [ImageUrl])
-VALUES	(1, 'This is the Title for Movie 1', 1999, 'http://www.imdb.com/images/1'),
-		(2, 'This is the Title for Movie 2', 2000, 'http://www.imdb.com/images/2'),
-		(3, 'This is the Title for Movie 3', 2001, 'http://www.imdb.com/images/3'),
-		(4, 'This is the Title for Movie 4', 2002, 'http://www.imdb.com/images/4'),
-		(5, 'This is the Title for Movie 5', 2003, 'http://www.imdb.com/images/5'),
-		(6, 'This is the Title for Movie 6', 2004, 'http://www.imdb.com/images/6'),
-		(7, 'This is the Title for Movie 7', 2005, 'http://www.imdb.com/images/7'),
-		(8, 'This is the Title for Movie 8', 2006, 'http://www.imdb.com/images/8'),
-		(9, 'This is the Title for Movie 9', 2007, 'http://www.imdb.com/images/9'),
-		(10, 'This is the Title for Movie 10', 2008, 'http://www.imdb.com/images/10')
+VALUES	(1, 'Beast Of The Outlands', 1999, 'http://www.imdb.com/images/1'),
+		(2, 'Friends Of The Dead', 2000, 'http://www.imdb.com/images/2'),
+		(3, 'Creators And Soldiers', 2001, 'http://www.imdb.com/images/3'),
+		(4, 'Murder Of Our Legacy', 2002, 'http://www.imdb.com/images/4'),
+		(5, 'Secrets Of Eternity', 2003, 'http://www.imdb.com/images/5'),
+		(6, 'Blinded By The Intruders', 2004, 'http://www.imdb.com/images/6'),
+		(7, 'Limits Of The End Of Earth', 2005, 'http://www.imdb.com/images/7'),
+		(8, 'Officer Of Exploration', 2006, 'http://www.imdb.com/images/8'),
+		(9, 'Enemies And Defenders', 2007, 'http://www.imdb.com/images/9'),
+		(10, 'Glory Of The New Planet', 2008, 'http://www.imdb.com/images/10')
 SET	IDENTITY_INSERT [dbo].[Movie] OFF
 
 
