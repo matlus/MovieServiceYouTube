@@ -26,7 +26,7 @@ namespace ControllerTests
             var actualMovieResources = await moviesController.GetMovies();
 
             // Assert
-            var actualMovies = MapToMvoies(actualMovieResources);
+            var actualMovies = MapToMovies(actualMovieResources);
             MovieAssertions.AssertMoviesAreEqual(expectedMovies, actualMovies);
         }
 
@@ -67,7 +67,7 @@ namespace ControllerTests
             var actualMovieResources = await moviesController.GetMoviesByGenre(validGenreAsString);
 
             // Assert
-            var actualMovies = MapToMvoies(actualMovieResources);
+            var actualMovies = MapToMovies(actualMovieResources);
             MovieAssertions.AssertMoviesAreEqual(expectedMovies, actualMovies);
         }
 
@@ -187,7 +187,7 @@ namespace ControllerTests
         }
 
 
-        private static IEnumerable<Movie> MapToMvoies(IEnumerable<MovieResource> movieResources)
+        private static IEnumerable<Movie> MapToMovies(IEnumerable<MovieResource> movieResources)
         {
             var movies = new List<Movie>();
 
