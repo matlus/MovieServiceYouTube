@@ -12,5 +12,8 @@
 		<ProjectReference Include="..\DomainLayer\DomainLayer.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="EndToEndIntegrationTests" />
+	</ItemGroup>
 
 </Project>
