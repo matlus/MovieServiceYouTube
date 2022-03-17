@@ -24,7 +24,7 @@ namespace EndToEndIntegrationTests
         public EndToEndIntegrationTests()
         {
             Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
-            var webApplicationFactory = new WebApplicationFactory<Startup>();
+            var webApplicationFactory = new WebApplicationFactory<Program>();
             _httpClient = webApplicationFactory.CreateClient();
         }
 
