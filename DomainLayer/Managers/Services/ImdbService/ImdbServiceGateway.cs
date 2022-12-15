@@ -28,10 +28,10 @@ namespace DomainLayer.Managers.Services.ImdbService
         {
             var httpMessageHandler = MakeHttpMessageHandler();
 
-            if (httpMessageHandler is HttpClientHandler httpClientHandler)
+            if (httpMessageHandler is SocketsHttpHandler socketsHttpHandler)
             {
-                httpClientHandler.PreAuthenticate = true;
-                httpClientHandler.DefaultProxyCredentials = CredentialCache.DefaultCredentials;
+                socketsHttpHandler.PreAuthenticate = true;
+                socketsHttpHandler.DefaultProxyCredentials = CredentialCache.DefaultCredentials;
             }
 
             var httpClient = new HttpClient(httpMessageHandler)

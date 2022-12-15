@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using DomainLayer.Managers.ConfigurationProviders;
 using DomainLayer.Managers.Services.ImdbService;
 
@@ -13,7 +14,10 @@ namespace DomainLayer.Managers.ServiceLocators
 
         protected override HttpMessageHandler CreateHttpMessageHandlerCore()
         {
-            return new HttpClientHandler();
+            return new SocketsHttpHandler
+            {
+                PooledConnectionLifetime = TimeSpan.FromMinutes(2),
+            };
         }
 
         protected override ImdbServiceGateway CreateImdbServiceGatewayCore()

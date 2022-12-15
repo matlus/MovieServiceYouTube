@@ -3,6 +3,9 @@ using DomainLayer.Managers.Exceptions;
 using DomainLayer.Managers.Models;
 using DomainLayer.Managers.Parsers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace DomainLayer.Managers.Validators
 {
@@ -15,6 +18,28 @@ namespace DomainLayer.Managers.Validators
             EnsureMovieIsNotNull(movie);
             var errorMessages = ValidateProperties(movie);
             EnsureNoErrors(errorMessages);
+        }
+
+        public static void EnsureMoviesAreValid(IEnumerable<Movie> movies)
+        {
+            EnsureMoviesAreNotNull(movies);
+
+            var errorMessagesSb = StringBuilderCache.Acquire();
+            foreach (var movie in movies)
+            {
+                var errors = ValidateProperties(movie);
+                if (errors != null)
+                {
+                    errorMessagesSb.Append(errors);
+                }
+            }
+
+            var errorMessages = StringBuilderCache.GetStringAndRelease(errorMessagesSb);
+
+            if (errorMessages.Length != 0)
+            {
+                EnsureNoErrors(errorMessages);
+            }
         }
 
         private static string ValidateProperties(Movie movie)
@@ -41,6 +66,14 @@ namespace DomainLayer.Managers.Validators
             if (movie == null)
             {
                 throw new InvalidMovieException("The movie parameter can not be null.");
+            }
+        }
+
+        private static void EnsureMoviesAreNotNull(IEnumerable<Movie> movies)
+        {
+            if (!movies.Any())
+            {
+                throw new InvalidMovieException("The movies Collection Must Contain One or More Movies and Can't be Empty.");
             }
         }
 

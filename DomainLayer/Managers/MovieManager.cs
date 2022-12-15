@@ -46,6 +46,12 @@ namespace DomainLayer.Managers
             return DataFacade.CreateMovie(movie);
         }
 
+        public async Task CreateMovies(IEnumerable<Movie> movies)
+        {
+            ValidatorMovie.EnsureMoviesAreValid(movies);
+            await DataFacade.CreateMovies(movies).ConfigureAwait(false);
+        }
+
         public async Task<Movie> GetMovieById(int id)
         {
             var movie = await DataFacade.GetMovieById(id).ConfigureAwait(false);

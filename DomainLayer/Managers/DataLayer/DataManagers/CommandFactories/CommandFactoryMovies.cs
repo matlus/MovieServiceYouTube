@@ -74,35 +74,39 @@ namespace DomainLayer.Managers.DataLayer.DataManagers.CommandFactories
             return dbCommand;
         }
 
-        public static DbCommand CreateCommandForGetMoviesByYear(DbConnection dbConnection, int year)
-        {
-            var dbCommand = dbConnection.CreateCommand();
-            dbCommand.CommandType = CommandType.StoredProcedure;
-            dbCommand.CommandText = "dbo.GetMoviesByYear";
-            AddReturnValueParameter(dbCommand);
-            AddCommandParameter(dbCommand, "@Year", ParameterDirection.Input, DbType.Int32, year, 0);
-            return dbCommand;
-        }
+        //// Retaining For training purposes
+        ////public static DbCommand CreateCommandForGetMoviesByYear(DbConnection dbConnection, int year)
+        ////{
+        ////    var dbCommand = dbConnection.CreateCommand();
+        ////    dbCommand.CommandType = CommandType.StoredProcedure;
+        ////    dbCommand.CommandText = "dbo.GetMoviesByYear";
+        ////    AddReturnValueParameter(dbCommand);
+        ////    AddCommandParameter(dbCommand, "@Year", ParameterDirection.Input, DbType.Int32, year, 0);
+        ////    return dbCommand;
+        ////}
 
-        public static DbCommand CreateCommandForCreateMoviesTvpMergeMerge(DbConnection dbConnection, DbTransaction dbTransaction, IEnumerable<Movie> movie)
-        {
-            return CreateCommandForCreateMoviesUsingTvp(dbConnection, dbTransaction, movie, "dbo.CreateMoviesTvpMergeMerge");
-        }
+        //// Retaining For training purposes
+        ////public static DbCommand CreateCommandForCreateMoviesTvpMergeMerge(DbConnection dbConnection, DbTransaction dbTransaction, IEnumerable<Movie> movie)
+        ////{
+        ////    return CreateCommandForCreateMoviesUsingTvp(dbConnection, dbTransaction, movie, "dbo.CreateMoviesTvpMergeMerge");
+        ////}
 
-        public static DbCommand CreateCommandForCreateMoviesTvpMergeInsertInto(DbConnection dbConnection, DbTransaction dbTransaction, IEnumerable<Movie> movie)
-        {
-            return CreateCommandForCreateMoviesUsingTvp(dbConnection, dbTransaction, movie, "dbo.CreateMoviesTvpMergeInsertInto");
-        }
+        //// Retaining For training purposes
+        ////public static DbCommand CreateCommandForCreateMoviesTvpMergeInsertInto(DbConnection dbConnection, DbTransaction dbTransaction, IEnumerable<Movie> movie)
+        ////{
+        ////    return CreateCommandForCreateMoviesUsingTvp(dbConnection, dbTransaction, movie, "dbo.CreateMoviesTvpMergeInsertInto");
+        ////}
 
         public static DbCommand CreateCommandForCreateMoviesTvpDistinctInsertInto(DbConnection dbConnection, DbTransaction dbTransaction, IEnumerable<Movie> movie)
         {
             return CreateCommandForCreateMoviesUsingTvp(dbConnection, dbTransaction, movie, "dbo.CreateMoviesTvpDistinctInsertInto");
         }
 
-        public static DbCommand CreateCommandForCreateMoviesTvpUsingCursor(DbConnection dbConnection, DbTransaction dbTransaction, IEnumerable<Movie> movie)
-        {
-            return CreateCommandForCreateMoviesUsingTvp(dbConnection, dbTransaction, movie, "dbo.CreateMoviesTvpUsingCursor");
-        }
+        //// Retaining For training purposes
+        ////public static DbCommand CreateCommandForCreateMoviesTvpUsingCursor(DbConnection dbConnection, DbTransaction dbTransaction, IEnumerable<Movie> movie)
+        ////{
+        ////    return CreateCommandForCreateMoviesUsingTvp(dbConnection, dbTransaction, movie, "dbo.CreateMoviesTvpUsingCursor");
+        ////}
 
         private static DbCommand CreateCommandForCreateMoviesUsingTvp(DbConnection dbConnection, DbTransaction dbTransaction, IEnumerable<Movie> movie, string storedProcedureName)
         {

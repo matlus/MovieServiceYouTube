@@ -8,6 +8,7 @@ using DomainLayer.Managers.Models;
 using DomainLayer.Managers.Services.ImdbService.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -553,5 +554,104 @@ namespace AcceptanceTests
                 domainFacade.Dispose();
             }
         }
+
+        [TestMethod]
+        [TestCategory("Acceptance Test")]
+        public async Task CreateMovies_WhenCalledWithValidMoviesNonExistent_Succeed()
+        {
+            // Arrange
+            var (domainFacade, _) = CreateDomainFacade();
+            var expectedMovies = RandomMovieGenerator.GenerateRandomMovies(5);
+            try
+            {
+                // Act
+                await domainFacade.CreateMovies(expectedMovies);
+
+                // Assert
+                var actualMovies = await MovieTestDataGenerator.RetrieveMovies(dbConnectionString, expectedMovies.Select(m => m.Title));
+                MovieAssertions.AssertMoviesAreEqual(expectedMovies, actualMovies);
+            }
+            finally
+            {
+                domainFacade.Dispose();
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Acceptance Test")]
+        public async Task CreateMovies_WhenCalledWithPreExistingMovies_ShouldThrow()
+        {
+            // Arrange
+            var (domainFacade, _) = CreateDomainFacade();
+            var expectedMovies = RandomMovieGenerator.GenerateRandomMovies(2);
+            try
+            {
+                // Act
+                await domainFacade.CreateMovies(expectedMovies);
+                await domainFacade.CreateMovies(expectedMovies);
+                Assert.Fail("We were expecting a DuplicateMovieException exception to be thrown, but no exception was thrown");
+            }
+            catch(DuplicateMovieException e)
+            {
+                // Assert
+                StringAssert.Contains(e.Message, $"One or more Movies with the following Titles already Exists");
+            }
+            finally
+            {
+                domainFacade.Dispose();
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Acceptance Test")]
+        public async Task CreateMovies_WhenCalledWithEmptyCollection_ShouldThrow()
+        {
+            // Arrange
+            var (domainFacade, _) = CreateDomainFacade();
+            var emptyMovies = Enumerable.Empty<Movie>();
+            try
+            {
+                // Act
+                await domainFacade.CreateMovies(emptyMovies);
+                Assert.Fail("We were expecting an InvalidMovieException exception to be thrown, but no exception was thrown");
+            }
+            catch (InvalidMovieException e)
+            {
+                // Assert
+                StringAssert.Contains(e.Message, "The movies Collection Must Contain One or More Movies and Can't be Empty");
+            }
+            finally
+            {
+                domainFacade.Dispose();
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Acceptance Test")]
+        public async Task CreateMovies_WhenCalledWithOneOrMoreInvalidMovies_ShouldThrow()
+        {
+            // Arrange
+            var (domainFacade, _) = CreateDomainFacade();
+            var movies = RandomMovieGenerator.GenerateRandomMovies(2).ToList();
+            var invalidMovie = new Movie(title: null, imageUrl: "http://someurl", genre: Genre.Action, year: 1900);
+            movies.Add(invalidMovie);
+
+            try
+            {
+                // Act
+                await domainFacade.CreateMovies(movies);
+                Assert.Fail("We were expecting an InvalidMovieException exception to be thrown, but no exception was thrown");
+            }
+            catch (InvalidMovieException e)
+            {
+                // Assert
+                StringAssert.Contains(e.Message, "The Movie Title must be a valid Title and can not be null");
+            }
+            finally
+            {
+                domainFacade.Dispose();
+            }
+        }
+
     }
 }

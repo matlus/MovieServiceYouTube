@@ -53,6 +53,11 @@ namespace DomainLayer
             return MovieManager.CreateMovie(movie);
         }
 
+        public Task CreateMovies(IEnumerable<Movie> movies)
+        {
+            return MovieManager.CreateMovies(movies);
+        }
+
         [ExcludeFromCodeCoverage]
         private void Dispose(bool disposing)
         {

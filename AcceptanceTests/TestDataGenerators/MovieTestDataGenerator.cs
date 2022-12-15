@@ -127,5 +127,57 @@ namespace AcceptanceTests.TestDataGenerators
                 dbConnection.Dispose();
             }
         }
+
+        public static async Task<IEnumerable<Movie>> RetrieveMovies(string dbConnectionString, IEnumerable<string> titles)
+        {
+            DbConnection dbConnection = null;
+            DbCommand dbCommand = null;
+            try
+            {
+                dbConnection = CreateDbConnection(dbConnectionString);
+                await dbConnection.OpenAsync();
+                dbCommand = dbConnection.CreateCommand();
+
+                dbCommand.CommandType = CommandType.Text;
+                
+                var commandText = "SELECT	Title, Genre, Year, ImageUrl FROM dbo.MovieVw WHERE Title IN (";
+
+                foreach (var title in titles)
+                {
+                    commandText += $"'{title}', ";
+                }
+
+                commandText = commandText.Substring(0, commandText.Length - 2);
+
+                commandText += ")";
+                dbCommand.CommandText = commandText;
+
+                var dbDataReader = await dbCommand.ExecuteReaderAsync();
+
+                const int MovieTitleIndex = 0;
+                const int MovieGenreIndex = 1;
+                const int MovieYearIndex = 2;
+                const int MovieImageUrlIndex = 3;
+
+                var movies = new List<Movie>(); 
+                while (dbDataReader.Read())
+                {
+                    movies.Add(new Movie
+                    (
+                        title: (string)dbDataReader[MovieTitleIndex],
+                        imageUrl: (string)dbDataReader[MovieImageUrlIndex],
+                        genre: GenreParser.Parse((string)dbDataReader[MovieGenreIndex]),
+                        year: (int)dbDataReader[MovieYearIndex]
+                    ));
+                }
+                
+                return movies;
+            }
+            finally
+            {
+                dbCommand?.Dispose();
+                dbConnection.Dispose();
+            }
+        }
     }
 }

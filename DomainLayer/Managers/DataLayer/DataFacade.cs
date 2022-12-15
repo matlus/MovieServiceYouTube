@@ -23,6 +23,11 @@ namespace DomainLayer.Managers.DataLayer
             return MovieDataManager.CreateMovie(movie);
         }
 
+        public async Task CreateMovies(IEnumerable<Movie> movies)
+        {
+            await MovieDataManager.CreateMovies(movies).ConfigureAwait(false);
+        }
+
         public Task<Movie> GetMovieById(int id)
         {
             return MovieDataManager.GetMovieById(id);

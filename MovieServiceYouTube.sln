@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieServiceYouTube", "MovieServiceYouTube\MovieServiceYouTube.csproj", "{B4DD2423-D3DB-4FED-9F2A-BA9E65FFEF6F}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndToEndIntegrationTests", "EndToEndIntegrationTests\EndToEndIntegrationTests.csproj", "{9EE4A97D-6E52-4678-B429-4F26DABD54B0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.Shared", "Testing.Shared\Testing.Shared.csproj", "{F6F1B328-E136-4A2A-B2EB-5252EF65C9B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{1C37C36C-E38B-420F-9635-2FEC688CF7D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{F6F1B328-E136-4A2A-B2EB-5252EF65C9B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6F1B328-E136-4A2A-B2EB-5252EF65C9B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6F1B328-E136-4A2A-B2EB-5252EF65C9B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C37C36C-E38B-420F-9635-2FEC688CF7D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C37C36C-E38B-420F-9635-2FEC688CF7D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C37C36C-E38B-420F-9635-2FEC688CF7D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C37C36C-E38B-420F-9635-2FEC688CF7D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

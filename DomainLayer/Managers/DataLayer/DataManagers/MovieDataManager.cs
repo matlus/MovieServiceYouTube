@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using DomainLayer.Managers.DataLayer.DataManagers.CommandFactories;
 using DomainLayer.Managers.Enums;
@@ -59,8 +60,8 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
             }
             finally
             {
-                dbCommand.DisposeIfNotNull();
-                dbTransaction.DisposeIfNotNull();
+                dbCommand?.Dispose();
+                dbTransaction?.Dispose();
                 dbConnection.Dispose();
             }
         }
@@ -78,16 +79,24 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
                 await dbCommand.ExecuteNonQueryAsync().ConfigureAwait(false);
                 dbTransaction.Commit();
             }
-            catch (DbException)
+            catch (DbException e)
             {
                 dbTransaction.RollbackIfNotNull();
-                throw;
+                if (e.Message.Contains("duplicate key row in object 'dbo.Movie'", StringComparison.OrdinalIgnoreCase))
+                {
+                    var movieTitles = string.Join(",", movies.Select(m => m.Title));
+                    throw new DuplicateMovieException($"One or more Movies with the following Titles already Exists. {movieTitles}. Please use a different title", e);
+                }
+                else
+                {
+                    throw;
+                }
             }
             finally
             {
-                dbCommand.DisposeIfNotNull();
-                dbTransaction.DisposeIfNotNull();
-                dbConnection.DisposeIfNotNull();
+                dbCommand?.Dispose();
+                dbTransaction?.Dispose();
+                dbConnection.Dispose();
             }
         }
 
@@ -105,8 +114,8 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
             }
             finally
             {
-                dbDataReader.DisposeIfNotNull();
-                dbCommand.DisposeIfNotNull();
+                dbDataReader?.Dispose();
+                dbCommand?.Dispose();
                 dbConnection.Dispose();
             }
         }
@@ -125,8 +134,8 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
             }
             finally
             {
-                dbDataReader.DisposeIfNotNull();
-                dbCommand.DisposeIfNotNull();
+                dbDataReader?.Dispose();
+                dbCommand?.Dispose();
                 dbConnection.Dispose();
             }
         }
@@ -145,8 +154,8 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
             }
             finally
             {
-                dbDataReader.DisposeIfNotNull();
-                dbCommand.DisposeIfNotNull();
+                dbDataReader?.Dispose();
+                dbCommand?.Dispose();
                 dbConnection.Dispose();
             }
         }
