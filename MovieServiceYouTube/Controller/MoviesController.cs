@@ -42,14 +42,6 @@ namespace MovieServiceCore3.Controller
             return ModelToResourceMapper.MapToMovieResource(movies);
         }
 
-        // GET api/movies/genre/drama
-        [HttpGet("genre2/{genre}")]
-        public async Task<IEnumerable<MovieResource>> GetMoviesByGenre2(Genre genre)
-        {
-            var movies = await GetMoviesByGenre(genre);
-            return ModelToResourceMapper.MapToMovieResource(movies);
-        }
-
         // GET api/movies/id/1
         [HttpGet("id/{id}")]
         public async Task<MovieResource> GetMovie(int id)

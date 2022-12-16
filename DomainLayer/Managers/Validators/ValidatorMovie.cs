@@ -36,10 +36,12 @@ namespace DomainLayer.Managers.Validators
 
             var errorMessages = StringBuilderCache.GetStringAndRelease(errorMessagesSb);
 
-            if (errorMessages.Length != 0)
+            if (errorMessages.Length == 0)
             {
-                EnsureNoErrors(errorMessages);
+                errorMessages = null;
             }
+
+            EnsureNoErrors(errorMessages);
         }
 
         private static string ValidateProperties(Movie movie)

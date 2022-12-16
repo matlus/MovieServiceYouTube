@@ -20,6 +20,7 @@ namespace MovieServiceCore3.Middleware.Translators
 
             httpResponse.StatusCode = MapExceptionToStatusCode(exception);
             await httpResponse.WriteAsync(exception.Message);
+            await httpResponse.Body.FlushAsync();
         }
 
         private static int MapExceptionToStatusCode(Exception exception)

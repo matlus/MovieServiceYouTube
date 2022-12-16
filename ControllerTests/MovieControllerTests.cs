@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ControllerTests.ForTestClasses;
 using DomainLayer.Managers.Enums;
@@ -132,6 +133,23 @@ namespace ControllerTests
                 // Assert
                 StringAssert.Contains(e.Message, "The string can not be null or empty");
             }
+        }
+
+        [TestMethod]
+        [TestCategory("Class Test")]
+        public async Task GetMovieById_WhenThereAreNoExceptions_ReturnsAllMovies()
+        {
+            // Arrange
+            var expectedMovies = RandomMovieGenerator.GenerateRandomMovies(1);
+            var moviesController = new MovieControllerForTest(expectedMovies.Single());
+            var irrelevantMovieId = -1; //// We simply want to make sure the controler returns what was given to it by the Domain
+
+            // Act
+            var actualMovieResources = await moviesController.GetMovie(irrelevantMovieId);
+
+            // Assert
+            var actualMovies = MapToMvoies(new[] { actualMovieResources });
+            MovieAssertions.AssertMoviesAreEqual(expectedMovies, actualMovies);
         }
 
         [TestMethod]

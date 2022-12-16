@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj" />
+    <ProjectReference Include="..\MovieServiceYouTube\MovieServiceYouTube.csproj" />
     <ProjectReference Include="..\Testing.Shared\Testing.Shared.csproj" />
   </ItemGroup>
 

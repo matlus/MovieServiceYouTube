@@ -2,6 +2,7 @@
 using DomainLayer.Managers.Models;
 using DomainLayer.Managers.Parsers;
 using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -139,7 +140,14 @@ namespace DomainLayer.Managers.DataLayer.DataManagers.CommandFactories
 
             foreach (var movie in movies)
             {
-                sqlDataRecord.SetString(0, movie.Title);
+                if (movie.Title == null)
+                {
+                    sqlDataRecord.SetDBNull(0);
+                }
+                else
+                {
+                    sqlDataRecord.SetString(0, movie.Title);
+                }
                 sqlDataRecord.SetString(1, GenreParser.ToString(movie.Genre));
                 sqlDataRecord.SetInt32(2, movie.Year);
                 sqlDataRecord.SetString(3, movie.ImageUrl);

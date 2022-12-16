@@ -60,8 +60,8 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
             }
             finally
             {
-                dbCommand?.Dispose();
-                dbTransaction?.Dispose();
+                dbCommand.DisposeIfNotNull();
+                dbTransaction.DisposeIfNotNull();
                 dbConnection.Dispose();
             }
         }
@@ -94,8 +94,8 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
             }
             finally
             {
-                dbCommand?.Dispose();
-                dbTransaction?.Dispose();
+                dbCommand.DisposeIfNotNull();
+                dbTransaction.DisposeIfNotNull();
                 dbConnection.Dispose();
             }
         }
@@ -114,8 +114,8 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
             }
             finally
             {
-                dbDataReader?.Dispose();
-                dbCommand?.Dispose();
+                dbDataReader.DisposeIfNotNull();
+                dbCommand.DisposeIfNotNull();
                 dbConnection.Dispose();
             }
         }
@@ -134,8 +134,8 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
             }
             finally
             {
-                dbDataReader?.Dispose();
-                dbCommand?.Dispose();
+                dbDataReader.DisposeIfNotNull();
+                dbCommand.DisposeIfNotNull();
                 dbConnection.Dispose();
             }
         }
@@ -154,8 +154,8 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
             }
             finally
             {
-                dbDataReader?.Dispose();
-                dbCommand?.Dispose();
+                dbDataReader.DisposeIfNotNull();
+                dbCommand.DisposeIfNotNull();
                 dbConnection.Dispose();
             }
         }
