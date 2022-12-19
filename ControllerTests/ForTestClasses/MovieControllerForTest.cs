@@ -1,10 +1,10 @@
-﻿using DomainLayer;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DomainLayer;
 using DomainLayer.Managers.Enums;
 using DomainLayer.Managers.Models;
 using MovieServiceCore3.Controller;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ControllerTests.ForTestClasses
 {
@@ -15,12 +15,12 @@ namespace ControllerTests.ForTestClasses
         private readonly Exception _exception;
 
         public MovieControllerForTest(DomainFacade domainFacade)
-            :base(domainFacade)
+            : base(domainFacade)
         {
         }
 
         public MovieControllerForTest(IEnumerable<Movie> movies)
-            :base(null)
+            : base(null)
         {
             _movies = movies;
         }
@@ -32,7 +32,7 @@ namespace ControllerTests.ForTestClasses
         }
 
         public MovieControllerForTest(Exception exception)
-            :base(null)
+            : base(null)
         {
             _exception = exception;
         }

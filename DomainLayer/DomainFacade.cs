@@ -16,8 +16,8 @@ namespace DomainLayer
 {
     public sealed class DomainFacade : IDisposable
     {
-        private bool _disposed;
         private readonly ServiceLocatorBase _serviceLocator;
+        private bool _disposed;
 
         private MovieManager _movieManager;
 

@@ -1,4 +1,9 @@
-﻿using DomainLayer.Managers.ConfigurationProviders;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
+using DomainLayer.Managers.ConfigurationProviders;
 using DomainLayer.Managers.DataLayer;
 using DomainLayer.Managers.Enums;
 using DomainLayer.Managers.Exceptions;
@@ -7,33 +12,28 @@ using DomainLayer.Managers.Parsers;
 using DomainLayer.Managers.ServiceLocators;
 using DomainLayer.Managers.Services.ImdbService;
 using DomainLayer.Managers.Validators;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DomainLayer.Managers
 {
     internal sealed class MovieManager : IDisposable
     {
-        private bool _disposed;
         private readonly ServiceLocatorBase _serviceLocator;
+        private bool _disposed;
 
         private ConfigurationProviderBase _configurationProvider;
-        private ConfigurationProviderBase ConfigurationProvider { get { return _configurationProvider ?? (_configurationProvider = _serviceLocator.CreateConfigurationProvider()); } }
+        private ConfigurationProviderBase ConfigurationProvider { get { return _configurationProvider ??= _serviceLocator.CreateConfigurationProvider(); } }
 
         private ImdbServiceGateway _imdbServiceGateway;
         private ImdbServiceGateway ImdbServiceGateway
         {
             get
             {
-                return _imdbServiceGateway ?? (_imdbServiceGateway = _serviceLocator.CreateImdbServiceGateway());
+                return _imdbServiceGateway ??= _serviceLocator.CreateImdbServiceGateway();
             }
         }
 
         private DataFacade _dataFacade;
-        private DataFacade DataFacade { get { return _dataFacade ?? (_dataFacade = new DataFacade(ConfigurationProvider.GetDbConnectionString())); } }
+        private DataFacade DataFacade { get { return _dataFacade ??= new DataFacade(ConfigurationProvider.GetDbConnectionString()); } }
 
         public MovieManager(ServiceLocatorBase serviceLocator)
         {

@@ -1,14 +1,14 @@
-﻿using AcceptanceTests.TestMediators;
-using DomainLayer.Managers.Parsers;
-using DomainLayer.Managers.Services.ImdbService.ResourceModels;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AcceptanceTests.TestMediators;
+using DomainLayer.Managers.Parsers;
+using DomainLayer.Managers.Services.ImdbService.ResourceModels;
+using Newtonsoft.Json;
 
 namespace AcceptanceTests.TestDoubles.Spies
 {

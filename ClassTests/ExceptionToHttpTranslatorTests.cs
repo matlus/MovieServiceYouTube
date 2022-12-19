@@ -1,12 +1,10 @@
-﻿using DomainLayer.Managers.Exceptions;
+﻿using System.IO;
+using System.Threading.Tasks;
+using DomainLayer.Managers.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MovieServiceCore3.Middleware.Translators;
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Testing.Shared.TestingHelpers;
 
 namespace ClassTests
 {
@@ -59,7 +57,7 @@ namespace ClassTests
             var httpContext = new DefaultHttpContext();
             using var bodyMemoryStream = new MemoryStream();
             httpContext.Response.Body = bodyMemoryStream;
-            
+
             var expectedBodyContent = "The Configuration Setting with Key: BaseUrl, is Missing from the Configuration file";
             var configurationSettingMissingException = new ConfigurationSettingMissingException(expectedBodyContent);
 

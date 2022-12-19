@@ -1,8 +1,8 @@
-﻿using DomainLayer.Managers.DataLayer.DataManagers;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using DomainLayer.Managers.DataLayer.DataManagers;
 using DomainLayer.Managers.Enums;
 using DomainLayer.Managers.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DomainLayer.Managers.DataLayer
 {
@@ -11,7 +11,7 @@ namespace DomainLayer.Managers.DataLayer
         private readonly string _dbConnectionString;
         private MovieDataManager _movieDataManager;
 
-        private MovieDataManager MovieDataManager { get { return _movieDataManager ?? (_movieDataManager = new MovieDataManager(_dbConnectionString)); } }
+        private MovieDataManager MovieDataManager { get { return _movieDataManager ??= new MovieDataManager(_dbConnectionString); } }
 
         public DataFacade(string dbConnectionString)
         {

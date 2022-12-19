@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using MovieServiceCore3.Middleware.Translators;
-using System;
-using System.Threading.Tasks;
 
 namespace MovieServiceCore3.Middleware
 {

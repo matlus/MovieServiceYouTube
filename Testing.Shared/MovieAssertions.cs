@@ -1,9 +1,9 @@
-﻿using DomainLayer.Managers.Models;
-using DomainLayer.Managers.Parsers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DomainLayer.Managers.Models;
+using DomainLayer.Managers.Parsers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Testing.Shared
 {

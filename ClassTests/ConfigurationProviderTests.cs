@@ -1,8 +1,8 @@
-﻿using DomainLayer.Managers.ConfigurationProviders;
+﻿using System.Collections.Generic;
+using DomainLayer.Managers.ConfigurationProviders;
 using DomainLayer.Managers.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using Testing.Shared;
 
 namespace ClassTests

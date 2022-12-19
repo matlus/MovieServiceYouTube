@@ -37,7 +37,7 @@ namespace ControllerTests
         {
             // Arrange
             var expectedMessage = "Some Exception Message";
-            var expectedException = new ConfigurationSettingMissingException(expectedMessage);            
+            var expectedException = new ConfigurationSettingMissingException(expectedMessage);
             var moviesController = new MovieControllerForTest(expectedException);
 
             // Act
@@ -165,7 +165,7 @@ namespace ControllerTests
                 Year = 1900
             };
 
-            var moviesController = new MovieControllerForTest(movies: null);            
+            var moviesController = new MovieControllerForTest(movies: null);
 
             // Act
             await moviesController.CreateMovie(movieResource);
@@ -203,7 +203,6 @@ namespace ControllerTests
                 Assert.AreEqual(expectedMessage, e.Message);
             }
         }
-
 
         private static IEnumerable<Movie> MapToMvoies(IEnumerable<MovieResource> movieResources)
         {

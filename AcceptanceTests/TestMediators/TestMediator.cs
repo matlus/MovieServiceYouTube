@@ -1,5 +1,5 @@
-﻿using DomainLayer.Managers.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DomainLayer.Managers.Models;
 
 namespace AcceptanceTests.TestMediators
 {
@@ -14,5 +14,5 @@ namespace AcceptanceTests.TestMediators
         public ExceptionReason ExceptionReason { get; set; }
     }
 
-    internal enum ExceptionReason {  NotFond = 404, BadRequest = 400, ProxyAuthenticationRequired = 407, BadGateway = 502, ServiceUnavailable = 503 }
+    internal enum ExceptionReason { NotFond = 404, BadRequest = 400, ProxyAuthenticationRequired = 407, BadGateway = 502, ServiceUnavailable = 503 }
 }

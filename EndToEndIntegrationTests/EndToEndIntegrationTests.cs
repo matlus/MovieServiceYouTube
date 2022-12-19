@@ -1,10 +1,3 @@
-using DomainLayer.Managers.Enums;
-using DomainLayer.Managers.Exceptions;
-using DomainLayer.Managers.Parsers;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MovieServiceCore3;
-using MovieServiceCore3.ResourceModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +5,13 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using DomainLayer.Managers.Enums;
+using DomainLayer.Managers.Exceptions;
+using DomainLayer.Managers.Parsers;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MovieServiceCore3;
+using MovieServiceCore3.ResourceModels;
 using Testing.Shared;
 
 namespace EndToEndIntegrationTests
@@ -44,7 +44,7 @@ namespace EndToEndIntegrationTests
 
             // Assert
             if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
-            {                
+            {
                 var actualMovieResource = await httpResponseMessage.Content.ReadAsAsync<IEnumerable<MovieResource>>();
                 Assert.IsTrue(actualMovieResource.Any());
             }

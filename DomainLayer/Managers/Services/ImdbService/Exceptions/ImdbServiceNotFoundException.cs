@@ -1,6 +1,6 @@
-﻿using DomainLayer.Managers.Exceptions;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using DomainLayer.Managers.Exceptions;
 
 namespace DomainLayer.Managers.Services.ImdbService.Exceptions
 {

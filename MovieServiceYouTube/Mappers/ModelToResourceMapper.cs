@@ -1,10 +1,7 @@
-﻿using DomainLayer.Managers.Models;
+﻿using System.Collections.Generic;
+using DomainLayer.Managers.Models;
 using DomainLayer.Managers.Parsers;
 using MovieServiceCore3.ResourceModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MovieServiceCore3.Mappers
 {

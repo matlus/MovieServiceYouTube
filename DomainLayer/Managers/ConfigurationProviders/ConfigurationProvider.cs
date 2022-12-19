@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace DomainLayer.Managers.ConfigurationProviders
 {

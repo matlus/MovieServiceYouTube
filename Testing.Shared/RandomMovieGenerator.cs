@@ -1,6 +1,6 @@
-﻿using DomainLayer.Managers.Enums;
+﻿using System.Collections.Generic;
+using DomainLayer.Managers.Enums;
 using DomainLayer.Managers.Models;
-using System.Collections.Generic;
 using Testing.Shared.TestingHelpers;
 
 namespace Testing.Shared

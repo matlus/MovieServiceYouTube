@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using DomainLayer.Managers.Enums;
 using DomainLayer.Managers.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using Testing.Shared;
 
 namespace ClassTests

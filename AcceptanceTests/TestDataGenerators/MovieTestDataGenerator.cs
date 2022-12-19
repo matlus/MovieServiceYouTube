@@ -1,10 +1,10 @@
-﻿using DomainLayer.Managers.Models;
-using DomainLayer.Managers.Parsers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using DomainLayer.Managers.Models;
+using DomainLayer.Managers.Parsers;
 
 namespace AcceptanceTests.TestDataGenerators
 {
@@ -12,7 +12,7 @@ namespace AcceptanceTests.TestDataGenerators
     {
         private static readonly SqlClientFactory sqlClientFactory = SqlClientFactory.Instance;
 
-        static DbConnection CreateDbConnection(string dbConnectionString)
+        private static DbConnection CreateDbConnection(string dbConnectionString)
         {
             var dbConnection = sqlClientFactory.CreateConnection();
             dbConnection.ConnectionString = dbConnectionString;
@@ -90,7 +90,7 @@ namespace AcceptanceTests.TestDataGenerators
 
         public static async Task<Movie> RetrieveMovie(string dbConnectionString, string title)
         {
-            DbConnection dbConnection = null;            
+            DbConnection dbConnection = null;
             DbCommand dbCommand = null;
             try
             {
@@ -139,7 +139,7 @@ namespace AcceptanceTests.TestDataGenerators
                 dbCommand = dbConnection.CreateCommand();
 
                 dbCommand.CommandType = CommandType.Text;
-                
+
                 var commandText = "SELECT	Title, Genre, Year, ImageUrl FROM dbo.MovieVw WHERE Title IN (";
 
                 foreach (var title in titles)
@@ -147,7 +147,7 @@ namespace AcceptanceTests.TestDataGenerators
                     commandText += $"'{title}', ";
                 }
 
-                commandText = commandText.Substring(0, commandText.Length - 2);
+                commandText = commandText[..^2];
 
                 commandText += ")";
                 dbCommand.CommandText = commandText;
@@ -159,7 +159,7 @@ namespace AcceptanceTests.TestDataGenerators
                 const int MovieYearIndex = 2;
                 const int MovieImageUrlIndex = 3;
 
-                var movies = new List<Movie>(); 
+                var movies = new List<Movie>();
                 while (dbDataReader.Read())
                 {
                     movies.Add(new Movie
@@ -170,7 +170,7 @@ namespace AcceptanceTests.TestDataGenerators
                         year: (int)dbDataReader[MovieYearIndex]
                     ));
                 }
-                
+
                 return movies;
             }
             finally

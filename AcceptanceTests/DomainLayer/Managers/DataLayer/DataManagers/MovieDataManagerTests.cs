@@ -1,10 +1,10 @@
-﻿using AcceptanceTests.DomainLayer.Managers.ServiceLocators;
+﻿using System.Data.Common;
+using System.Threading.Tasks;
+using AcceptanceTests.DomainLayer.Managers.ServiceLocators;
 using DomainLayer.Managers.DataLayer.DataManagers;
 using DomainLayer.Managers.Enums;
 using DomainLayer.Managers.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Data.Common;
-using System.Threading.Tasks;
 
 namespace ClassTests.Managers.DataLayer.DataManagers
 {

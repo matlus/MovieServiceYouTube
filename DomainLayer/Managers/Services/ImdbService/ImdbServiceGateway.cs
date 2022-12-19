@@ -1,22 +1,22 @@
-﻿using DomainLayer.Managers.Models;
-using DomainLayer.Managers.Parsers;
-using DomainLayer.Managers.SegregatedInterfaces;
-using DomainLayer.Managers.Services.ImdbService.Exceptions;
-using DomainLayer.Managers.Services.ImdbService.ResourceModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using DomainLayer.Managers.Models;
+using DomainLayer.Managers.Parsers;
+using DomainLayer.Managers.SegregatedInterfaces;
+using DomainLayer.Managers.Services.ImdbService.Exceptions;
+using DomainLayer.Managers.Services.ImdbService.ResourceModels;
 
 namespace DomainLayer.Managers.Services.ImdbService
 {
     internal sealed class ImdbServiceGateway : IDisposable
     {
+        private readonly IHttpMessageHandlerProvider _httpMessageHandlerProvider;
         private bool _disposed;
         private HttpClient _httpClient;
-        private readonly IHttpMessageHandlerProvider _httpMessageHandlerProvider;
 
         public ImdbServiceGateway(IHttpMessageHandlerProvider httpMessageHandlerProvider, string baseUrl)
         {
@@ -129,15 +129,14 @@ namespace DomainLayer.Managers.Services.ImdbService
 
             var httpContent = await content.ReadAsStringAsync().ConfigureAwait(false);
 
-            switch (statusCode)
+            throw statusCode switch
             {
-                case HttpStatusCode.NotFound:
-                    throw new ImdbServiceNotFoundException("The Imdb Service call resulted in a Not Found Status Code");
-                case HttpStatusCode.ProxyAuthenticationRequired:
-                    throw new ImdbProxyAuthenticationRequiredException($"The Imdb Service call resulted in status code of: {statusCode}, with body: {httpContent}");
-                default:
-                    throw new ImdbServiceNotFoundException($"The Imdb Service call resulted in a status code of: {statusCode}, with body: {httpContent}");
+                HttpStatusCode.NotFound => new ImdbServiceNotFoundException("The Imdb Service call resulted in a Not Found Status Code"),
+                HttpStatusCode.ProxyAuthenticationRequired => new ImdbProxyAuthenticationRequiredException($"The Imdb Service call resulted in status code of: {statusCode}, with body: {httpContent}"),
+                _ => new ImdbServiceNotFoundException($"The Imdb Service call resulted in a status code of: {statusCode}, with body: {httpContent}"),
             }
+
+            ;
         }
 
         [ExcludeFromCodeCoverage]

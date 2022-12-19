@@ -1,10 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using DomainLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MovieServiceCore3.Middleware;
-using System.Diagnostics.CodeAnalysis;
 
 namespace MovieServiceCore3
 {
@@ -31,7 +31,7 @@ namespace MovieServiceCore3
             app.UseCustomExceptionHandling();
             ////if (env.IsDevelopment())
             ////{
-                ////app.UseDeveloperExceptionPage();
+            ////app.UseDeveloperExceptionPage();
             ////}
             ////else
             ////{

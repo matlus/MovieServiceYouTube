@@ -8,10 +8,7 @@ namespace DomainLayer.Managers.Extensions
         [ExcludeFromCodeCoverage]
         public static void RollbackIfNotNull(this DbTransaction dbTransaction)
         {
-            if (dbTransaction != null)
-            {
-                dbTransaction.Rollback();
-            }
+            dbTransaction?.Rollback();
         }
     }
 }

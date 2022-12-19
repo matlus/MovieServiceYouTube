@@ -1,11 +1,10 @@
-﻿using DomainLayer.Managers.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DomainLayer.Managers.Enums;
 using DomainLayer.Managers.Exceptions;
 using DomainLayer.Managers.Models;
 using DomainLayer.Managers.Parsers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DomainLayer.Managers.Validators
 {
@@ -104,18 +103,13 @@ namespace DomainLayer.Managers.Validators
 
         private static string ValidateProperty(string propertyName, string propertyValue)
         {
-            switch (DetermineNullEmptyOrWhiteSpaces(propertyValue))
+            return DetermineNullEmptyOrWhiteSpaces(propertyValue) switch
             {
-                case StringState.Null:
-                    return $"The Movie {propertyName} must be a valid {propertyName} and can not be null\r\n";
-                case StringState.Empty:
-                    return $"The Movie {propertyName} must be a valid {propertyName} and can not be Empty\r\n";
-                case StringState.WhiteSpaces:
-                    return $"The Movie {propertyName} must be a valid {propertyName} and can not be Whitespaces\r\n";
-                case StringState.Valid:
-                default:
-                    return null;
-            }
+                StringState.Null => $"The Movie {propertyName} must be a valid {propertyName} and can not be null\r\n",
+                StringState.Empty => $"The Movie {propertyName} must be a valid {propertyName} and can not be Empty\r\n",
+                StringState.WhiteSpaces => $"The Movie {propertyName} must be a valid {propertyName} and can not be Whitespaces\r\n",
+                _ => null,
+            };
         }
 
         private static StringState DetermineNullEmptyOrWhiteSpaces(string data)

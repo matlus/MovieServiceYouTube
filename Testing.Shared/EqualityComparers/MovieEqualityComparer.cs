@@ -1,6 +1,6 @@
-﻿using DomainLayer.Managers.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DomainLayer.Managers.Models;
 
 namespace Testing.Shared
 {

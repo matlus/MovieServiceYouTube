@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using AcceptanceTests.DomainLayer.Managers.ServiceLocators;
 using AcceptanceTests.TestDataGenerators;
 using AcceptanceTests.TestMediators;
@@ -7,11 +11,6 @@ using DomainLayer.Managers.Exceptions;
 using DomainLayer.Managers.Models;
 using DomainLayer.Managers.Services.ImdbService.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Testing.Shared;
 using Testing.Shared.TestingHelpers;
 
@@ -29,7 +28,7 @@ namespace AcceptanceTests
             moviesInDb = MovieTestDataGenerator.GetAllMovies(dbConnectionString).GetAwaiter().GetResult();
         }
 
-        private (DomainFacade domainFacade, TestMediator testMediator) CreateDomainFacade()
+        private static (DomainFacade domainFacade, TestMediator testMediator) CreateDomainFacade()
         {
             var testMediator = new TestMediator();
             var serviceLocatorForAcceptanceTesting = new ServiceLocatorForAcceptanceTesting(testMediator);
@@ -98,7 +97,7 @@ namespace AcceptanceTests
         public async Task GetMoviesById_WhenCalledWithValidId_ShouldReturnMovieMatchingId()
         {
             // Arrange
-            var (domainFacade, testMediator) = CreateDomainFacade();
+            var (domainFacade, _) = CreateDomainFacade();
             try
             {
                 var expectedMovie = moviesInDb.First();
@@ -121,7 +120,7 @@ namespace AcceptanceTests
         public async Task GetMoviesById_WhenCalledWithANonExistantMovieId_ShouldThrow()
         {
             // Arrange
-            var (domainFacade, testMediator) = CreateDomainFacade();
+            var (domainFacade, _) = CreateDomainFacade();
             var nonExistantMovieId = -1;
 
             try
@@ -216,7 +215,6 @@ namespace AcceptanceTests
             }
         }
 
-
         [TestMethod]
         [TestCategory("Acceptance Test")]
         public async Task GetAllMovies_WhenServiceIsNotAvailable_ShouldThrow()
@@ -290,7 +288,6 @@ namespace AcceptanceTests
                 domainFacade.Dispose();
             }
         }
-
 
         [TestMethod]
         [TestCategory("Acceptance Test")]
@@ -591,7 +588,7 @@ namespace AcceptanceTests
                 await domainFacade.CreateMovies(expectedMovies);
                 Assert.Fail("We were expecting a DuplicateMovieException exception to be thrown, but no exception was thrown");
             }
-            catch(DuplicateMovieException e)
+            catch (DuplicateMovieException e)
             {
                 // Assert
                 StringAssert.Contains(e.Message, $"One or more Movies with the following Titles already Exists");

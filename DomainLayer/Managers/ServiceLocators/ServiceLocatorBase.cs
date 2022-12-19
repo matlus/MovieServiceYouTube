@@ -1,7 +1,7 @@
-﻿using DomainLayer.Managers.ConfigurationProviders;
+﻿using System.Net.Http;
+using DomainLayer.Managers.ConfigurationProviders;
 using DomainLayer.Managers.SegregatedInterfaces;
 using DomainLayer.Managers.Services.ImdbService;
-using System.Net.Http;
 
 namespace DomainLayer.Managers.ServiceLocators
 {

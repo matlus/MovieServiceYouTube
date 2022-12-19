@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainLayer.Managers.Validators
 {
@@ -23,7 +20,11 @@ namespace DomainLayer.Managers.Validators
         [ThreadStatic]
         private static StringBuilder? _cachedInstance;
 
-        /// <summary>Get a StringBuilder for the specified capacity.</summary>
+        /// <summary>
+        /// Get a StringBuilder for the specified capacity.
+        /// </summary>
+        /// <param name="capacity">The capacity of the StringBuilder.</param>
+        /// <returns>A Cached instance of a StringBuilder.</returns>
         /// <remarks>If a StringBuilder of an appropriate size is cached, it will be returned and the cache emptied.</remarks>
         public static StringBuilder Acquire(int capacity = DefaultCapacity)
         {
@@ -46,7 +47,10 @@ namespace DomainLayer.Managers.Validators
             return new StringBuilder(capacity);
         }
 
-        /// <summary>Place the specified builder in the cache if it is not too big.</summary>
+        /// <summary>
+        /// Place the specified builder in the cache if it is not too big.
+        /// </summary>
+        /// <param name="sb">An instance of a StringBuilder that was previously retrived using <seealso cref="Acquire"/>.</param>
         public static void Release(StringBuilder sb)
         {
             if (sb.Capacity <= MaxBuilderSize)
@@ -55,7 +59,11 @@ namespace DomainLayer.Managers.Validators
             }
         }
 
-        /// <summary>ToString() the stringbuilder, Release it to the cache, and return the resulting string.</summary>
+        /// <summary>
+        /// ToString() the stringbuilder, Release it to the cache, and return the resulting string.
+        /// </summary>
+        /// <param name="sb">An instance of a StringBuilder that was previously retrived using <seealso cref="Acquire"/>.</param>
+        /// <returns>Returns the string contained in the StringBuilder.</returns>
         public static string GetStringAndRelease(StringBuilder sb)
         {
             string result = sb.ToString();
