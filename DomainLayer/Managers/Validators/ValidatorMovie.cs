@@ -82,12 +82,9 @@ namespace DomainLayer.Managers.Validators
         {
             const int minimumYear = 1900;
 
-            if (year >= minimumYear && year <= DateTime.Today.Year)
-            {
-                return null;
-            }
-
-            return $"The Year, must be between {minimumYear} and {DateTime.Today.Year} (inclusive)";
+            return year >= minimumYear && year <= DateTime.Today.Year
+                ? null
+                : $"The Year, must be between {minimumYear} and {DateTime.Today.Year} (inclusive)";
         }
 
         private static string ValidateGenre(Genre genre)

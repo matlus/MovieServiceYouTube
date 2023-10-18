@@ -162,16 +162,13 @@ namespace DomainLayer.Managers.DataLayer.DataManagers
 
         private static async Task<Movie> MapToMovie(DbDataReader dbDataReader)
         {
-            if (await dbDataReader.ReadAsync().ConfigureAwait(false))
-            {
-                return new Movie(
+            return await dbDataReader.ReadAsync().ConfigureAwait(false)
+                ? new Movie(
                     title: (string)dbDataReader[0],
                     genre: GenreParser.Parse((string)dbDataReader[1]),
                     year: (int)dbDataReader[2],
-                    imageUrl: (string)dbDataReader[3]);
-            }
-
-            return null;
+                    imageUrl: (string)dbDataReader[3])
+                : null;
         }
 
         private static async Task<IEnumerable<Movie>> MapToMovies(DbDataReader dbDataReader)

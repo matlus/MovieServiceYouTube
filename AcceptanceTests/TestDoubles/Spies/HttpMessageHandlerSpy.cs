@@ -43,15 +43,15 @@ namespace AcceptanceTests.TestDoubles.Spies
 
             var absolutePath = request.RequestUri.AbsolutePath;
 
-            if (absolutePath.Contains("withcategories"))
+            if (absolutePath.Contains("WithCategories.json"))
             {
                 imdbMovies = movies.Select(m => new ImdbMovie { Title = m.Title, Category = GenreParser.ToString(m.Genre) });
             }
-            else if (absolutePath.Contains("withimageurls"))
+            else if (absolutePath.Contains("WithImageUrls.json"))
             {
                 imdbMovies = movies.Select(m => new ImdbMovie { Title = m.Title, ImageUrl = m.ImageUrl });
             }
-            else if (absolutePath.Contains("withyears"))
+            else if (absolutePath.Contains("WithYears.json"))
             {
                 imdbMovies = movies.Select(m => new ImdbMovie { Title = m.Title, Year = m.Year });
             }

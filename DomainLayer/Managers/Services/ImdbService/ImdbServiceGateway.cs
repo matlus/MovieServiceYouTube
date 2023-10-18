@@ -30,6 +30,7 @@ namespace DomainLayer.Managers.Services.ImdbService
 
             if (httpMessageHandler is SocketsHttpHandler socketsHttpHandler)
             {
+                socketsHttpHandler.PooledConnectionLifetime = TimeSpan.FromMinutes(15);
                 socketsHttpHandler.PreAuthenticate = true;
                 socketsHttpHandler.DefaultProxyCredentials = CredentialCache.DefaultCredentials;
             }
@@ -50,7 +51,7 @@ namespace DomainLayer.Managers.Services.ImdbService
         public async Task<IEnumerable<Movie>> GetAllMovies()
         {
             var httpResponseMessages =
-                await MakeConcurrentGetAsyncCalls(_httpClient, "withcategories", "withimageurls", "withyears").ConfigureAwait(false);
+                await MakeConcurrentGetAsyncCalls(_httpClient, "WithCategories.json", "WithImageUrls.json", "WithYears.json").ConfigureAwait(false);
 
             await EnsureSuccessForAllTasks(httpResponseMessages).ConfigureAwait(false);
 

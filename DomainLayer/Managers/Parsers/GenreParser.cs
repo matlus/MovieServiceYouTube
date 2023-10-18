@@ -61,12 +61,9 @@ namespace DomainLayer.Managers.Parsers
 
             var genreAsStringLowered = genreAsString.ToLower(System.Threading.Thread.CurrentThread.CurrentCulture);
 
-            if (StringToGenreMappings.TryGetValue(genreAsStringLowered, out Genre genre))
-            {
-                return genre;
-            }
-
-            throw new InvalidGenreException($"The string: {genreAsString} is not a valid Genre. Valid values are: {JoinedGenres}");
+            return StringToGenreMappings.TryGetValue(genreAsStringLowered, out Genre genre)
+                ? genre
+                : throw new InvalidGenreException($"The string: {genreAsString} is not a valid Genre. Valid values are: {JoinedGenres}");
         }
 
         public static string ToString(Genre genre)

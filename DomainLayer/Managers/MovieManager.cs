@@ -24,13 +24,7 @@ namespace DomainLayer.Managers
         private ConfigurationProviderBase ConfigurationProvider { get { return _configurationProvider ??= _serviceLocator.CreateConfigurationProvider(); } }
 
         private ImdbServiceGateway _imdbServiceGateway;
-        private ImdbServiceGateway ImdbServiceGateway
-        {
-            get
-            {
-                return _imdbServiceGateway ??= _serviceLocator.CreateImdbServiceGateway();
-            }
-        }
+        private ImdbServiceGateway ImdbServiceGateway { get { return _imdbServiceGateway ??= _serviceLocator.CreateImdbServiceGateway(); } }
 
         private DataFacade _dataFacade;
         private DataFacade DataFacade { get { return _dataFacade ??= new DataFacade(ConfigurationProvider.GetDbConnectionString()); } }

@@ -39,12 +39,7 @@ namespace ControllerTests.ForTestClasses
 
         protected override Task<IEnumerable<Movie>> GetAllMovies()
         {
-            if (_exception != null)
-            {
-                throw _exception;
-            }
-
-            return Task.FromResult(_movies);
+            return _exception != null ? throw _exception : Task.FromResult(_movies);
         }
 
         protected override Task<IEnumerable<Movie>> GetMoviesByGenre(Genre genre)
@@ -59,12 +54,7 @@ namespace ControllerTests.ForTestClasses
 
         protected override Task<int> CreateMovie(Movie movie)
         {
-            if (_exception != null)
-            {
-                throw _exception;
-            }
-
-            return Task.FromResult(0);
+            return _exception != null ? throw _exception : Task.FromResult(0);
         }
     }
 }
