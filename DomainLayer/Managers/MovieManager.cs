@@ -8,21 +8,19 @@ namespace DomainLayer;
 
 internal sealed class MovieManager : IDisposable
 {
-    private readonly ServiceLocatorBase _serviceLocator;
     private bool _disposed;
 
-    private ConfigurationProviderBase _configurationProvider;
-    private ConfigurationProviderBase ConfigurationProvider { get { return _configurationProvider ??= _serviceLocator.CreateConfigurationProvider(); } }
+    private ConfigurationProviderBase ConfigurationProvider { get; }
 
-    private ImdbServiceGateway _imdbServiceGateway;
-    private ImdbServiceGateway ImdbServiceGateway { get { return _imdbServiceGateway ??= _serviceLocator.CreateImdbServiceGateway(); } }
+    private ImdbServiceGateway ImdbServiceGateway { get; }
 
-    private DataFacade _dataFacade;
-    private DataFacade DataFacade { get { return _dataFacade ??= new DataFacade(ConfigurationProvider.GetDbConnectionString()); } }
+    private DataFacade DataFacade { get; }
 
     public MovieManager(ServiceLocatorBase serviceLocator)
     {
-        _serviceLocator = serviceLocator;
+        ConfigurationProvider = serviceLocator.CreateConfigurationProvider();
+        ImdbServiceGateway = serviceLocator.CreateImdbServiceGateway();
+        DataFacade = new DataFacade(ConfigurationProvider.GetDbConnectionString());
     }
 
     public Task<int> CreateMovie(Movie movie)
@@ -39,14 +37,14 @@ internal sealed class MovieManager : IDisposable
 
     public async Task<Movie> GetMovieById(int id)
     {
-        var movie = await DataFacade.GetMovieById(id).ConfigureAwait(false);
+        Movie? movie = await DataFacade.GetMovieById(id).ConfigureAwait(false);
         return movie ?? throw new MovieWithSpecifiedIdNotFoundException($"A Movie with Id: {id} was Not Found");
     }
 
     public Task<IEnumerable<Movie>> GetAllMovies()
     {
-        var moviesTask = ImdbServiceGateway.GetAllMovies();
-        var moviesFromDbTask = DataFacade.GetAllMovies();
+        Task<IEnumerable<Movie>> moviesTask = ImdbServiceGateway.GetAllMovies();
+        Task<IEnumerable<Movie>> moviesFromDbTask = DataFacade.GetAllMovies();
         return GetMoviesFromCombinedTasks(moviesTask, moviesFromDbTask);
     }
 
@@ -54,8 +52,8 @@ internal sealed class MovieManager : IDisposable
     {
         await Task.WhenAll(moviesTask, moviesFromDbTask).ConfigureAwait(false);
 
-        var movies = moviesTask.Result;
-        var moviesFromDb = moviesFromDbTask.Result;
+        IEnumerable<Movie> movies = moviesTask.Result;
+        IEnumerable<Movie> moviesFromDb = moviesFromDbTask.Result;
 
         var moviesList = movies.ToList();
         moviesList.AddRange(moviesFromDb);
@@ -65,8 +63,8 @@ internal sealed class MovieManager : IDisposable
     public async Task<IEnumerable<Movie>> GetMoviesByGenre(Genre genre)
     {
         GenreParser.Validate(genre);
-        var moviesFromImdbTask = ImdbServiceGateway.GetAllMovies();
-        var moviesFromDbMatchingGenreTask = DataFacade.GetMovieByGenre(genre);
+        Task<IEnumerable<Movie>> moviesFromImdbTask = ImdbServiceGateway.GetAllMovies();
+        Task<IEnumerable<Movie>> moviesFromDbMatchingGenreTask = DataFacade.GetMovieByGenre(genre);
         await Task.WhenAll(moviesFromImdbTask, moviesFromDbMatchingGenreTask).ConfigureAwait(false);
 
         var moviesMatchingGenre = moviesFromDbMatchingGenreTask.Result.ToList();
@@ -77,11 +75,9 @@ internal sealed class MovieManager : IDisposable
     [ExcludeFromCodeCoverage]
     private void Dispose(bool disposing)
     {
-        if (disposing && !_disposed && _imdbServiceGateway != null)
+        if (disposing && !_disposed && ImdbServiceGateway != null)
         {
-            var localImdbServiceGateway = _imdbServiceGateway;
-            localImdbServiceGateway.Dispose();
-            _imdbServiceGateway = null;
+            ImdbServiceGateway.Dispose();
             _disposed = true;
         }
     }

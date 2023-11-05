@@ -11,7 +11,7 @@ internal sealed class ImdbServiceGateway : IDisposable
 {
     private readonly IHttpMessageHandlerProvider _httpMessageHandlerProvider;
     private bool _disposed;
-    private HttpClient _httpClient;
+    private HttpClient? _httpClient;
 
     public ImdbServiceGateway(IHttpMessageHandlerProvider httpMessageHandlerProvider, string baseUrl)
     {
@@ -46,7 +46,7 @@ internal sealed class ImdbServiceGateway : IDisposable
     public async Task<IEnumerable<Movie>> GetAllMovies()
     {
         var httpResponseMessages =
-            await MakeConcurrentGetAsyncCalls(_httpClient, "WithCategories.json", "WithImageUrls.json", "WithYears.json").ConfigureAwait(false);
+            await MakeConcurrentGetAsyncCalls(_httpClient!, "WithCategories.json", "WithImageUrls.json", "WithYears.json").ConfigureAwait(false);
 
         await EnsureSuccessForAllTasks(httpResponseMessages).ConfigureAwait(false);
 

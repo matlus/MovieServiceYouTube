@@ -45,5 +45,5 @@ internal abstract class ConfigurationProviderBase
         return true;
     }
 
-    protected abstract string RetrieveConfigurationSettingValue(string key);
+    protected abstract string? RetrieveConfigurationSettingValue(string key);
 }

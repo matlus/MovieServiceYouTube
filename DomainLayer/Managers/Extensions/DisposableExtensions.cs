@@ -7,7 +7,7 @@ namespace DomainLayer;
 [ExcludeFromCodeCoverage]
 internal static class DisposableExtensions
 {
-    public static async ValueTask DisposeIfNotNullAsync(this IAsyncDisposable disposable)
+    public static async ValueTask DisposeIfNotNullAsync(this IAsyncDisposable? disposable)
     {
         if (disposable != null)
         {

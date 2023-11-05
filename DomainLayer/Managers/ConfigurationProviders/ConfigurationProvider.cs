@@ -35,7 +35,7 @@ internal sealed class ConfigurationProvider : ConfigurationProviderBase
         _configurationRoot = configurationRoot;
     }
 
-    protected override string RetrieveConfigurationSettingValue(string key)
+    protected override string? RetrieveConfigurationSettingValue(string key)
     {
         return _configurationRoot["AppSettings:" + key];
     }

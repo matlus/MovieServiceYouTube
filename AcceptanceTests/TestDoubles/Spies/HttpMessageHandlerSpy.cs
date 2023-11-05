@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -44,15 +45,15 @@ namespace AcceptanceTests.TestDoubles.Spies
 
             if (absolutePath.Contains("WithCategories.json"))
             {
-                imdbMovies = movies.Select(m => new ImdbMovie { Title = m.Title, Category = GenreParser.ToString(m.Genre) });
+                imdbMovies = movies.Select(m => new ImdbMovie(m.Title, ImageUrl: null, GenreParser.ToString(m.Genre), Year: 0));
             }
             else if (absolutePath.Contains("WithImageUrls.json"))
             {
-                imdbMovies = movies.Select(m => new ImdbMovie { Title = m.Title, ImageUrl = m.ImageUrl });
+                imdbMovies = movies.Select(m => new ImdbMovie(m.Title, ImageUrl: m.ImageUrl, Category: null, Year: 0));
             }
             else if (absolutePath.Contains("WithYears.json"))
             {
-                imdbMovies = movies.Select(m => new ImdbMovie { Title = m.Title, Year = m.Year });
+                imdbMovies = movies.Select(m => new ImdbMovie(m.Title, ImageUrl: null, Category: null, Year: m.Year));
             }
 
             var imdbMoviesJson = JsonConvert.SerializeObject(imdbMovies);

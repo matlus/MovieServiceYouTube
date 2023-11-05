@@ -39,7 +39,7 @@ internal static class ValidatorMovie
         EnsureNoErrors(errorMessages);
     }
 
-    private static string ValidateProperties(Movie movie)
+    private static string? ValidateProperties(Movie movie)
     {
         var genreErrorMessage = ValidateGenre(movie.Genre);
         var titleErrorMessage = ValidateProperty("Title", movie.Title);
@@ -50,7 +50,7 @@ internal static class ValidatorMovie
         return errorMessages.Length == 0 ? null : errorMessages;
     }
 
-    private static void EnsureNoErrors(string errorMessages)
+    private static void EnsureNoErrors(string? errorMessages)
     {
         if (errorMessages != null)
         {
@@ -58,7 +58,7 @@ internal static class ValidatorMovie
         }
     }
 
-    private static void EnsureMovieIsNotNull(Movie movie)
+    private static void EnsureMovieIsNotNull(Movie? movie)
     {
         if (movie == null)
         {
@@ -74,7 +74,7 @@ internal static class ValidatorMovie
         }
     }
 
-    private static string ValidateYear(int year)
+    private static string? ValidateYear(int year)
     {
         const int minimumYear = 1900;
 
@@ -83,7 +83,7 @@ internal static class ValidatorMovie
             : $"The Year, must be between {minimumYear} and {DateTime.Today.Year} (inclusive)";
     }
 
-    private static string ValidateGenre(Genre genre)
+    private static string? ValidateGenre(Genre genre)
     {
         var errorMessage = GenreParser.ValidationMessage(genre);
         if (errorMessage != null)
@@ -94,7 +94,7 @@ internal static class ValidatorMovie
         return errorMessage;
     }
 
-    private static string ValidateProperty(string propertyName, string propertyValue)
+    private static string? ValidateProperty(string propertyName, string propertyValue)
     {
         return DetermineNullEmptyOrWhiteSpaces(propertyValue) switch
         {
@@ -105,7 +105,7 @@ internal static class ValidatorMovie
         };
     }
 
-    private static StringState DetermineNullEmptyOrWhiteSpaces(string data)
+    private static StringState DetermineNullEmptyOrWhiteSpaces(string? data)
     {
         if (data == null)
         {

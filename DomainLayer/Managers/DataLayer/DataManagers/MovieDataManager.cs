@@ -28,8 +28,8 @@ internal sealed class MovieDataManager
     public async Task<int> CreateMovie(Movie movie)
     {
         var dbConnection = CreateDbConnection();
-        DbTransaction dbTransaction = null;
-        DbCommand dbCommand = null;
+        DbTransaction? dbTransaction = null;
+        DbCommand? dbCommand = null;
 
         try
         {
@@ -38,7 +38,7 @@ internal sealed class MovieDataManager
             dbCommand = CommandFactoryMovies.CreateCommandForCreateMovie(dbConnection, dbTransaction, movie);
             await dbCommand.ExecuteNonQueryAsync().ConfigureAwait(false);
             dbTransaction.Commit();
-            return (int)dbCommand.Parameters[0].Value;
+            return (int)dbCommand.Parameters[0].Value!;
         }
         catch (DbException e)
         {
@@ -62,8 +62,8 @@ internal sealed class MovieDataManager
     public async Task CreateMovies(IEnumerable<Movie> movies)
     {
         var dbConnection = CreateDbConnection();
-        DbTransaction dbTransaction = null;
-        DbCommand dbCommand = null;
+        DbTransaction? dbTransaction = null;
+        DbCommand? dbCommand = null;
         try
         {
             await dbConnection.OpenAsync().ConfigureAwait(false);
@@ -91,11 +91,11 @@ internal sealed class MovieDataManager
         }
     }
 
-    public async Task<Movie> GetMovieById(int id)
+    public async Task<Movie?> GetMovieById(int id)
     {
         var dbConnection = CreateDbConnection();
-        DbCommand dbCommand = null;
-        DbDataReader dbDataReader = null;
+        DbCommand? dbCommand = null;
+        DbDataReader? dbDataReader = null;
         try
         {
             await dbConnection.OpenAsync().ConfigureAwait(false);
@@ -112,8 +112,8 @@ internal sealed class MovieDataManager
     public async Task<IEnumerable<Movie>> GetMovieByGenre(Genre genre)
     {
         var dbConnection = CreateDbConnection();
-        DbCommand dbCommand = null;
-        DbDataReader dbDataReader = null;
+        DbCommand? dbCommand = null;
+        DbDataReader? dbDataReader = null;
         try
         {
             await dbConnection.OpenAsync().ConfigureAwait(false);
@@ -130,8 +130,8 @@ internal sealed class MovieDataManager
     public async Task<IEnumerable<Movie>> GetAllMovies()
     {
         var dbConnection = CreateDbConnection();
-        DbCommand dbCommand = null;
-        DbDataReader dbDataReader = null;
+        DbCommand? dbCommand = null;
+        DbDataReader? dbDataReader = null;
         try
         {
             await dbConnection.OpenAsync().ConfigureAwait(false);
@@ -145,7 +145,7 @@ internal sealed class MovieDataManager
         }
     }
 
-    private static async ValueTask DisposedAsync(DbDataReader dbDataReader, DbCommand dbCommand, DbTransaction dbTransaction, DbConnection dbConnection)
+    private static async ValueTask DisposedAsync(DbDataReader? dbDataReader, DbCommand? dbCommand, DbTransaction? dbTransaction, DbConnection dbConnection)
     {
         await dbDataReader.DisposeIfNotNullAsync();
         await dbCommand.DisposeIfNotNullAsync();
@@ -153,7 +153,7 @@ internal sealed class MovieDataManager
         await dbConnection.DisposeIfNotNullAsync();
     }
 
-    private static async Task<Movie> MapToMovie(DbDataReader dbDataReader)
+    private static async Task<Movie?> MapToMovie(DbDataReader dbDataReader)
     {
         return await dbDataReader.ReadAsync().ConfigureAwait(false)
             ? new Movie(

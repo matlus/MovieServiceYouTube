@@ -13,7 +13,7 @@ public static class GenreParser
     {
         get
         {
-            foreach (var kvp in GenreToStringMappings)
+            foreach (KeyValuePair<Genre, string> kvp in GenreToStringMappings)
             {
                 yield return kvp.Value;
             }
@@ -22,11 +22,11 @@ public static class GenreParser
 
     static GenreParser()
     {
-        var fieldInfos = typeof(Genre).GetFields(BindingFlags.Public | BindingFlags.Static);
+        FieldInfo[] fieldInfos = typeof(Genre).GetFields(BindingFlags.Public | BindingFlags.Static);
 
-        foreach (var fieldInfo in fieldInfos)
+        foreach (FieldInfo fieldInfo in fieldInfos)
         {
-            var genre = (Genre)fieldInfo.GetValue(null);
+            var genre = (Genre)fieldInfo.GetValue(null)!;
 
             var enumDescriptionAttributes = (EnumDescriptionAttribute[])fieldInfo
                 .GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
@@ -40,7 +40,7 @@ public static class GenreParser
             {
                 GenreToStringMappings.Add(genre, enumDescriptionAttributes[0].Description);
 
-                foreach (var enumDescriptionAttribute in enumDescriptionAttributes)
+                foreach (EnumDescriptionAttribute enumDescriptionAttribute in enumDescriptionAttributes)
                 {
                     StringToGenreMappings.Add(enumDescriptionAttribute.Description.ToLower(System.Threading.Thread.CurrentThread.CurrentCulture), genre);
                 }
@@ -80,7 +80,7 @@ public static class GenreParser
         }
     }
 
-    public static string ValidationMessage(Genre genre)
+    public static string? ValidationMessage(Genre genre)
     {
         return !GenreToStringMappings.ContainsKey(genre) ? $"The Genre: {genre} is not a valid Genre. Valid values are: {JoinedGenres}" : null;
     }

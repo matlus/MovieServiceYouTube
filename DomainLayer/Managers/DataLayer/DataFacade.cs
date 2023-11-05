@@ -5,14 +5,11 @@ namespace DomainLayer;
 
 internal sealed class DataFacade
 {
-    private readonly string _dbConnectionString;
-    private MovieDataManager _movieDataManager;
-
-    private MovieDataManager MovieDataManager { get { return _movieDataManager ??= new MovieDataManager(_dbConnectionString); } }
+    private MovieDataManager MovieDataManager { get; }
 
     public DataFacade(string dbConnectionString)
     {
-        _dbConnectionString = dbConnectionString;
+        MovieDataManager = new MovieDataManager(dbConnectionString);
     }
 
     public Task<int> CreateMovie(Movie movie)
@@ -25,7 +22,7 @@ internal sealed class DataFacade
         await MovieDataManager.CreateMovies(movies).ConfigureAwait(false);
     }
 
-    public Task<Movie> GetMovieById(int id)
+    public Task<Movie?> GetMovieById(int id)
     {
         return MovieDataManager.GetMovieById(id);
     }

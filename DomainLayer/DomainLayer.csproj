@@ -3,7 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<AnalysisMode>Recommended</AnalysisMode>
+		<AnalysisMode>recommended</AnalysisMode>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>

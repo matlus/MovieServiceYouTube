@@ -21,7 +21,7 @@ internal static class CommandFactoryMovies
         AddCommandParameter(dbCommand, "@Return", ParameterDirection.ReturnValue, DbType.Int32, null, 0);
     }
 
-    private static void AddCommandParameter(DbCommand dbCommand, string parameterName, ParameterDirection parameterDirection, DbType dbType, object value, int size)
+    private static void AddCommandParameter(DbCommand dbCommand, string parameterName, ParameterDirection parameterDirection, DbType dbType, object? value, int size)
     {
         var dbParameter = dbCommand.CreateParameter();
         dbParameter.ParameterName = parameterName;

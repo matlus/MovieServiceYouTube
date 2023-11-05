@@ -12,8 +12,7 @@ namespace MovieServiceCore3.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly DomainFacade _domainFacade;
 
-        private IEnumerable<Movie> _movies;
-        public IEnumerable<Movie> Movies { get { return _movies; } }
+        public IEnumerable<Movie> Movies { get; private set; }
 
         [BindProperty(SupportsGet = true)]
         public string Genre { get; set; }
@@ -26,7 +25,7 @@ namespace MovieServiceCore3.Pages
 
         public async Task OnGetAsync()
         {
-            _movies = string.IsNullOrEmpty(Genre) ? await _domainFacade.GetAllMovies() : await _domainFacade.GetMoviesByGenre(GenreParser.Parse(Genre));
+            Movies = string.IsNullOrEmpty(Genre) ? await _domainFacade.GetAllMovies() : await _domainFacade.GetMoviesByGenre(GenreParser.Parse(Genre));
         }
     }
 }

@@ -15,9 +15,7 @@ public sealed class DomainFacade : IDisposable
     private readonly ServiceLocatorBase _serviceLocator;
     private bool _disposed;
 
-    private MovieManager _movieManager;
-
-    private MovieManager MovieManager { get { return _movieManager ??= new MovieManager(_serviceLocator); } }
+    private MovieManager MovieManager { get; }
 
     public DomainFacade()
       : this(new ServiceLocator())
@@ -27,6 +25,7 @@ public sealed class DomainFacade : IDisposable
     internal DomainFacade(ServiceLocatorBase serviceLocator)
     {
         _serviceLocator = serviceLocator;
+        MovieManager ??= new MovieManager(_serviceLocator);
     }
 
     public Task<Movie> GetMovieById(int id)
@@ -57,11 +56,9 @@ public sealed class DomainFacade : IDisposable
     [ExcludeFromCodeCoverage]
     private void Dispose(bool disposing)
     {
-        if (disposing && !_disposed && _movieManager != null)
+        if (disposing && !_disposed && MovieManager != null)
         {
-            var localMovieManager = _movieManager;
-            localMovieManager.Dispose();
-            _movieManager = null;
+            MovieManager.Dispose();
             _disposed = true;
         }
     }
