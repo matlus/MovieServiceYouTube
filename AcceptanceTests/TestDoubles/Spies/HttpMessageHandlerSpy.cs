@@ -6,8 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AcceptanceTests.TestMediators;
-using DomainLayer.Managers.Parsers;
-using DomainLayer.Managers.Services.ImdbService.ResourceModels;
+using DomainLayer;
 using Newtonsoft.Json;
 
 namespace AcceptanceTests.TestDoubles.Spies
@@ -37,7 +36,7 @@ namespace AcceptanceTests.TestDoubles.Spies
             }
         }
 
-        private static Task<HttpResponseMessage> WriteMoviesToResponse(HttpRequestMessage request, IEnumerable<global::DomainLayer.Managers.Models.Movie> movies)
+        private static Task<HttpResponseMessage> WriteMoviesToResponse(HttpRequestMessage request, IEnumerable<Movie> movies)
         {
             IEnumerable<ImdbMovie> imdbMovies = null;
 

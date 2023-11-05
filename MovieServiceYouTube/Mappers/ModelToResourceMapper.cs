@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using DomainLayer.Managers.Models;
-using DomainLayer.Managers.Parsers;
+using DomainLayer;
 using MovieServiceCore3.ResourceModels;
 
 namespace MovieServiceCore3.Mappers
@@ -10,10 +9,10 @@ namespace MovieServiceCore3.Mappers
         public static Movie MapToMovie(MovieResource movieResource)
         {
             return new Movie(
-                    title: movieResource.Title,
-                    imageUrl: movieResource.ImageUrl,
-                    genre: GenreParser.Parse(movieResource.Genre),
-                    year: movieResource.Year);
+                    movieResource.Title,
+                    movieResource.ImageUrl,
+                    GenreParser.Parse(movieResource.Genre),
+                    movieResource.Year);
         }
 
         public static MovieResource MapToMovieResource(Movie movie)

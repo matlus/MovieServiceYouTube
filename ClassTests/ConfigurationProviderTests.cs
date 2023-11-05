@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using DomainLayer.Managers.ConfigurationProviders;
-using DomainLayer.Managers.Exceptions;
+using DomainLayer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Testing.Shared;
@@ -27,7 +26,7 @@ namespace ClassTests
         private static ConfigurationProviderBase CreateConfigurationProvider(string key, string value)
         {
             var configurationRoot = CreateConfigurationRoot(key, value);
-            return new DomainLayer.Managers.ConfigurationProviders.ConfigurationProvider(configurationRoot);
+            return new DomainLayer.ConfigurationProvider(configurationRoot);
         }
 
         [TestMethod]

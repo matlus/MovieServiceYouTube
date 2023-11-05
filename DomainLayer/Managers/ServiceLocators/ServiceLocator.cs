@@ -1,28 +1,25 @@
 ﻿using System;
 using System.Net.Http;
-using DomainLayer.Managers.ConfigurationProviders;
-using DomainLayer.Managers.Services.ImdbService;
 
-namespace DomainLayer.Managers.ServiceLocators
+namespace DomainLayer;
+
+internal sealed class ServiceLocator : ServiceLocatorBase
 {
-    internal sealed class ServiceLocator : ServiceLocatorBase
+    protected override ConfigurationProviderBase CreateConfigurationProviderCore()
     {
-        protected override ConfigurationProviderBase CreateConfigurationProviderCore()
-        {
-            return new ConfigurationProvider();
-        }
+        return new ConfigurationProvider();
+    }
 
-        protected override HttpMessageHandler CreateHttpMessageHandlerCore()
+    protected override HttpMessageHandler CreateHttpMessageHandlerCore()
+    {
+        return new SocketsHttpHandler
         {
-            return new SocketsHttpHandler
-            {
-                PooledConnectionLifetime = TimeSpan.FromMinutes(2),
-            };
-        }
+            PooledConnectionLifetime = TimeSpan.FromMinutes(2),
+        };
+    }
 
-        protected override ImdbServiceGateway CreateImdbServiceGatewayCore()
-        {
-            return new ImdbServiceGateway(this, CreateConfigurationProvider().GetImdbServiceBaseUrl());
-        }
+    protected override ImdbServiceGateway CreateImdbServiceGatewayCore()
+    {
+        return new ImdbServiceGateway(this, CreateConfigurationProvider().GetImdbServiceBaseUrl());
     }
 }

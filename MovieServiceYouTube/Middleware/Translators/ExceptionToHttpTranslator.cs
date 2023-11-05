@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DomainLayer.Managers.Exceptions;
+using DomainLayer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 

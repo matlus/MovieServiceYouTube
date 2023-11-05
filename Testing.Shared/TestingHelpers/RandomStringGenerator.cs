@@ -17,7 +17,7 @@ namespace Testing.Shared.TestingHelpers
             const int UPPERCASE = 2;
             const int PUNCT = 3;
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             //ensure at least one of each type occurs 
             sb.Append(Convert.ToChar(RandomNumberGenerator.GetInt32(97, 122))); //lowercase
@@ -26,9 +26,9 @@ namespace Testing.Shared.TestingHelpers
             sb.Append(Convert.ToChar(s_punctuationACIICodes[RandomNumberGenerator.GetInt32(0, s_punctuationACIICodes.Length)])); //punctuation
 
             char ch;
-            for (int i = 0; i < length - 4; i++)
+            for (var i = 0; i < length - 4; i++)
             {
-                int rnd = RandomNumberGenerator.GetInt32(0, 3);
+                var rnd = RandomNumberGenerator.GetInt32(0, 3);
                 ch = rnd switch
                 {
                     LOWERCASE => Convert.ToChar(RandomNumberGenerator.GetInt32(97, 122)),
@@ -39,6 +39,7 @@ namespace Testing.Shared.TestingHelpers
                 };
                 sb.Append(ch);
             }
+            
             return sb.ToString();
         }
 
@@ -46,11 +47,11 @@ namespace Testing.Shared.TestingHelpers
         {
             length *= 2;
 
-            byte[] str = new byte[length];
+            var str = new byte[length];
 
-            for (int i = 0; i < length; i += 2)
+            for (var i = 0; i < length; i += 2)
             {
-                int chr = RandomNumberGenerator.GetInt32(0xD7FF);
+                var chr = RandomNumberGenerator.GetInt32(0xD7FF);
                 str[i + 1] = (byte)((chr & 0xFF00) >> 8);
                 str[i] = (byte)(chr & 0xFF);
             }

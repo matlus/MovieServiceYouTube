@@ -2,9 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using DomainLayer;
-using DomainLayer.Managers.Enums;
-using DomainLayer.Managers.Models;
-using DomainLayer.Managers.Parsers;
 using Microsoft.AspNetCore.Mvc;
 using MovieServiceCore3.Mappers;
 using MovieServiceCore3.ResourceModels;

@@ -1,9 +1,8 @@
 ﻿using System.Net.Http;
 
-namespace DomainLayer.Managers.SegregatedInterfaces
+namespace DomainLayer;
+
+internal interface IHttpMessageHandlerProvider
 {
-    internal interface IHttpMessageHandlerProvider
-    {
-        HttpMessageHandler CreateHttpMessageHandler();
-    }
+    HttpMessageHandler CreateHttpMessageHandler();
 }

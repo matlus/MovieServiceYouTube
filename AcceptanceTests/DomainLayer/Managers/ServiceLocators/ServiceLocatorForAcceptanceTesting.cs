@@ -1,9 +1,7 @@
 ﻿using System.Net.Http;
 using AcceptanceTests.TestDoubles.Spies;
 using AcceptanceTests.TestMediators;
-using DomainLayer.Managers.ConfigurationProviders;
-using DomainLayer.Managers.ServiceLocators;
-using DomainLayer.Managers.Services.ImdbService;
+using DomainLayer;
 
 namespace AcceptanceTests.DomainLayer.Managers.ServiceLocators
 {

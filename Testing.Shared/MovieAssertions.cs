@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DomainLayer.Managers.Models;
-using DomainLayer.Managers.Parsers;
+using DomainLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Testing.Shared

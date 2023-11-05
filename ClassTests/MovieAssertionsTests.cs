@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using DomainLayer.Managers.Enums;
-using DomainLayer.Managers.Models;
+using DomainLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Testing.Shared;
 

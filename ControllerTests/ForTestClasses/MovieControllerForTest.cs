@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DomainLayer;
-using DomainLayer.Managers.Enums;
-using DomainLayer.Managers.Models;
 using MovieServiceCore3.Controller;
 
 namespace ControllerTests.ForTestClasses

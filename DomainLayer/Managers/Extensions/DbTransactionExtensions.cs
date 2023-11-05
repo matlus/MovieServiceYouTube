@@ -1,14 +1,13 @@
 ﻿using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 
-namespace DomainLayer.Managers.Extensions
+namespace DomainLayer;
+
+internal static class DbTransactionExtensions
 {
-    internal static class DbTransactionExtensions
+    [ExcludeFromCodeCoverage]
+    public static void RollbackIfNotNull(this DbTransaction dbTransaction)
     {
-        [ExcludeFromCodeCoverage]
-        public static void RollbackIfNotNull(this DbTransaction dbTransaction)
-        {
-            dbTransaction?.Rollback();
-        }
+        dbTransaction?.Rollback();
     }
 }

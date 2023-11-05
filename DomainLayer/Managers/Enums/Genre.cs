@@ -1,26 +1,25 @@
 ﻿using System;
 
-namespace DomainLayer.Managers.Enums
+namespace DomainLayer;
+
+public enum Genre
 {
-    public enum Genre
-    {
-        Action,
-        Comedy,
-        Drama,
-        [EnumDescription("Sci-Fi")]
-        [EnumDescription("SciFi")]
-        SciFi,
-        Thriller,
-    }
+    Action,
+    Comedy,
+    Drama,
+    [EnumDescription("Sci-Fi")]
+    [EnumDescription("SciFi")]
+    SciFi,
+    Thriller,
+}
 
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
-    internal sealed class EnumDescriptionAttribute : Attribute
-    {
-        public string Description { get; }
+[AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
+internal sealed class EnumDescriptionAttribute : Attribute
+{
+    public string Description { get; }
 
-        public EnumDescriptionAttribute(string description)
-        {
-            Description = description;
-        }
+    public EnumDescriptionAttribute(string description)
+    {
+        Description = description;
     }
 }

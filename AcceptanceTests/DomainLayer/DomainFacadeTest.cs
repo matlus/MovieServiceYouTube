@@ -6,10 +6,6 @@ using AcceptanceTests.DomainLayer.Managers.ServiceLocators;
 using AcceptanceTests.TestDataGenerators;
 using AcceptanceTests.TestMediators;
 using DomainLayer;
-using DomainLayer.Managers.Enums;
-using DomainLayer.Managers.Exceptions;
-using DomainLayer.Managers.Models;
-using DomainLayer.Managers.Services.ImdbService.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Testing.Shared;
 using Testing.Shared.TestingHelpers;
@@ -146,7 +142,7 @@ namespace AcceptanceTests
         {
             // Arrange
             var (domainFacade, _) = CreateDomainFacade();
-            Genre invalidGenre = (Genre)1000;
+            var invalidGenre = (Genre)1000;
             try
             {
                 // Act
@@ -320,7 +316,7 @@ namespace AcceptanceTests
         {
             // Arrange
             var (domainFacade, _) = CreateDomainFacade();
-            var invalidMovie = new Movie(title: null, imageUrl: "http://someurl", genre: Genre.Action, year: 1900);
+            var invalidMovie = new Movie(Title: null, ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
             try
             {
                 // Act
@@ -346,7 +342,7 @@ namespace AcceptanceTests
         {
             // Arrange
             var (domainFacade, _) = CreateDomainFacade();
-            var invalidMovie = new Movie(title: string.Empty, imageUrl: "http://someurl", genre: Genre.Action, year: 1900);
+            var invalidMovie = new Movie(Title: string.Empty, ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
             try
             {
                 // Act
@@ -372,7 +368,7 @@ namespace AcceptanceTests
         {
             // Arrange
             var (domainFacade, _) = CreateDomainFacade();
-            var invalidMovie = new Movie(title: "    ", imageUrl: "http://someurl", genre: Genre.Action, year: 1900);
+            var invalidMovie = new Movie(Title: "    ", ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
             try
             {
                 // Act
@@ -398,7 +394,7 @@ namespace AcceptanceTests
         {
             // Arrange
             var (domainFacade, _) = CreateDomainFacade();
-            var invalidMovie = new Movie(title: RandomStringGenerator.GetRandomAciiString(50), imageUrl: null, genre: Genre.Action, year: 1900);
+            var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: null, Genre: Genre.Action, Year: 1900);
             try
             {
                 // Act
@@ -424,7 +420,7 @@ namespace AcceptanceTests
         {
             // Arrange
             var (domainFacade, _) = CreateDomainFacade();
-            var invalidMovie = new Movie(title: RandomStringGenerator.GetRandomAciiString(50), imageUrl: string.Empty, genre: Genre.Action, year: 1900);
+            var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: string.Empty, Genre: Genre.Action, Year: 1900);
             try
             {
                 // Act
@@ -450,7 +446,7 @@ namespace AcceptanceTests
         {
             // Arrange
             var (domainFacade, _) = CreateDomainFacade();
-            var invalidMovie = new Movie(title: RandomStringGenerator.GetRandomAciiString(50), imageUrl: "    ", genre: Genre.Action, year: 1900);
+            var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: "    ", Genre: Genre.Action, Year: 1900);
             try
             {
                 // Act
@@ -477,7 +473,7 @@ namespace AcceptanceTests
             // Arrange
             var minimumYear = 1900;
             var (domainFacade, _) = CreateDomainFacade();
-            var invalidMovie = new Movie(title: RandomStringGenerator.GetRandomAciiString(50), imageUrl: "http://someurl", genre: Genre.Action, year: minimumYear - 1);
+            var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: "http://someurl", Genre: Genre.Action, Year: minimumYear - 1);
             try
             {
                 // Act
@@ -504,7 +500,7 @@ namespace AcceptanceTests
             // Arrange
             var todaysYear = DateTime.Today.Year;
             var (domainFacade, _) = CreateDomainFacade();
-            var invalidMovie = new Movie(title: RandomStringGenerator.GetRandomAciiString(50), imageUrl: "http://someurl", genre: Genre.Action, year: todaysYear + 1);
+            var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: "http://someurl", Genre: Genre.Action, Year: todaysYear + 1);
             try
             {
                 // Act
@@ -532,7 +528,7 @@ namespace AcceptanceTests
             var invalidGenre = (Genre)1000;
             var todaysYear = DateTime.Today.Year;
             var (domainFacade, _) = CreateDomainFacade();
-            var invalidMovie = new Movie(title: RandomStringGenerator.GetRandomAciiString(50), imageUrl: "http://someurl", genre: invalidGenre, year: todaysYear);
+            var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: "http://someurl", Genre: invalidGenre, Year: todaysYear);
             try
             {
                 // Act
@@ -630,7 +626,7 @@ namespace AcceptanceTests
             // Arrange
             var (domainFacade, _) = CreateDomainFacade();
             var movies = RandomMovieGenerator.GenerateRandomMovies(2).ToList();
-            var invalidMovie = new Movie(title: null, imageUrl: "http://someurl", genre: Genre.Action, year: 1900);
+            var invalidMovie = new Movie(Title: null, ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
             movies.Add(invalidMovie);
 
             try
@@ -649,6 +645,5 @@ namespace AcceptanceTests
                 domainFacade.Dispose();
             }
         }
-
     }
 }

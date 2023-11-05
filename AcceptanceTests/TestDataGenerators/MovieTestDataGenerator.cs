@@ -3,8 +3,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using DomainLayer.Managers.Models;
-using DomainLayer.Managers.Parsers;
+using DomainLayer;
 
 namespace AcceptanceTests.TestDataGenerators
 {
@@ -78,10 +77,10 @@ namespace AcceptanceTests.TestDataGenerators
             {
                 movies.Add(new Movie
                 (
-                    title: (string)dbDataReader[0],
-                    genre: GenreParser.Parse((string)dbDataReader[1]),
-                    year: (int)dbDataReader[2],
-                    imageUrl: (string)dbDataReader[3]
+                    Title: (string)dbDataReader[0],
+                    Genre: GenreParser.Parse((string)dbDataReader[1]),
+                    Year: (int)dbDataReader[2],
+                    ImageUrl: (string)dbDataReader[3]
                 ));
             }
 
@@ -112,10 +111,10 @@ namespace AcceptanceTests.TestDataGenerators
 
                     return new Movie
                     (
-                        title: (string)dbDataReader[MovieTitleIndex],
-                        imageUrl: (string)dbDataReader[MovieImageUrlIndex],
-                        genre: GenreParser.Parse((string)dbDataReader[MovieGenreIndex]),
-                        year: (int)dbDataReader[MovieYearIndex]
+                        Title: (string)dbDataReader[MovieTitleIndex],
+                        ImageUrl: (string)dbDataReader[MovieImageUrlIndex],
+                        Genre: GenreParser.Parse((string)dbDataReader[MovieGenreIndex]),
+                        Year: (int)dbDataReader[MovieYearIndex]
                     );
                 }
 
@@ -164,10 +163,10 @@ namespace AcceptanceTests.TestDataGenerators
                 {
                     movies.Add(new Movie
                     (
-                        title: (string)dbDataReader[MovieTitleIndex],
-                        imageUrl: (string)dbDataReader[MovieImageUrlIndex],
-                        genre: GenreParser.Parse((string)dbDataReader[MovieGenreIndex]),
-                        year: (int)dbDataReader[MovieYearIndex]
+                        Title: (string)dbDataReader[MovieTitleIndex],
+                        ImageUrl: (string)dbDataReader[MovieImageUrlIndex],
+                        Genre: GenreParser.Parse((string)dbDataReader[MovieGenreIndex]),
+                        Year: (int)dbDataReader[MovieYearIndex]
                     ));
                 }
 

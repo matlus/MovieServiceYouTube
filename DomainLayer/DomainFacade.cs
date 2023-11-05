@@ -3,76 +3,71 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using DomainLayer.Managers;
-using DomainLayer.Managers.Enums;
-using DomainLayer.Managers.Models;
-using DomainLayer.Managers.ServiceLocators;
 
 [assembly: InternalsVisibleTo("AcceptanceTests")]
 [assembly: InternalsVisibleTo("Testing.Shared")]
 [assembly: InternalsVisibleTo("ClassTests")]
 
-namespace DomainLayer
+namespace DomainLayer;
+
+public sealed class DomainFacade : IDisposable
 {
-    public sealed class DomainFacade : IDisposable
+    private readonly ServiceLocatorBase _serviceLocator;
+    private bool _disposed;
+
+    private MovieManager _movieManager;
+
+    private MovieManager MovieManager { get { return _movieManager ??= new MovieManager(_serviceLocator); } }
+
+    public DomainFacade()
+      : this(new ServiceLocator())
     {
-        private readonly ServiceLocatorBase _serviceLocator;
-        private bool _disposed;
+    }
 
-        private MovieManager _movieManager;
+    internal DomainFacade(ServiceLocatorBase serviceLocator)
+    {
+        _serviceLocator = serviceLocator;
+    }
 
-        private MovieManager MovieManager { get { return _movieManager ??= new MovieManager(_serviceLocator); } }
+    public Task<Movie> GetMovieById(int id)
+    {
+        return MovieManager.GetMovieById(id);
+    }
 
-        public DomainFacade()
-          : this(new ServiceLocator())
+    public Task<IEnumerable<Movie>> GetAllMovies()
+    {
+        return MovieManager.GetAllMovies();
+    }
+
+    public Task<IEnumerable<Movie>> GetMoviesByGenre(Genre genre)
+    {
+        return MovieManager.GetMoviesByGenre(genre);
+    }
+
+    public Task<int> CreateMovie(Movie movie)
+    {
+        return MovieManager.CreateMovie(movie);
+    }
+
+    public Task CreateMovies(IEnumerable<Movie> movies)
+    {
+        return MovieManager.CreateMovies(movies);
+    }
+
+    [ExcludeFromCodeCoverage]
+    private void Dispose(bool disposing)
+    {
+        if (disposing && !_disposed && _movieManager != null)
         {
+            var localMovieManager = _movieManager;
+            localMovieManager.Dispose();
+            _movieManager = null;
+            _disposed = true;
         }
+    }
 
-        internal DomainFacade(ServiceLocatorBase serviceLocator)
-        {
-            _serviceLocator = serviceLocator;
-        }
-
-        public Task<Movie> GetMovieById(int id)
-        {
-            return MovieManager.GetMovieById(id);
-        }
-
-        public Task<IEnumerable<Movie>> GetAllMovies()
-        {
-            return MovieManager.GetAllMovies();
-        }
-
-        public Task<IEnumerable<Movie>> GetMoviesByGenre(Genre genre)
-        {
-            return MovieManager.GetMoviesByGenre(genre);
-        }
-
-        public Task<int> CreateMovie(Movie movie)
-        {
-            return MovieManager.CreateMovie(movie);
-        }
-
-        public Task CreateMovies(IEnumerable<Movie> movies)
-        {
-            return MovieManager.CreateMovies(movies);
-        }
-
-        [ExcludeFromCodeCoverage]
-        private void Dispose(bool disposing)
-        {
-            if (disposing && !_disposed && _movieManager != null)
-            {
-                var localMovieManager = _movieManager;
-                localMovieManager.Dispose();
-                _movieManager = null;
-                _disposed = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
+    public void Dispose()
+    {
+        Dispose(true);
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System.Data.Common;
 using System.Threading.Tasks;
 using AcceptanceTests.DomainLayer.Managers.ServiceLocators;
-using DomainLayer.Managers.DataLayer.DataManagers;
-using DomainLayer.Managers.Enums;
-using DomainLayer.Managers.Models;
+using DomainLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClassTests.Managers.DataLayer.DataManagers
@@ -70,6 +68,5 @@ namespace ClassTests.Managers.DataLayer.DataManagers
                 StringAssert.Contains(e.Message, "Cannot insert the value NULL into column 'Title', table '@MovieTvp'");
             }
         }
-
     }
 }

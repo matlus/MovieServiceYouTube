@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 
-namespace DomainLayer.Managers.Extensions
+namespace DomainLayer;
+
+[ExcludeFromCodeCoverage]
+internal static class DisposableExtensions
 {
-    [ExcludeFromCodeCoverage]
-    internal static class DisposableExtensions
+    public static async ValueTask DisposeIfNotNullAsync(this IAsyncDisposable disposable)
     {
-        public static void DisposeIfNotNull(this IDisposable disposable)
+        if (disposable != null)
         {
-            disposable?.Dispose();
+            await disposable.DisposeAsync();
         }
     }
 }
