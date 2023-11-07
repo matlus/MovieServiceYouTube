@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
 using DomainLayer;
 
-namespace ConsoleApp1
+namespace ConsoleApp1;
+
+internal sealed class Program
 {
-    internal class Program
+    private static void Main()
     {
-        private static void Main()
-        {
-        }
     }
 }

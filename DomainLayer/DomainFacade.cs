@@ -25,7 +25,7 @@ public sealed class DomainFacade : IDisposable
     internal DomainFacade(ServiceLocatorBase serviceLocator)
     {
         _serviceLocator = serviceLocator;
-        MovieManager ??= new MovieManager(_serviceLocator);
+        MovieManager = new MovieManager(_serviceLocator);
     }
 
     public Task<Movie> GetMovieById(int id)

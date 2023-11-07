@@ -13,7 +13,7 @@ public static class GenreParser
     {
         get
         {
-            foreach (KeyValuePair<Genre, string> kvp in GenreToStringMappings)
+            foreach (var kvp in GenreToStringMappings)
             {
                 yield return kvp.Value;
             }
@@ -22,9 +22,9 @@ public static class GenreParser
 
     static GenreParser()
     {
-        FieldInfo[] fieldInfos = typeof(Genre).GetFields(BindingFlags.Public | BindingFlags.Static);
+        var fieldInfos = typeof(Genre).GetFields(BindingFlags.Public | BindingFlags.Static);
 
-        foreach (FieldInfo fieldInfo in fieldInfos)
+        foreach (var fieldInfo in fieldInfos)
         {
             var genre = (Genre)fieldInfo.GetValue(null)!;
 
@@ -40,7 +40,7 @@ public static class GenreParser
             {
                 GenreToStringMappings.Add(genre, enumDescriptionAttributes[0].Description);
 
-                foreach (EnumDescriptionAttribute enumDescriptionAttribute in enumDescriptionAttributes)
+                foreach (var enumDescriptionAttribute in enumDescriptionAttributes)
                 {
                     StringToGenreMappings.Add(enumDescriptionAttribute.Description.ToLower(System.Threading.Thread.CurrentThread.CurrentCulture), genre);
                 }
@@ -59,7 +59,7 @@ public static class GenreParser
 
         var genreAsStringLowered = genreAsString.ToLower(System.Threading.Thread.CurrentThread.CurrentCulture);
 
-        return StringToGenreMappings.TryGetValue(genreAsStringLowered, out Genre genre)
+        return StringToGenreMappings.TryGetValue(genreAsStringLowered, out var genre)
             ? genre
             : throw new InvalidGenreException($"The string: {genreAsString} is not a valid Genre. Valid values are: {JoinedGenres}");
     }

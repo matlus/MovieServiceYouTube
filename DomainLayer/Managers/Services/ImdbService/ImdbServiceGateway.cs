@@ -50,7 +50,7 @@ internal sealed class ImdbServiceGateway : IDisposable
 
         await EnsureSuccessForAllTasks(httpResponseMessages).ConfigureAwait(false);
 
-        IEnumerable<ImdbMovie>[] arrayOfEnumerableOfImdbMovies =
+        var arrayOfEnumerableOfImdbMovies =
             await GetMoviesFromHttpContent(httpResponseMessages[0].Content, httpResponseMessages[1].Content, httpResponseMessages[2].Content).ConfigureAwait(false);
 
         var moviesWithCategory = arrayOfEnumerableOfImdbMovies[0];
@@ -80,8 +80,8 @@ internal sealed class ImdbServiceGateway : IDisposable
 
                 allMovies.Add(new Movie(
                         Title: movieWithCategory.Title,
-                        ImageUrl: movieWithImgUrl.ImageUrl,
-                        Genre: GenreParser.Parse(movieWithCategory.Category),
+                        ImageUrl: movieWithImgUrl.ImageUrl!,
+                        Genre: GenreParser.Parse(movieWithCategory.Category!),
                         Year: movieWithYear.Year));
             }
         }

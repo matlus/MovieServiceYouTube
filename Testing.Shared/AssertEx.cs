@@ -2,76 +2,75 @@
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Testing.Shared
+namespace Testing.Shared;
+
+public static class AssertEx
 {
-    public static class AssertEx
+    public static void EnsureExceptionMessageContains(Exception exception, params string[] expectedMessageParts)
     {
-        public static void EnsureExceptionMessageContains(Exception exception, params string[] expectedMessageParts)
+        var exceptionMessages = new StringBuilder();
+        exceptionMessages.Append($"An Exception of type {exception.GetType()} was thrown, however the following message parts were not found in the exception message.");
+        exceptionMessages.AppendLine($"The Actual Exception Message is: {exception.Message}");
+
+        var somePartNotFound = false;
+
+        foreach (var part in expectedMessageParts)
         {
-            var exceptionMessages = new StringBuilder();
-            exceptionMessages.Append($"An Exception of type {exception.GetType()} was thrown, however the following message parts were not found in the exception message.");
-            exceptionMessages.AppendLine($"The Actual Exception Message is: {exception.Message}");
-
-            bool somePartNotFound = false;
-
-            foreach (var part in expectedMessageParts)
+            if (!exception.Message.Contains(part))
             {
-                if (!exception.Message.Contains(part))
-                {
-                    somePartNotFound = true;
-                    exceptionMessages.AppendLine($"The Expected substring: {part}, was not found in the Exception Message.");
-                }
-            }
-
-            if (somePartNotFound)
-            {
-                throw new AssertFailedException(exceptionMessages.ToString());
+                somePartNotFound = true;
+                exceptionMessages.AppendLine($"The Expected substring: {part}, was not found in the Exception Message.");
             }
         }
 
-        public static void EnsureStringContains(string message, params string[] expectedMessageParts)
+        if (somePartNotFound)
         {
-            var exceptionMessages = new StringBuilder();
-            exceptionMessages.AppendLine($"The Actual Message is: {message}");
+            throw new AssertFailedException(exceptionMessages.ToString());
+        }
+    }
 
-            bool somePartNotFound = false;
+    public static void EnsureStringContains(string message, params string[] expectedMessageParts)
+    {
+        var exceptionMessages = new StringBuilder();
+        exceptionMessages.AppendLine($"The Actual Message is: {message}");
 
-            foreach (var part in expectedMessageParts)
+        var somePartNotFound = false;
+
+        foreach (var part in expectedMessageParts)
+        {
+            if (!message.Contains(part))
             {
-                if (!message.Contains(part))
-                {
-                    somePartNotFound = true;
-                    exceptionMessages.AppendLine($"The Expected substring: {part}, was not found in the Message.");
-                }
-            }
-
-            if (somePartNotFound)
-            {
-                throw new AssertFailedException(exceptionMessages.ToString());
+                somePartNotFound = true;
+                exceptionMessages.AppendLine($"The Expected substring: {part}, was not found in the Message.");
             }
         }
 
-        public static void EnsureExceptionMessageDoesNotContains(Exception exception, params string[] expectedMessageParts)
+        if (somePartNotFound)
         {
-            var exceptionMessages = new StringBuilder();
-            exceptionMessages.Append($"An Exception of type {exception.GetType()} was thrown, however the message contains parts that were Not Expected");
-            exceptionMessages.AppendLine($"The Actual Exception Message is: {exception.Message}");
+            throw new AssertFailedException(exceptionMessages.ToString());
+        }
+    }
 
-            bool somePartFound = false;
+    public static void EnsureExceptionMessageDoesNotContains(Exception exception, params string[] expectedMessageParts)
+    {
+        var exceptionMessages = new StringBuilder();
+        exceptionMessages.Append($"An Exception of type {exception.GetType()} was thrown, however the message contains parts that were Not Expected");
+        exceptionMessages.AppendLine($"The Actual Exception Message is: {exception.Message}");
 
-            foreach (var part in expectedMessageParts)
+        var somePartFound = false;
+
+        foreach (var part in expectedMessageParts)
+        {
+            if (exception.Message.Contains(part))
             {
-                if (exception.Message.Contains(part))
-                {
-                    somePartFound = true;
-                    exceptionMessages.AppendLine($"The substring: {part}, was Not Expected to be contained in the Exception Message.");
-                }
+                somePartFound = true;
+                exceptionMessages.AppendLine($"The substring: {part}, was Not Expected to be contained in the Exception Message.");
             }
+        }
 
-            if (somePartFound)
-            {
-                throw new AssertFailedException(exceptionMessages.ToString());
-            }
+        if (somePartFound)
+        {
+            throw new AssertFailedException(exceptionMessages.ToString());
         }
     }
 }
