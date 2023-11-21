@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace AcceptanceTests.TestDoubles.Spies;
 
-internal sealed class HttpMessageHandlerSpy : HttpMessageHandler
+internal sealed class HttpMessageHandlerSpy : DelegatingHandler
 {
     private readonly TestMediator _testMediator;
 

@@ -26,7 +26,7 @@ public static class GenreParser
 
         foreach (var fieldInfo in fieldInfos)
         {
-            var genre = (Genre)fieldInfo.GetValue(null)!;
+            var genre = (Genre)fieldInfo.GetValue(null) !;
 
             var enumDescriptionAttributes = (EnumDescriptionAttribute[])fieldInfo
                 .GetCustomAttributes(typeof(EnumDescriptionAttribute), false);

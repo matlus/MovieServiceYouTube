@@ -32,6 +32,17 @@ public class EndToEndIntegrationTests
         _httpClient.Dispose();
     }
 
+    private static async Task EnsureSuccess(HttpResponseMessage httpResponseMessage)
+    {
+        if (httpResponseMessage.IsSuccessStatusCode)
+        {
+            return;
+        }
+
+        var httpContent = await httpResponseMessage.Content.ReadAsStringAsync();
+        throw new AssertFailedException($"Reason Phrase: {httpResponseMessage.ReasonPhrase} with Content: {httpContent}");
+    }
+
     [TestMethod]
     [TestCategory("EndToEndIntegration Test")]
     public async Task GetMovies_WhenOperatingNormally_ShouldSucceed()
@@ -41,17 +52,11 @@ public class EndToEndIntegrationTests
         var httpResponseMessage = await _httpClient.GetAsync("api/movies/");
 
         // Assert
-        if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
-        {
-            var actualMovieResource = await httpResponseMessage.Content.ReadAsAsync<IEnumerable<MovieResource>>();
-            Assert.IsTrue(actualMovieResource.Any());
-        }
-        else
-        {
-            var httpContent = await httpResponseMessage.Content.ReadAsStringAsync();
-            Assert.Fail($"Reason Phrase: {httpResponseMessage.ReasonPhrase} with Content: {httpContent}");
-        }
+        await EnsureSuccess(httpResponseMessage);
+        var actualMovieResource = await httpResponseMessage.Content.ReadAsAsync<IEnumerable<MovieResource>>();
+        Assert.IsTrue(actualMovieResource.Any());
     }
+
 
     [TestMethod]
     [TestCategory("EndToEndIntegration Test")]
@@ -62,37 +67,82 @@ public class EndToEndIntegrationTests
         var httpResponseMessage = await _httpClient.GetAsync($"api/movies/genre/{validGenre}");
 
         // Assert
-        if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
-        {
-            var actualMovieResource = await httpResponseMessage.Content.ReadAsAsync<IEnumerable<MovieResource>>();
-            Assert.IsTrue(actualMovieResource.All(m => m.Genre == validGenre));
-        }
-        else
-        {
-            var httpContent = await httpResponseMessage.Content.ReadAsStringAsync();
-            Assert.Fail($"Reason Phrase: {httpResponseMessage.ReasonPhrase} with Content: {httpContent}");
-        }
+        await EnsureSuccess(httpResponseMessage);
+        var actualMovieResource = await httpResponseMessage.Content.ReadAsAsync<IEnumerable<MovieResource>>();
+        Assert.IsTrue(actualMovieResource.All(m => m.Genre == validGenre));
     }
 
     [TestMethod]
     [TestCategory("EndToEndIntegration Test")]
     public async Task GetMoviesByGenre_WhenProvidedWithAnInvalidGenre_ShouldReturnHttpError()
     {
-        // Act
+        // Arrange
         var invalidGenre = "xxxxxx";
-        var invalidGenreException = new InvalidGenreException("Don't care");
+        var invalidGenreException = new InvalidGenreException($"The string: {invalidGenre} is not a valid Genre. Valid values are:");
+
+        // Act
         var httpResponseMessage = await _httpClient.GetAsync($"api/movies/genre/{invalidGenre}");
 
         // Assert
-        Assert.AreEqual(HttpStatusCode.BadRequest, httpResponseMessage.StatusCode);
-        Assert.AreEqual(invalidGenreException.Reason, httpResponseMessage.ReasonPhrase);
+        await EnsureErrorResponseIsCorrect(httpResponseMessage, HttpStatusCode.BadRequest, invalidGenreException);
+    }
 
-        var exceptionTypeHeaderValue = httpResponseMessage.Headers.GetValues("Exception-Type").First();
-        Assert.IsNotNull(exceptionTypeHeaderValue, "We were expecting an HTTP Header called Exception-Type, but this header was not found");
-        Assert.AreEqual(invalidGenreException.GetType().Name, exceptionTypeHeaderValue);
+    [TestMethod]
+    [TestCategory("EndToEndIntegration Test")]
+    public async Task CreateMovie_WhenProvidedWithADuplicateMovieResource_ShouldReturnHttpError()
+    {
+        // Arrange
+        var movie = RandomMovieGenerator.GenerateRandomMovies(1).Single();
+        var duplicateMovieException = new DuplicateMovieException($"A Movie with the Title: {movie.Title} already exists.");
 
-        var httpContent = await httpResponseMessage.Content.ReadAsStringAsync();
-        AssertEx.EnsureStringContains(httpContent, invalidGenre, "not a valid Genre");
+        var movieResourceJson = $"{{\"title\": \"{movie.Title}\", \"ImageUrl\": \"{movie.ImageUrl}\", \"Genre\": \"{movie.Genre}\", \"Year\": {movie.Year} }}";
+        var movieHttpContent = new StringContent(movieResourceJson, Encoding.UTF8, "application/json");
+        await _httpClient.PostAsync("api/movies", movieHttpContent);
+
+        // Act
+        var httpResponseMessage = await _httpClient.PostAsync("api/movies", movieHttpContent);
+
+        // Assert
+        await EnsureErrorResponseIsCorrect(httpResponseMessage, HttpStatusCode.BadRequest, duplicateMovieException);
+    }
+
+    private static async Task EnsureErrorResponseIsCorrect(HttpResponseMessage httpResponseMessage, HttpStatusCode expectedStatusCode, MovieServiceBaseException expectedException)
+    {
+        var errorMessages = new StringBuilder();
+
+        if (HttpStatusCode.BadRequest != httpResponseMessage.StatusCode)
+        {
+            errorMessages.AppendLine($"The Expected HttpStatusCode was: {HttpStatusCode.BadRequest}, but the Actual HttpStatusCode is: {httpResponseMessage.StatusCode}");
+        }
+
+        if (expectedException.Reason != httpResponseMessage.ReasonPhrase)
+        {
+            errorMessages.AppendLine($"The Expected Reason Phrase was: {expectedException.Reason}, but the Actual Reason Phrase is: {httpResponseMessage.ReasonPhrase}");
+        }
+
+        var expectedExceptionTypeHeaderValue = expectedException.GetType().Name;
+        var actualExceptionTypeHeaderValue = httpResponseMessage.Headers.GetValues("Exception-Type").First();
+
+        if (actualExceptionTypeHeaderValue == null)
+        {
+            errorMessages.AppendLine("We were expecting an HTTP Header called Exception-Type, but this header was not found");
+        }
+        else if (expectedExceptionTypeHeaderValue != actualExceptionTypeHeaderValue)
+        {
+            errorMessages.AppendLine($"The Expected \"Exception-Type\" Header Value: {expectedExceptionTypeHeaderValue}, but the Actual  \"Exception-Type\" Header Value is: {actualExceptionTypeHeaderValue}");
+        }
+
+        var actualHttpContentString = await httpResponseMessage.Content.ReadAsStringAsync();
+
+        if (!actualHttpContentString.Contains(expectedException.Message))
+        {
+            errorMessages.AppendLine($"The Expected HttpContent: {expectedException.Message}, but the Actual HttpContent is: {actualHttpContentString}");
+        }
+        
+        if (errorMessages.Length > 0)
+        {
+            throw new AssertFailedException(errorMessages.ToString());
+        }
     }
 
     [TestMethod]
@@ -112,27 +162,5 @@ public class EndToEndIntegrationTests
         Assert.AreEqual(HttpStatusCode.Created, httpResponseMessage.StatusCode,
             "The Response content is: " + await httpResponseMessage.Content.ReadAsStringAsync() +
             $"The Movie that was used is: Title: {movie.Title}, ImageUrl: {movie.ImageUrl}, Genre: {movie.Genre}, Year: {movie.Year}");
-    }
-
-    [TestMethod]
-    [TestCategory("EndToEndIntegration Test")]
-    public async Task CreateMovie_WhenProvidedWithADuplicateMovieResource_ShouldThrow()
-    {
-        // Arrange
-        var movie = RandomMovieGenerator.GenerateRandomMovies(1).Single();
-
-        var movieResourceJson = $"{{\"title\": \"{movie.Title}\", \"ImageUrl\": \"{movie.ImageUrl}\", \"Genre\": \"{movie.Genre}\", \"Year\": {movie.Year} }}";
-        var movieHttpContent = new StringContent(movieResourceJson, Encoding.UTF8, "application/json");
-        await _httpClient.PostAsync("api/movies", movieHttpContent);
-
-        // Act
-        var httpResponseMessage = await _httpClient.PostAsync("api/movies", movieHttpContent);
-
-        // Assert
-        var contentString = await httpResponseMessage.Content.ReadAsStringAsync();
-        Assert.AreEqual(HttpStatusCode.BadRequest, httpResponseMessage.StatusCode, "The Response content is: " + contentString);
-        var duplicateMovieException = new DuplicateMovieException();
-        Assert.AreEqual(duplicateMovieException.Reason, httpResponseMessage.ReasonPhrase, "The Response content is: " + contentString);
-        StringAssert.Contains(contentString, movie.Title);
     }
 }
