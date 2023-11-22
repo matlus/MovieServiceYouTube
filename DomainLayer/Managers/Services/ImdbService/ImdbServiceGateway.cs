@@ -23,13 +23,6 @@ internal sealed class ImdbServiceGateway : IDisposable
     {
         var httpMessageHandler = MakeHttpMessageHandler();
 
-        if (httpMessageHandler is SocketsHttpHandler socketsHttpHandler)
-        {
-            socketsHttpHandler.PooledConnectionLifetime = TimeSpan.FromMinutes(15);
-            socketsHttpHandler.PreAuthenticate = true;
-            socketsHttpHandler.DefaultProxyCredentials = CredentialCache.DefaultCredentials;
-        }
-
         var httpClient = new HttpClient(httpMessageHandler)
         {
             BaseAddress = new Uri(baseUrl),

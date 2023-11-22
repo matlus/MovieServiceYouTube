@@ -55,7 +55,7 @@ internal sealed class MovieDataManager
         }
         finally
         {
-            await DisposedAsync(dbDataReader: null, dbCommand: dbCommand, dbTransaction: dbTransaction, dbConnection: dbConnection);
+            await DisposeAsync(dbDataReader: null, dbCommand: dbCommand, dbTransaction: dbTransaction, dbConnection: dbConnection);
         }
     }
 
@@ -87,7 +87,7 @@ internal sealed class MovieDataManager
         }
         finally
         {
-            await DisposedAsync(dbDataReader: null, dbCommand: dbCommand, dbTransaction: dbTransaction, dbConnection: dbConnection);
+            await DisposeAsync(dbDataReader: null, dbCommand: dbCommand, dbTransaction: dbTransaction, dbConnection: dbConnection);
         }
     }
 
@@ -105,7 +105,7 @@ internal sealed class MovieDataManager
         }
         finally
         {
-            await DisposedAsync(dbDataReader: dbDataReader, dbCommand: dbCommand, dbTransaction: null, dbConnection: dbConnection);
+            await DisposeAsync(dbDataReader: dbDataReader, dbCommand: dbCommand, dbTransaction: null, dbConnection: dbConnection);
         }
     }
 
@@ -123,7 +123,7 @@ internal sealed class MovieDataManager
         }
         finally
         {
-            await DisposedAsync(dbDataReader: dbDataReader, dbCommand: dbCommand, dbTransaction: null, dbConnection: dbConnection);
+            await DisposeAsync(dbDataReader: dbDataReader, dbCommand: dbCommand, dbTransaction: null, dbConnection: dbConnection);
         }
     }
 
@@ -141,11 +141,11 @@ internal sealed class MovieDataManager
         }
         finally
         {
-            await DisposedAsync(dbDataReader: dbDataReader, dbCommand: dbCommand, dbTransaction: null, dbConnection: dbConnection);
+            await DisposeAsync(dbDataReader: dbDataReader, dbCommand: dbCommand, dbTransaction: null, dbConnection: dbConnection);
         }
     }
 
-    private static async ValueTask DisposedAsync(DbDataReader? dbDataReader, DbCommand? dbCommand, DbTransaction? dbTransaction, DbConnection dbConnection)
+    private static async ValueTask DisposeAsync(DbDataReader? dbDataReader, DbCommand? dbCommand, DbTransaction? dbTransaction, DbConnection dbConnection)
     {
         await dbDataReader.DisposeIfNotNullAsync();
         await dbCommand.DisposeIfNotNullAsync();
