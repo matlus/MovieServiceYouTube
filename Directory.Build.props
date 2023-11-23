@@ -4,8 +4,9 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<AnalysisMode>recommended</AnalysisMode>		
-		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<AnalysisMode>recommended</AnalysisMode>
+		<AnalysisLevel>latest</AnalysisLevel>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>		
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="SonarAnalyzer.CSharp" Version="9.12.0.78982">
