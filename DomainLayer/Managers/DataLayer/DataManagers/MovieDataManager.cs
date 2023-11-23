@@ -13,10 +13,7 @@ internal sealed class MovieDataManager
     private readonly SqlClientFactory _sqlClientFactory = SqlClientFactory.Instance;
     private readonly string _dbConnectionString;
 
-    public MovieDataManager(string dbConnectionString)
-    {
-        _dbConnectionString = dbConnectionString;
-    }
+    public MovieDataManager(string dbConnectionString) => _dbConnectionString = dbConnectionString;
 
     private DbConnection CreateDbConnection()
     {

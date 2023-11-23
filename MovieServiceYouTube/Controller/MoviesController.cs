@@ -7,7 +7,6 @@ using MovieServiceCore3.Mappers;
 using MovieServiceCore3.ResourceModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace MovieServiceCore3.Controller;
 
 [Route("api/[controller]")]

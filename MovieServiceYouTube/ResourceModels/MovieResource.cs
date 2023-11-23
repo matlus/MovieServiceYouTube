@@ -1,10 +1,12 @@
-﻿
-namespace MovieServiceCore3.ResourceModels;
+﻿namespace MovieServiceCore3.ResourceModels;
 
-public sealed class MovieResource
-{
-    public string Title { get; set; }
-    public string ImageUrl { get; set; }
-    public string Genre { get; set; }
-    public int Year { get; set; }
-}
+public sealed record MovieResource(string Title, string ImageUrl, string Genre, int Year);
+////{
+////    public string Title { get; init; }
+
+////    public string ImageUrl { get; set; }
+
+////    public string Genre { get; set; }
+
+////    public int Year { get; set; }
+////}

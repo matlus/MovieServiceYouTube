@@ -7,10 +7,7 @@ internal sealed class DataFacade
 {
     private MovieDataManager MovieDataManager { get; }
 
-    public DataFacade(string dbConnectionString)
-    {
-        MovieDataManager = new MovieDataManager(dbConnectionString);
-    }
+    public DataFacade(string dbConnectionString) => MovieDataManager = new MovieDataManager(dbConnectionString);
 
     public Task<int> CreateMovie(Movie movie)
     {

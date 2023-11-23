@@ -17,13 +17,11 @@ internal static class ModelToResourceMapper
 
     public static MovieResource MapToMovieResource(Movie movie)
     {
-        return new MovieResource
-        {
-            Title = movie.Title,
-            ImageUrl = movie.ImageUrl,
-            Genre = GenreParser.ToString(movie.Genre),
-            Year = movie.Year
-        };
+        return new MovieResource(
+            Title: movie.Title,
+            ImageUrl: movie.ImageUrl,
+            Genre: GenreParser.ToString(movie.Genre),
+            Year: movie.Year);
     }
 
     public static IEnumerable<MovieResource> MapToMovieResource(IEnumerable<Movie> movies)

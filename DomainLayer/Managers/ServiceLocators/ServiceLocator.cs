@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace DomainLayer;
 
@@ -18,7 +14,7 @@ internal sealed class ServiceLocator : ServiceLocatorBase
     {
         return new SocketsHttpHandler()
         {
-            PooledConnectionLifetime = TimeSpan.FromMinutes(2),
+            PooledConnectionLifetime = TimeSpan.FromMinutes(15),
         };
     }
 

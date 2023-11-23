@@ -18,8 +18,5 @@ internal sealed class EnumDescriptionAttribute : Attribute
 {
     public string Description { get; }
 
-    public EnumDescriptionAttribute(string description)
-    {
-        Description = description;
-    }
+    public EnumDescriptionAttribute(string description) => Description = description;
 }

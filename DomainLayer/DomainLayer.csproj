@@ -2,28 +2,16 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
+		<!--<AnalysisLevel>latest</AnalysisLevel>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisMode>recommended</AnalysisMode>
 		<Nullable>enable</Nullable>
-		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>-->
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EditorConfigFiles Remove="D:\Source\Repos\MovieServiceYouTube\DomainLayer\.editorconfig" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="D:\Source\Repos\MovieServiceYouTube\DomainLayer\.editorconfig" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 	</ItemGroup>
 
 </Project>

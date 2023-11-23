@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using DomainLayer;
@@ -25,7 +26,7 @@ public static class MovieAssertions
             errorMessages.AppendLine("The Following movies are in Expected Movies but Not in Actual Movies");
             foreach (var movie in moviesNotInActual)
             {
-                errorMessages.AppendLine($"Title: {movie.Title}, Genre: {GenreParser.ToString(movie.Genre)}, Year: {movie.Year}");
+                errorMessages.AppendLine(CultureInfo.InvariantCulture, $"Title: {movie.Title}, Genre: {GenreParser.ToString(movie.Genre)}, Year: {movie.Year}");
             }
         }
 
@@ -34,7 +35,7 @@ public static class MovieAssertions
             errorMessages.AppendLine("The Following movies are in Actual Movies but Not in Expected Movies");
             foreach (var movie in moviesNotInExpected)
             {
-                errorMessages.AppendLine($"Title: {movie.Title}, Genre: {GenreParser.ToString(movie.Genre)}, Year: {movie.Year}");
+                errorMessages.AppendLine(CultureInfo.InvariantCulture, $"Title: {movie.Title}, Genre: {GenreParser.ToString(movie.Genre)}, Year: {movie.Year}");
             }
         }
 

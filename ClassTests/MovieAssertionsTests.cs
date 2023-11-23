@@ -15,14 +15,14 @@ public class MovieAssertionsTests
         // Arrange
         var expectedMovies = new List<Movie>
         {
-            new Movie("A", "ImageUrlA", Genre.Action, 1900),
-            new Movie("C", "ImageUrlB", Genre.Drama, 1901),
+            new ("A", "ImageUrlA", Genre.Action, 1900),
+            new ("C", "ImageUrlB", Genre.Drama, 1901),
         };
 
         var actualMovies = new List<Movie>
         {
-            new Movie("A", "ImageUrlA", Genre.Action, 1900),
-            new Movie("C", "ImageUrlB", Genre.Drama, 1901),
+            new ("A", "ImageUrlA", Genre.Action, 1900),
+            new ("C", "ImageUrlB", Genre.Drama, 1901),
         };
 
         // Act
@@ -38,16 +38,16 @@ public class MovieAssertionsTests
         // Arrange
         var expectedMovies = new List<Movie>
         {
-            new Movie("A", "ImageUrlA", Genre.Action, 1900),
-            new Movie("C", "ImageUrlB", Genre.SciFi, 1901),
-            new Movie("D", "ImageUrlC", Genre.Thriller, 1902),
-            new Movie("E", "ImageUrlE", Genre.Comedy, 1903),
+            new ("A", "ImageUrlA", Genre.Action, 1900),
+            new ("C", "ImageUrlB", Genre.SciFi, 1901),
+            new ("D", "ImageUrlC", Genre.Thriller, 1902),
+            new ("E", "ImageUrlE", Genre.Comedy, 1903),
         };
 
         var actualMovies = new List<Movie>
         {
-            new Movie("A", "ImageUrlA", Genre.Action, 1900),
-            new Movie("C", "ImageUrlB", Genre.Drama, 1901),
+            new ("A", "ImageUrlA", Genre.Action, 1900),
+            new ("C", "ImageUrlB", Genre.Drama, 1901),
         };
 
         // Act
@@ -58,7 +58,8 @@ public class MovieAssertionsTests
         catch (AssertFailedException e)
         {
             // Assert
-            AssertEx.EnsureExceptionMessageContains(e,
+            AssertEx.EnsureExceptionMessageContains(
+                e,
                 "The Following movies are in Expected Movies but Not in Actual Movies",
                 "Title: C, Genre: Sci-Fi, Year: 1901",
                 "Title: D, Genre: Thriller, Year: 1902",
@@ -75,16 +76,16 @@ public class MovieAssertionsTests
         // Arrange
         var expectedMovies = new List<Movie>
         {
-            new Movie("A", "ImageUrlA", Genre.Action, 1900),
-            new Movie("C", "ImageUrlB", Genre.Drama, 1901),
+            new ("A", "ImageUrlA", Genre.Action, 1900),
+            new ("C", "ImageUrlB", Genre.Drama, 1901),
         };
 
         var actualMovies = new List<Movie>
         {
-            new Movie("A", "ImageUrlA", Genre.Action, 1900),
-            new Movie("C", "ImageUrlB", Genre.SciFi, 1901),
-            new Movie("D", "ImageUrlC", Genre.Thriller, 1902),
-            new Movie("E", "ImageUrlE", Genre.Comedy, 1903),
+            new ("A", "ImageUrlA", Genre.Action, 1900),
+            new ("C", "ImageUrlB", Genre.SciFi, 1901),
+            new ("D", "ImageUrlC", Genre.Thriller, 1902),
+            new ("E", "ImageUrlE", Genre.Comedy, 1903),
         };
 
         // Act

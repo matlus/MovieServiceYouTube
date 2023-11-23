@@ -77,7 +77,6 @@ public class ExceptionToHttpTranslatorTests
         Assert.AreEqual(expectedBodyContent, actualBodyContent);
         Assert.AreEqual(expectedStatusCode, httpContext.Response.StatusCode);
         Assert.AreEqual(movieServiceBaseException.GetType().Name, httpContext.Response.Headers["Exception-Type"].ToString());
-        Assert.AreEqual(movieServiceBaseException.Reason, httpContext.Features.Get<IHttpResponseFeature>().ReasonPhrase);
+        Assert.AreEqual(movieServiceBaseException.Reason, httpContext.Features.Get<IHttpResponseFeature>()!.ReasonPhrase);
     }
 }
-

@@ -9,6 +9,7 @@ namespace AcceptanceTests.DomainLayer.Managers.ServiceLocators;
 internal sealed class ServiceLocatorForAcceptanceTesting : ServiceLocatorBase
 {
     private readonly TestMediator _testMediator;
+
     public ServiceLocatorForAcceptanceTesting(TestMediator testMediator) => _testMediator = testMediator;
 
     protected override ConfigurationProviderBase CreateConfigurationProviderCore() => new ConfigurationProvider();
@@ -24,8 +25,11 @@ internal sealed class ServiceLocatorForAcceptanceTesting : ServiceLocatorBase
             PooledConnectionLifetime = TimeSpan.FromMinutes(2),
         };
 
-        var myDelegatingHander = new HttpMessageHandlerSpy(_testMediator);
-        myDelegatingHander.InnerHandler = socketsHttpHandler;
+        var myDelegatingHander = new HttpMessageHandlerSpy(_testMediator)
+        {
+            InnerHandler = socketsHttpHandler,
+        };
+
         return myDelegatingHander;
     }
 

@@ -20,7 +20,7 @@ public class DomainFacadeTests
 
     public DomainFacadeTests()
     {
-        dbConnectionString = new ServiceLocatorForAcceptanceTesting(null).CreateConfigurationProvider().GetDbConnectionString();
+        dbConnectionString = new ServiceLocatorForAcceptanceTesting(null!).CreateConfigurationProvider().GetDbConnectionString();
         moviesInDb = MovieTestDataGenerator.GetAllMovies(dbConnectionString).GetAwaiter().GetResult();
     }
 
@@ -251,7 +251,7 @@ public class DomainFacadeTests
 
             // Assert
             var actualMovie = await MovieTestDataGenerator.RetrieveMovie(dbConnectionString, expectedMovie.Title);
-            MovieAssertions.AssertMoviesAreEqual(new[] { expectedMovie }, new[] { actualMovie });
+            MovieAssertions.AssertMoviesAreEqual(new[] { expectedMovie }, new[] { actualMovie! });
         }
         finally
         {
@@ -272,7 +272,6 @@ public class DomainFacadeTests
             await domainFacade.CreateMovie(expectedMovie);
             await domainFacade.CreateMovie(expectedMovie);
             Assert.Fail("We were expecting a DuplicateMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (DuplicateMovieException e)
         {
@@ -291,13 +290,12 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        Movie nullMovie = null;
+        Movie nullMovie = default!;
         try
         {
             // Act
             await domainFacade.CreateMovie(nullMovie);
             Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (InvalidMovieException e)
         {
@@ -316,13 +314,12 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: null, ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
+        var invalidMovie = new Movie(Title: null!, ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
         try
         {
             // Act
             await domainFacade.CreateMovie(invalidMovie);
             Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (InvalidMovieException e)
         {
@@ -348,7 +345,6 @@ public class DomainFacadeTests
             // Act
             await domainFacade.CreateMovie(invalidMovie);
             Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (InvalidMovieException e)
         {
@@ -374,7 +370,6 @@ public class DomainFacadeTests
             // Act
             await domainFacade.CreateMovie(invalidMovie);
             Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (InvalidMovieException e)
         {
@@ -394,13 +389,12 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: null, Genre: Genre.Action, Year: 1900);
+        var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: null!, Genre: Genre.Action, Year: 1900);
         try
         {
             // Act
             await domainFacade.CreateMovie(invalidMovie);
             Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (InvalidMovieException e)
         {
@@ -426,7 +420,6 @@ public class DomainFacadeTests
             // Act
             await domainFacade.CreateMovie(invalidMovie);
             Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (InvalidMovieException e)
         {
@@ -452,7 +445,6 @@ public class DomainFacadeTests
             // Act
             await domainFacade.CreateMovie(invalidMovie);
             Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (InvalidMovieException e)
         {
@@ -479,7 +471,6 @@ public class DomainFacadeTests
             // Act
             await domainFacade.CreateMovie(invalidMovie);
             Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (InvalidMovieException e)
         {
@@ -506,7 +497,6 @@ public class DomainFacadeTests
             // Act
             await domainFacade.CreateMovie(invalidMovie);
             Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (InvalidMovieException e)
         {
@@ -534,7 +524,6 @@ public class DomainFacadeTests
             // Act
             await domainFacade.CreateMovie(invalidMovie);
             Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
-
         }
         catch (InvalidMovieException e)
         {
@@ -626,7 +615,7 @@ public class DomainFacadeTests
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
         var movies = RandomMovieGenerator.GenerateRandomMovies(2).ToList();
-        var invalidMovie = new Movie(Title: null, ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
+        var invalidMovie = new Movie(Title: null!, ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
         movies.Add(invalidMovie);
 
         try

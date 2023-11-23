@@ -19,6 +19,9 @@ internal sealed class ConfigurationProvider : ConfigurationProviderBase
         _configurationRoot = configurationBuilder.Build();
     }
 
+    [ExcludeFromCodeCoverage]
+    internal ConfigurationProvider(IConfigurationRoot configurationRoot) => _configurationRoot = configurationRoot;
+
     private static void LoadEnvironmentSpecificAppSettings(ConfigurationBuilder configurationBuilder)
     {
         var aspNetCoreEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -27,12 +30,6 @@ internal sealed class ConfigurationProvider : ConfigurationProviderBase
         {
             configurationBuilder.AddJsonFile(environmentBasedSettingsFile);
         }
-    }
-
-    [ExcludeFromCodeCoverage]
-    internal ConfigurationProvider(IConfigurationRoot configurationRoot)
-    {
-        _configurationRoot = configurationRoot;
     }
 
     protected override string? RetrieveConfigurationSettingValue(string key)

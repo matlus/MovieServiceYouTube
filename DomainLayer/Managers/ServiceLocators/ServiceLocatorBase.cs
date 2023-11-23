@@ -20,6 +20,8 @@ internal abstract class ServiceLocatorBase : IHttpMessageHandlerProvider
     }
 
     protected abstract HttpMessageHandler CreateHttpMessageHandlerCore();
+
     protected abstract ConfigurationProviderBase CreateConfigurationProviderCore();
+
     protected abstract ImdbServiceGateway CreateImdbServiceGatewayCore();
 }

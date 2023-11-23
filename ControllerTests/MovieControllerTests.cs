@@ -56,7 +56,7 @@ public class MovieControllerTests
     {
         // Arrange
         //// It is not the controller's responsibility to filter by genre
-        ///  or ensure all movies being returned have the genre specified
+        //// or ensure all movies being returned have the genre specified
         var expectedMovies = RandomMovieGenerator.GenerateRandomMovies(50);
         var moviesController = new MovieControllerForTest(expectedMovies);
         var validGenreAsString = GenreParser.ToString(Genre.SciFi);
@@ -74,7 +74,7 @@ public class MovieControllerTests
     public async Task GetMoviesByGenre_WhenProvidedWithAInValidGenre_ShouldThrow()
     {
         // Arrange
-        var moviesController = new MovieControllerForTest(movies: null);
+        var moviesController = new MovieControllerForTest(movies: null!);
         var invalidGenreAsString = "xxxxx";
 
         // Act
@@ -95,7 +95,7 @@ public class MovieControllerTests
     public async Task GetMoviesByGenre_WhenProvidedWithAnEmptyGenre_ShouldThrow()
     {
         // Arrange
-        var moviesController = new MovieControllerForTest(movies: null);
+        var moviesController = new MovieControllerForTest(movies: null!);
         var emptyGenreAsString = string.Empty;
 
         // Act
@@ -116,8 +116,8 @@ public class MovieControllerTests
     public async Task GetMoviesByGenre_WhenProvidedWithANullGenre_ShouldThrow()
     {
         // Arrange
-        var moviesController = new MovieControllerForTest(movies: null);
-        string nullGenreAsString = null;
+        var moviesController = new MovieControllerForTest(movies: null!);
+        string nullGenreAsString = default!;
 
         // Act
         try
@@ -154,15 +154,13 @@ public class MovieControllerTests
     public async Task CreateMovie_WhenProvidedWithAValidMovieResource_Succeeds()
     {
         // Arrange
-        var movieResource = new MovieResource
-        {
-            Title = "Some Title",
-            Genre = GenreParser.ToString(Genre.Action),
-            ImageUrl = "Some Url",
-            Year = 1900
-        };
+        var movieResource = new MovieResource(
+            Title: "Some Title",
+            Genre: GenreParser.ToString(Genre.Action),
+            ImageUrl: "Some Url",
+            Year: 1900);
 
-        var moviesController = new MovieControllerForTest(movies: null);
+        var moviesController = new MovieControllerForTest(movies: null!);
 
         // Act
         await moviesController.CreateMovie(movieResource);
@@ -180,13 +178,11 @@ public class MovieControllerTests
         var expectedMessage = "Some Exception Message";
         var expectedException = new DuplicateMovieException(expectedMessage);
         var moviesController = new MovieControllerForTest(expectedException);
-        var movieResource = new MovieResource
-        {
-            Title = "Some Title",
-            Genre = GenreParser.ToString(Genre.Action),
-            ImageUrl = "Some Url",
-            Year = 1900
-        };
+        var movieResource = new MovieResource(
+            Title: "Some Title",
+            Genre: GenreParser.ToString(Genre.Action),
+            ImageUrl: "Some Url",
+            Year: 1900);
 
         // Act
         try
@@ -212,8 +208,7 @@ public class MovieControllerTests
                     movieResource.Title,
                     movieResource.ImageUrl,
                     GenreParser.Parse(movieResource.Genre),
-                    movieResource.Year)
-            );
+                    movieResource.Year));
         }
 
         return movies;

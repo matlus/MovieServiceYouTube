@@ -12,7 +12,6 @@ namespace DomainLayer;
 
 public sealed class DomainFacade : IDisposable
 {
-    private readonly ServiceLocatorBase _serviceLocator;
     private bool _disposed;
 
     private MovieManager MovieManager { get; }
@@ -22,11 +21,7 @@ public sealed class DomainFacade : IDisposable
     {
     }
 
-    internal DomainFacade(ServiceLocatorBase serviceLocator)
-    {
-        _serviceLocator = serviceLocator;
-        MovieManager = new MovieManager(_serviceLocator);
-    }
+    internal DomainFacade(ServiceLocatorBase serviceLocator) => MovieManager = new MovieManager(serviceLocator);
 
     public Task<Movie> GetMovieById(int id)
     {
@@ -66,5 +61,6 @@ public sealed class DomainFacade : IDisposable
     public void Dispose()
     {
         Dispose(true);
+        GC.SuppressFinalize(this);
     }
 }

@@ -8,7 +8,7 @@ namespace Testing.Shared.TestingHelpers;
 [ExcludeFromCodeCoverage]
 public static class RandomStringGenerator
 {
-    private static readonly int[] s_punctuationACIICodes = { 33, 35, 36, 37, 38, 40, 41, 42, 43, 44, 45, 46, 47, 58, 59, 60, 61, 62, 63, 64, 91, 93, 94, 95, 123, 124, 125, 126 };
+    private static readonly int[] PunctuationACIICodes = { 33, 35, 36, 37, 38, 40, 41, 42, 43, 44, 45, 46, 47, 58, 59, 60, 61, 62, 63, 64, 91, 93, 94, 95, 123, 124, 125, 126 };
 
     public static string GetRandomAciiString(int length)
     {
@@ -19,11 +19,11 @@ public static class RandomStringGenerator
 
         var sb = new StringBuilder();
 
-        //ensure at least one of each type occurs 
-        sb.Append(Convert.ToChar(RandomNumberGenerator.GetInt32(97, 122))); //lowercase
-        sb.Append(Convert.ToChar(RandomNumberGenerator.GetInt32(65, 90))); //uppercase
-        sb.Append(Convert.ToChar(RandomNumberGenerator.GetInt32(48, 57))); //numeric
-        sb.Append(Convert.ToChar(s_punctuationACIICodes[RandomNumberGenerator.GetInt32(0, s_punctuationACIICodes.Length)])); //punctuation
+        // ensure at least one of each type occurs
+        sb.Append(Convert.ToChar(RandomNumberGenerator.GetInt32(97, 122))); // lowercase
+        sb.Append(Convert.ToChar(RandomNumberGenerator.GetInt32(65, 90))); // uppercase
+        sb.Append(Convert.ToChar(RandomNumberGenerator.GetInt32(48, 57))); // numeric
+        sb.Append(Convert.ToChar(PunctuationACIICodes[RandomNumberGenerator.GetInt32(0, PunctuationACIICodes.Length)])); // punctuation
 
         char ch;
         for (var i = 0; i < length - 4; i++)
@@ -34,12 +34,12 @@ public static class RandomStringGenerator
                 LOWERCASE => Convert.ToChar(RandomNumberGenerator.GetInt32(97, 122)),
                 UPPERCASE => Convert.ToChar(RandomNumberGenerator.GetInt32(65, 90)),
                 NUMERIC => Convert.ToChar(RandomNumberGenerator.GetInt32(48, 57)),
-                PUNCT => Convert.ToChar(s_punctuationACIICodes[RandomNumberGenerator.GetInt32(0, s_punctuationACIICodes.Length)]),
+                PUNCT => Convert.ToChar(PunctuationACIICodes[RandomNumberGenerator.GetInt32(0, PunctuationACIICodes.Length)]),
                 _ => Convert.ToChar(RandomNumberGenerator.GetInt32(97, 122)),
             };
             sb.Append(ch);
         }
-        
+
         return sb.ToString();
     }
 

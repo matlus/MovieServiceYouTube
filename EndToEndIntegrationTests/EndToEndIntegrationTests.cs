@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,7 +18,7 @@ namespace EndToEndIntegrationTests;
 [TestClass]
 public class EndToEndIntegrationTests
 {
-    private static HttpClient _httpClient;
+    private static HttpClient _httpClient = default!;
 
     public EndToEndIntegrationTests()
     {
@@ -56,7 +57,6 @@ public class EndToEndIntegrationTests
         var actualMovieResource = await httpResponseMessage.Content.ReadAsAsync<IEnumerable<MovieResource>>();
         Assert.IsTrue(actualMovieResource.Any());
     }
-
 
     [TestMethod]
     [TestCategory("EndToEndIntegration Test")]
@@ -110,14 +110,14 @@ public class EndToEndIntegrationTests
     {
         var errorMessages = new StringBuilder();
 
-        if (HttpStatusCode.BadRequest != httpResponseMessage.StatusCode)
+        if (expectedStatusCode != httpResponseMessage.StatusCode)
         {
-            errorMessages.AppendLine($"The Expected HttpStatusCode was: {HttpStatusCode.BadRequest}, but the Actual HttpStatusCode is: {httpResponseMessage.StatusCode}");
+            errorMessages.AppendLine(CultureInfo.InvariantCulture, $"The Expected HttpStatusCode was: {HttpStatusCode.BadRequest}, but the Actual HttpStatusCode is: {httpResponseMessage.StatusCode}");
         }
 
         if (expectedException.Reason != httpResponseMessage.ReasonPhrase)
         {
-            errorMessages.AppendLine($"The Expected Reason Phrase was: {expectedException.Reason}, but the Actual Reason Phrase is: {httpResponseMessage.ReasonPhrase}");
+            errorMessages.AppendLine(CultureInfo.InvariantCulture, $"The Expected Reason Phrase was: {expectedException.Reason}, but the Actual Reason Phrase is: {httpResponseMessage.ReasonPhrase}");
         }
 
         var expectedExceptionTypeHeaderValue = expectedException.GetType().Name;
@@ -129,16 +129,16 @@ public class EndToEndIntegrationTests
         }
         else if (expectedExceptionTypeHeaderValue != actualExceptionTypeHeaderValue)
         {
-            errorMessages.AppendLine($"The Expected \"Exception-Type\" Header Value: {expectedExceptionTypeHeaderValue}, but the Actual  \"Exception-Type\" Header Value is: {actualExceptionTypeHeaderValue}");
+            errorMessages.AppendLine(CultureInfo.InvariantCulture, $"The Expected \"Exception-Type\" Header Value: {expectedExceptionTypeHeaderValue}, but the Actual  \"Exception-Type\" Header Value is: {actualExceptionTypeHeaderValue}");
         }
 
         var actualHttpContentString = await httpResponseMessage.Content.ReadAsStringAsync();
 
         if (!actualHttpContentString.Contains(expectedException.Message))
         {
-            errorMessages.AppendLine($"The Expected HttpContent: {expectedException.Message}, but the Actual HttpContent is: {actualHttpContentString}");
+            errorMessages.AppendLine(CultureInfo.InvariantCulture, $"The Expected HttpContent: {expectedException.Message}, but the Actual HttpContent is: {actualHttpContentString}");
         }
-        
+
         if (errorMessages.Length > 0)
         {
             throw new AssertFailedException(errorMessages.ToString());
@@ -159,8 +159,6 @@ public class EndToEndIntegrationTests
         var httpResponseMessage = await _httpClient.PostAsync("api/movies", movieHttpContent);
 
         // Assert
-        Assert.AreEqual(HttpStatusCode.Created, httpResponseMessage.StatusCode,
-            "The Response content is: " + await httpResponseMessage.Content.ReadAsStringAsync() +
-            $"The Movie that was used is: Title: {movie.Title}, ImageUrl: {movie.ImageUrl}, Genre: {movie.Genre}, Year: {movie.Year}");
+        Assert.AreEqual(HttpStatusCode.Created, httpResponseMessage.StatusCode, $$"""The Response content is: {{await httpResponseMessage.Content.ReadAsStringAsync()}} $"The Movie that was used is: Title: {{movie.Title}}, ImageUrl: {{movie.ImageUrl}}, Genre: {{movie.Genre}}, Year: {{movie.Year}}""");
     }
 }

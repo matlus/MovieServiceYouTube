@@ -4,7 +4,13 @@ using System.Linq;
 
 namespace DomainLayer;
 
-internal enum StringState { Null, Empty, WhiteSpaces, Valid }
+internal enum StringState
+{
+    Null,
+    Empty,
+    WhiteSpaces,
+    Valid,
+}
 
 internal static class ValidatorMovie
 {

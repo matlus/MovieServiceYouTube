@@ -11,7 +11,7 @@ internal sealed class ImdbServiceGateway : IDisposable
 {
     private readonly IHttpMessageHandlerProvider _httpMessageHandlerProvider;
     private bool _disposed;
-    private HttpClient _httpClient = default!;
+    private HttpClient _httpClient;
 
     public ImdbServiceGateway(IHttpMessageHandlerProvider httpMessageHandlerProvider, string baseUrl)
     {

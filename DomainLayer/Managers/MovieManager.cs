@@ -15,6 +15,7 @@ internal sealed class MovieManager : IDisposable
     private ConfigurationProviderBase ConfigurationProvider { get; }
 
     private ImdbServiceGateway? _imdbServiceGateway;
+
     private ImdbServiceGateway ImdbServiceGateway => _imdbServiceGateway ??= _serviceLocator.CreateImdbServiceGateway();
 
     private DataFacade DataFacade { get; }

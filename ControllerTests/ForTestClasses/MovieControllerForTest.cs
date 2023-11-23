@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using DomainLayer;
 using MovieServiceCore3.Controller;
@@ -8,23 +9,18 @@ namespace ControllerTests.ForTestClasses;
 
 internal sealed class MovieControllerForTest : MoviesController
 {
-    private readonly IEnumerable<Movie> _movies;
-    private readonly Movie _movie;
-    private readonly Exception _exception;
-
-    public MovieControllerForTest(DomainFacade domainFacade)
-        : base(domainFacade)
-    {
-    }
+    private readonly IEnumerable<Movie> _movies = default!;
+    private readonly Movie _movie = default!;
+    private readonly Exception _exception = default!;
 
     public MovieControllerForTest(IEnumerable<Movie> movies)
-        : base(null) => _movies = movies;
+        : base(default!) => _movies = movies;
 
     public MovieControllerForTest(Movie movie)
- : base(null) => _movie = movie;
+        : base(default!) => _movie = movie;
 
     public MovieControllerForTest(Exception exception)
-        : base(null) => _exception = exception;
+        : base(default!) => _exception = exception;
 
     protected override Task<IEnumerable<Movie>> GetAllMovies()
     {

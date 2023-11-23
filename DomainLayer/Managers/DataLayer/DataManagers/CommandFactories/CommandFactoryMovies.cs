@@ -10,10 +10,10 @@ internal static class CommandFactoryMovies
 {
     private static readonly SqlMetaData[] SqlMetaDataCreateMovies = new SqlMetaData[]
     {
-        new SqlMetaData("Title", SqlDbType.VarChar, 50),
-        new SqlMetaData("Genre", SqlDbType.VarChar, 50),
-        new SqlMetaData("Year", SqlDbType.Int),
-        new SqlMetaData("ImageUrl", SqlDbType.VarChar, 200),
+        new ("Title", SqlDbType.VarChar, 50),
+        new ("Genre", SqlDbType.VarChar, 50),
+        new ("Year", SqlDbType.Int),
+        new ("ImageUrl", SqlDbType.VarChar, 200),
     };
 
     private static void AddReturnValueParameter(DbCommand dbCommand)

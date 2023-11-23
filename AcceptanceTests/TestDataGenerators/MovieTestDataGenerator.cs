@@ -9,11 +9,11 @@ namespace AcceptanceTests.TestDataGenerators;
 
 internal static class MovieTestDataGenerator
 {
-    private static readonly SqlClientFactory sqlClientFactory = SqlClientFactory.Instance;
+    private static readonly SqlClientFactory SqlClientFactory = SqlClientFactory.Instance;
 
     private static DbConnection CreateDbConnection(string dbConnectionString)
     {
-        var dbConnection = sqlClientFactory.CreateConnection();
+        var dbConnection = SqlClientFactory.CreateConnection();
         dbConnection.ConnectionString = dbConnectionString;
         return dbConnection;
     }
@@ -30,8 +30,8 @@ internal static class MovieTestDataGenerator
 
     public static async Task<IEnumerable<Movie>> GetAllMovies(string dbConnectionString)
     {
-        DbConnection dbConnection = null;
-        DbCommand dbCommand = null;
+        DbConnection dbConnection = default!;
+        DbCommand dbCommand = default!;
         try
         {
             dbConnection = CreateDbConnection(dbConnectionString);
@@ -44,15 +44,14 @@ internal static class MovieTestDataGenerator
         }
         finally
         {
-            dbCommand?.Dispose();
-            dbConnection.Dispose();
+            await DisposeAsync(dbDataReader: null, dbCommand, dbTransaction: null, dbConnection);
         }
     }
 
     public static async Task<int> GetMovieIdByTitle(string dbConnectionString, string title)
     {
-        DbConnection dbConnection = null;
-        DbCommand dbCommand = null;
+        DbConnection dbConnection = default!;
+        DbCommand dbCommand = default!;
         try
         {
             dbConnection = CreateDbConnection(dbConnectionString);
@@ -60,12 +59,12 @@ internal static class MovieTestDataGenerator
             dbCommand = dbConnection.CreateCommand();
             dbCommand.CommandType = CommandType.Text;
             dbCommand.CommandText = $"SELECT Id FROM dbo.MovieVw WHERE Title = '{title}'";
-            return (int)await dbCommand.ExecuteScalarAsync();
+            var movieId = (int)await dbCommand.ExecuteScalarAsync()!;
+            return movieId;
         }
         finally
         {
-            dbCommand?.Dispose();
-            dbConnection.Dispose();
+            await DisposeAsync(dbDataReader: null, dbCommand, dbTransaction: null, dbConnection);
         }
     }
 
@@ -75,22 +74,20 @@ internal static class MovieTestDataGenerator
 
         while (dbDataReader.Read())
         {
-            movies.Add(new Movie
-            (
+            movies.Add(new Movie(
                 Title: (string)dbDataReader[0],
                 Genre: GenreParser.Parse((string)dbDataReader[1]),
                 Year: (int)dbDataReader[2],
-                ImageUrl: (string)dbDataReader[3]
-            ));
+                ImageUrl: (string)dbDataReader[3]));
         }
 
         return movies;
     }
 
-    public static async Task<Movie> RetrieveMovie(string dbConnectionString, string title)
+    public static async Task<Movie?> RetrieveMovie(string dbConnectionString, string title)
     {
-        DbConnection dbConnection = null;
-        DbCommand dbCommand = null;
+        DbConnection dbConnection = default!;
+        DbCommand dbCommand = default!;
         try
         {
             dbConnection = CreateDbConnection(dbConnectionString);
@@ -109,28 +106,25 @@ internal static class MovieTestDataGenerator
                 const int MovieYearIndex = 2;
                 const int MovieImageUrlIndex = 3;
 
-                return new Movie
-                (
+                return new Movie(
                     Title: (string)dbDataReader[MovieTitleIndex],
                     ImageUrl: (string)dbDataReader[MovieImageUrlIndex],
                     Genre: GenreParser.Parse((string)dbDataReader[MovieGenreIndex]),
-                    Year: (int)dbDataReader[MovieYearIndex]
-                );
+                    Year: (int)dbDataReader[MovieYearIndex]);
             }
 
             return null;
         }
         finally
         {
-            dbCommand?.Dispose();
-            dbConnection.Dispose();
+            await DisposeAsync(dbDataReader: null, dbCommand, dbTransaction: null, dbConnection);
         }
     }
 
     public static async Task<IEnumerable<Movie>> RetrieveMovies(string dbConnectionString, IEnumerable<string> titles)
     {
-        DbConnection dbConnection = null;
-        DbCommand dbCommand = null;
+        DbConnection dbConnection = default!;
+        DbCommand dbCommand = default!;
         try
         {
             dbConnection = CreateDbConnection(dbConnectionString);
@@ -161,21 +155,26 @@ internal static class MovieTestDataGenerator
             var movies = new List<Movie>();
             while (dbDataReader.Read())
             {
-                movies.Add(new Movie
-                (
+                movies.Add(new Movie(
                     Title: (string)dbDataReader[MovieTitleIndex],
                     ImageUrl: (string)dbDataReader[MovieImageUrlIndex],
                     Genre: GenreParser.Parse((string)dbDataReader[MovieGenreIndex]),
-                    Year: (int)dbDataReader[MovieYearIndex]
-                ));
+                    Year: (int)dbDataReader[MovieYearIndex]));
             }
 
             return movies;
         }
         finally
         {
-            dbCommand?.Dispose();
-            dbConnection.Dispose();
+            await DisposeAsync(dbDataReader: null, dbCommand, dbTransaction: null, dbConnection);
         }
+    }
+
+    private static async ValueTask DisposeAsync(DbDataReader? dbDataReader, DbCommand? dbCommand, DbTransaction? dbTransaction, DbConnection dbConnection)
+    {
+        await dbDataReader.DisposeIfNotNullAsync();
+        await dbCommand.DisposeIfNotNullAsync();
+        await dbTransaction.DisposeIfNotNullAsync();
+        await dbConnection.DisposeIfNotNullAsync();
     }
 }

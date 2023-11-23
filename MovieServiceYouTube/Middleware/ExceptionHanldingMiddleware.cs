@@ -9,6 +9,7 @@ namespace MovieServiceCore3.Middleware;
 public sealed class ExceptionHanldingMiddleware
 {
     private readonly RequestDelegate _next;
+
     public ExceptionHanldingMiddleware(RequestDelegate next) => _next = next;
 
     public async Task InvokeAsync(HttpContext httpContext)

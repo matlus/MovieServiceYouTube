@@ -9,18 +9,16 @@ namespace MovieServiceCore3.Pages;
 
 public class IndexModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
     private readonly DomainFacade _domainFacade;
 
-    public IEnumerable<Movie> Movies { get; private set; }
+    public IEnumerable<Movie>? Movies { get; private set; }
 
     [BindProperty(SupportsGet = true)]
-    public string Genre { get; set; }
+    public string? Genre { get; set; }
 
-    public IndexModel(DomainFacade domainFacade, ILogger<IndexModel> logger)
+    public IndexModel(DomainFacade domainFacade)
     {
         _domainFacade = domainFacade;
-        _logger = logger;
     }
 
     public async Task OnGetAsync()

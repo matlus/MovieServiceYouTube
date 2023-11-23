@@ -5,8 +5,8 @@ namespace DomainLayer;
 
 public static class GenreParser
 {
-    private static readonly Dictionary<string, Genre> StringToGenreMappings = new();
-    private static readonly Dictionary<Genre, string> GenreToStringMappings = new();
+    private static readonly Dictionary<string, Genre> StringToGenreMappings = new ();
+    private static readonly Dictionary<Genre, string> GenreToStringMappings = new ();
     private static readonly string JoinedGenres;
 
     public static IEnumerable<string> GenreValues
@@ -26,7 +26,7 @@ public static class GenreParser
 
         foreach (var fieldInfo in fieldInfos)
         {
-            var genre = (Genre)fieldInfo.GetValue(null) !;
+            var genre = (Genre)fieldInfo.GetValue(null)!;
 
             var enumDescriptionAttributes = (EnumDescriptionAttribute[])fieldInfo
                 .GetCustomAttributes(typeof(EnumDescriptionAttribute), false);

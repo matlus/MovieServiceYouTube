@@ -8,10 +8,25 @@ namespace DomainLayer;
 public sealed class DuplicateMovieException : MovieServiceBusinessBaseException
 {
     public override string Reason => "Duplicate Movie";
-    public DuplicateMovieException() { }
-    public DuplicateMovieException(string message) : base(message) { }
-    public DuplicateMovieException(string message, Exception inner) : base(message, inner) { }
+
+    public DuplicateMovieException()
+    {
+    }
+
+    public DuplicateMovieException(string message)
+        : base(message)
+    {
+    }
+
+    public DuplicateMovieException(string message, Exception inner)
+        : base(message, inner)
+    {
+    }
+
     private DuplicateMovieException(
       System.Runtime.Serialization.SerializationInfo info,
-      System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+      System.Runtime.Serialization.StreamingContext context)
+        : base(info, context)
+    {
+    }
 }

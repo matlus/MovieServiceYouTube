@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -22,7 +21,7 @@ internal sealed class HttpMessageHandlerSpy : DelegatingHandler
     {
         if (_testMediator.ExceptionInformation == null)
         {
-            var movies = _testMediator.MoviesForGetAllMovies;
+            var movies = _testMediator.MoviesForGetAllMovies!;
             return WriteMoviesToResponse(request, movies);
         }
         else
@@ -36,9 +35,9 @@ internal sealed class HttpMessageHandlerSpy : DelegatingHandler
 
     private static Task<HttpResponseMessage> WriteMoviesToResponse(HttpRequestMessage request, IEnumerable<Movie> movies)
     {
-        IEnumerable<ImdbMovie> imdbMovies = null;
+        IEnumerable<ImdbMovie> imdbMovies = default!;
 
-        var absolutePath = request.RequestUri.AbsolutePath;
+        var absolutePath = request.RequestUri!.AbsolutePath;
 
         if (absolutePath.Contains("WithCategories.json"))
         {
