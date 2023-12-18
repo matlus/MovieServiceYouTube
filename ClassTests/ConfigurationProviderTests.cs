@@ -13,7 +13,7 @@ public class ConfigurationProviderTests
 
     private static IConfigurationRoot CreateConfigurationRoot(string key, string value)
     {
-        var appSettingsDictionary = new Dictionary<string, string>()
+        var appSettingsDictionary = new Dictionary<string, string?>()
         {
             { "AppSettings:" + key, value },
         };

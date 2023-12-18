@@ -19,7 +19,7 @@ internal sealed class ExceptionActionResult : ActionResult
     {
         var httpResponse = context.HttpContext.Response!;
 
-        httpResponse.Headers.Add("Exception-Type", _exception.GetType().Name);
+        httpResponse.Headers["Exception-Type"] = _exception.GetType().Name;
 
         if (_exception is MovieServiceBaseException movieServiceBaseException)
         {

@@ -4,7 +4,6 @@ using System.Runtime.Serialization;
 
 namespace DomainLayer;
 
-[Serializable]
 [ExcludeFromCodeCoverage]
 public abstract class MovieServiceNotFoundBaseException : MovieServiceBusinessBaseException
 {
@@ -19,11 +18,6 @@ public abstract class MovieServiceNotFoundBaseException : MovieServiceBusinessBa
 
     protected MovieServiceNotFoundBaseException(string message, Exception inner)
         : base(message, inner)
-    {
-    }
-
-    protected MovieServiceNotFoundBaseException(SerializationInfo info, StreamingContext context)
-        : base(info, context)
     {
     }
 }

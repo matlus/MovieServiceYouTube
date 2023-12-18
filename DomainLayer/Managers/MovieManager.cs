@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,22 +46,21 @@ internal sealed class MovieManager : IDisposable
         return movie ?? throw new MovieWithSpecifiedIdNotFoundException($"A Movie with Id: {id} was Not Found");
     }
 
-    public Task<IEnumerable<Movie>> GetAllMovies()
+    public Task<ImmutableList<Movie>> GetAllMovies()
     {
         var moviesTask = ImdbServiceGateway.GetAllMovies();
         var moviesFromDbTask = DataFacade.GetAllMovies();
         return GetMoviesFromCombinedTasks(moviesTask, moviesFromDbTask);
     }
 
-    private static async Task<IEnumerable<Movie>> GetMoviesFromCombinedTasks(Task<IEnumerable<Movie>> moviesTask, Task<IEnumerable<Movie>> moviesFromDbTask)
+    private static async Task<ImmutableList<Movie>> GetMoviesFromCombinedTasks(Task<ImmutableList<Movie>> moviesTask, Task<IEnumerable<Movie>> moviesFromDbTask)
     {
         await Task.WhenAll(moviesTask, moviesFromDbTask).ConfigureAwait(false);
 
-        var movies = moviesTask.Result;
+        var moviesList = moviesTask.Result;
         var moviesFromDb = moviesFromDbTask.Result;
 
-        var moviesList = movies.ToList();
-        moviesList.AddRange(moviesFromDb);
+        moviesList = moviesList.AddRange(moviesFromDb);
         return moviesList;
     }
 

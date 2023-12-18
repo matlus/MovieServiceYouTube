@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace DomainLayer;
 
-[Serializable]
 [ExcludeFromCodeCoverage]
 public sealed class ConfigurationSettingValueEmptyException : MovieServiceTechnicalBaseException
 {
@@ -20,13 +19,6 @@ public sealed class ConfigurationSettingValueEmptyException : MovieServiceTechni
 
     public ConfigurationSettingValueEmptyException(string message, Exception inner)
         : base(message, inner)
-    {
-    }
-
-    private ConfigurationSettingValueEmptyException(
-      System.Runtime.Serialization.SerializationInfo info,
-      System.Runtime.Serialization.StreamingContext context)
-        : base(info, context)
     {
     }
 }

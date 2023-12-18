@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace DomainLayer;
 
-internal sealed class MovieDataManager
+internal sealed class MovieDataManager(string dbConnectionString)
 {
     private readonly SqlClientFactory _sqlClientFactory = SqlClientFactory.Instance;
-    private readonly string _dbConnectionString;
-
-    public MovieDataManager(string dbConnectionString) => _dbConnectionString = dbConnectionString;
+    private readonly string _dbConnectionString = dbConnectionString;
 
     private DbConnection CreateDbConnection()
     {

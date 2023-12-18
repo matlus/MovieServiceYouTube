@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using DomainLayer;
@@ -11,11 +12,9 @@ namespace MovieServiceCore3.Controller;
 
 [Route("api/[controller]")]
 [ApiController]
-public class MoviesController : ControllerBase
+public class MoviesController(DomainFacade domainFacade) : ControllerBase
 {
-    private readonly DomainFacade _domainFacade;
-
-    public MoviesController(DomainFacade domainFacade) => _domainFacade = domainFacade;
+    private readonly DomainFacade _domainFacade = domainFacade;
 
     // GET api/movies
     [HttpGet]
@@ -58,7 +57,7 @@ public class MoviesController : ControllerBase
     }
 
     [ExcludeFromCodeCoverage]
-    protected virtual Task<IEnumerable<Movie>> GetAllMovies()
+    protected virtual Task<ImmutableList<Movie>> GetAllMovies()
     {
         return _domainFacade.GetAllMovies();
     }

@@ -4,7 +4,6 @@ using System.Runtime.Serialization;
 
 namespace DomainLayer;
 
-[Serializable]
 [ExcludeFromCodeCoverage]
 public sealed class ImdbServiceNotFoundException : MovieServiceTechnicalBaseException
 {
@@ -21,11 +20,6 @@ public sealed class ImdbServiceNotFoundException : MovieServiceTechnicalBaseExce
 
     public ImdbServiceNotFoundException(string message, Exception inner)
         : base(message, inner)
-    {
-    }
-
-    private ImdbServiceNotFoundException(SerializationInfo info, StreamingContext context)
-        : base(info, context)
     {
     }
 }

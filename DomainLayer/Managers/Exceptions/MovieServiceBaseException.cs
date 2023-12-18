@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace DomainLayer;
 
-[Serializable]
 [ExcludeFromCodeCoverage]
 public abstract class MovieServiceBaseException : Exception
 {
@@ -20,13 +19,6 @@ public abstract class MovieServiceBaseException : Exception
 
     protected MovieServiceBaseException(string message, Exception inner)
         : base(message, inner)
-    {
-    }
-
-    protected MovieServiceBaseException(
-      System.Runtime.Serialization.SerializationInfo info,
-      System.Runtime.Serialization.StreamingContext context)
-        : base(info, context)
     {
     }
 }

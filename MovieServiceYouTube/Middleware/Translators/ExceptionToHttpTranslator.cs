@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using DomainLayer;
 using Microsoft.AspNetCore.Http;
@@ -8,14 +9,14 @@ namespace MovieServiceCore3.Middleware.Translators;
 
 public static class ExceptionToHttpTranslator
 {
-    public static async Task Translate(HttpContext httpContext, Exception exception)
+    public static async Task Translate([NotNull] HttpContext httpContext, [NotNull] Exception exception)
     {
         var httpResponse = httpContext.Response;
-        httpResponse.Headers.Add("Exception-Type", exception.GetType().Name);
+        httpResponse.Headers["Exception-Type"] = exception.GetType().Name;
 
         if (exception is MovieServiceBaseException movieServiceBaseException)
         {
-            httpContext.Features.Get<IHttpResponseFeature>().ReasonPhrase = movieServiceBaseException.Reason;
+            httpContext.Features.Get<IHttpResponseFeature>()!.ReasonPhrase = movieServiceBaseException.Reason;
         }
 
         httpResponse.StatusCode = MapExceptionToStatusCode(exception);
@@ -23,7 +24,7 @@ public static class ExceptionToHttpTranslator
         await httpResponse.Body.FlushAsync();
     }
 
-    private static int MapExceptionToStatusCode(Exception exception)
+    private static int MapExceptionToStatusCode([NotNull] Exception exception)
     {
         if (exception is MovieServiceNotFoundBaseException)
         {

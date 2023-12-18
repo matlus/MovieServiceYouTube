@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ public sealed class DomainFacade : IDisposable
         return MovieManager.GetMovieById(id);
     }
 
-    public Task<IEnumerable<Movie>> GetAllMovies()
+    public Task<ImmutableList<Movie>> GetAllMovies()
     {
         return MovieManager.GetAllMovies();
     }

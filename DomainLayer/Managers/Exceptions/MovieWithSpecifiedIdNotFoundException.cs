@@ -4,7 +4,6 @@ using System.Runtime.Serialization;
 
 namespace DomainLayer;
 
-[Serializable]
 [ExcludeFromCodeCoverage]
 public sealed class MovieWithSpecifiedIdNotFoundException : MovieServiceNotFoundBaseException
 {
@@ -21,12 +20,6 @@ public sealed class MovieWithSpecifiedIdNotFoundException : MovieServiceNotFound
 
     public MovieWithSpecifiedIdNotFoundException(string message, Exception inner)
         : base(message, inner)
-    {
-    }
-
-    private MovieWithSpecifiedIdNotFoundException(
-      SerializationInfo info, StreamingContext context)
-        : base(info, context)
     {
     }
 }

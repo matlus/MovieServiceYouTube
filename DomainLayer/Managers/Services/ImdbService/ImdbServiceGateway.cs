@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
@@ -36,7 +38,7 @@ internal sealed class ImdbServiceGateway : IDisposable
         return _httpMessageHandlerProvider.CreateHttpMessageHandler();
     }
 
-    public async Task<IEnumerable<Movie>> GetAllMovies()
+    public async Task<ImmutableList<Movie>> GetAllMovies()
     {
         var httpResponseMessages =
             await MakeConcurrentGetAsyncCalls(_httpClient, "WithCategories.json", "WithImageUrls.json", "WithYears.json").ConfigureAwait(false);
@@ -53,9 +55,9 @@ internal sealed class ImdbServiceGateway : IDisposable
         return JoinImdbMoviesMapToMovies(moviesWithCategory, moviesWithImgUrl, moviesWithYear);
     }
 
-    private static IEnumerable<Movie> JoinImdbMoviesMapToMovies(IEnumerable<ImdbMovie> moviesWithCategory, IEnumerable<ImdbMovie> moviesWithImgUrl, IEnumerable<ImdbMovie> moviesWithYear)
+    private static ImmutableList<Movie> JoinImdbMoviesMapToMovies(IEnumerable<ImdbMovie> moviesWithCategory, IEnumerable<ImdbMovie> moviesWithImgUrl, IEnumerable<ImdbMovie> moviesWithYear)
     {
-        var allMovies = new List<Movie>();
+        var allMovies = ImmutableList<Movie>.Empty;
 
         using (var moviesWithCategoryEnumerator = moviesWithCategory.GetEnumerator())
         using (var moviesWithImgUrlEnumerator = moviesWithImgUrl.GetEnumerator())
@@ -71,7 +73,7 @@ internal sealed class ImdbServiceGateway : IDisposable
                 moviesWithYearEnumerator.MoveNext();
                 var movieWithYear = moviesWithYearEnumerator.Current;
 
-                allMovies.Add(new Movie(
+                allMovies = allMovies.Add(new Movie(
                         Title: movieWithCategory.Title,
                         ImageUrl: movieWithImgUrl.ImageUrl!,
                         Genre: GenreParser.Parse(movieWithCategory.Category!),

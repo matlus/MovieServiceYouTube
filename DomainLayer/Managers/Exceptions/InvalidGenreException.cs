@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace DomainLayer;
 
-[Serializable]
 [ExcludeFromCodeCoverage]
 public sealed class InvalidGenreException : MovieServiceBusinessBaseException
 {
@@ -20,13 +19,6 @@ public sealed class InvalidGenreException : MovieServiceBusinessBaseException
 
     public InvalidGenreException(string message, Exception inner)
         : base(message, inner)
-    {
-    }
-
-    private InvalidGenreException(
-      System.Runtime.Serialization.SerializationInfo info,
-      System.Runtime.Serialization.StreamingContext context)
-        : base(info, context)
     {
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using DomainLayer;
@@ -22,9 +23,9 @@ internal sealed class MovieControllerForTest : MoviesController
     public MovieControllerForTest(Exception exception)
         : base(default!) => _exception = exception;
 
-    protected override Task<IEnumerable<Movie>> GetAllMovies()
+    protected override Task<ImmutableList<Movie>> GetAllMovies()
     {
-        return _exception != null ? throw _exception : Task.FromResult(_movies);
+        return _exception != null ? throw _exception : Task.FromResult(_movies.ToImmutableList());
     }
 
     protected override Task<IEnumerable<Movie>> GetMoviesByGenre(Genre genre)

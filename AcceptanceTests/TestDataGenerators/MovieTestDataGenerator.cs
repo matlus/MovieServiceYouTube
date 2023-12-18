@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -68,13 +69,13 @@ internal static class MovieTestDataGenerator
         }
     }
 
-    private static IEnumerable<Movie> MapToMovies(DbDataReader dbDataReader)
+    private static ImmutableList<Movie> MapToMovies(DbDataReader dbDataReader)
     {
-        var movies = new List<Movie>();
+        var movies = ImmutableList.Create<Movie>();
 
         while (dbDataReader.Read())
         {
-            movies.Add(new Movie(
+            movies = movies.Add(new Movie(
                 Title: (string)dbDataReader[0],
                 Genre: GenreParser.Parse((string)dbDataReader[1]),
                 Year: (int)dbDataReader[2],

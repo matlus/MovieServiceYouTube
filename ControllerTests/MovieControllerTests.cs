@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using ControllerTests.ForTestClasses;
@@ -197,13 +198,13 @@ public class MovieControllerTests
         }
     }
 
-    private static IEnumerable<Movie> MapToMvoies(IEnumerable<MovieResource> movieResources)
+    private static ImmutableList<Movie> MapToMvoies(IEnumerable<MovieResource> movieResources)
     {
-        var movies = new List<Movie>();
+        var movies = ImmutableList.Create<Movie>();
 
         foreach (var movieResource in movieResources)
         {
-            movies.Add(
+            movies = movies.Add(
                 new Movie(
                     movieResource.Title,
                     movieResource.ImageUrl,
