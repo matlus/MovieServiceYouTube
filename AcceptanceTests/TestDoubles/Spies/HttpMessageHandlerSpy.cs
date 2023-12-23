@@ -2,20 +2,17 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
+using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using AcceptanceTests.TestMediators;
 using DomainLayer;
-using Newtonsoft.Json;
 
 namespace AcceptanceTests.TestDoubles.Spies;
 
-internal sealed class HttpMessageHandlerSpy : DelegatingHandler
+internal sealed class HttpMessageHandlerSpy(TestMediator testMeditor) : DelegatingHandler
 {
-    private readonly TestMediator _testMediator;
-
-    public HttpMessageHandlerSpy(TestMediator testMeditor) => _testMediator = testMeditor;
+    private readonly TestMediator _testMediator = testMeditor;
 
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
@@ -26,9 +23,12 @@ internal sealed class HttpMessageHandlerSpy : DelegatingHandler
         }
         else
         {
-            var httpResponseMessage = request.CreateResponse();
-            httpResponseMessage.StatusCode = (HttpStatusCode)_testMediator.ExceptionInformation.ExceptionReason;
-            httpResponseMessage.Content = new StringContent("Exception Occured");
+            var httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                StatusCode = (HttpStatusCode)_testMediator.ExceptionInformation.ExceptionReason,
+                Content = new StringContent("Exception Occured")
+            };
+
             return Task.FromResult(httpResponseMessage);
         }
     }
@@ -52,9 +52,10 @@ internal sealed class HttpMessageHandlerSpy : DelegatingHandler
             imdbMovies = movies.Select(m => new ImdbMovie(m.Title, ImageUrl: null, Category: null, Year: m.Year));
         }
 
-        var imdbMoviesJson = JsonConvert.SerializeObject(imdbMovies);
-        var httpResponseMessage = request.CreateResponse();
-        httpResponseMessage.Content = new StringContent(imdbMoviesJson, Encoding.UTF8, "application/json");
+        var httpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK)
+        {
+            Content = JsonContent.Create(imdbMovies)
+        };
 
         return Task.FromResult(httpResponseMessage);
     }

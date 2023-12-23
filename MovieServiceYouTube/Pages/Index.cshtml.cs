@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using DomainLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
 namespace MovieServiceCore3.Pages;
 

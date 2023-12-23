@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace DomainLayer;
@@ -86,11 +86,11 @@ internal sealed class ImdbServiceGateway : IDisposable
 
     private static Task<IEnumerable<ImdbMovie>[]> GetMoviesFromHttpContent(HttpContent content1, HttpContent content2, HttpContent content3)
     {
-        var moviesWithCategoryTask = content1.ReadAsAsync<IEnumerable<ImdbMovie>>();
-        var moviesWithImgUrlTask = content2.ReadAsAsync<IEnumerable<ImdbMovie>>();
-        var moviesWithYearTask = content3.ReadAsAsync<IEnumerable<ImdbMovie>>();
+        var moviesWithCategoryTask = content1.ReadFromJsonAsync<IEnumerable<ImdbMovie>>();
+        var moviesWithImgUrlTask = content2.ReadFromJsonAsync<IEnumerable<ImdbMovie>>();
+        var moviesWithYearTask = content3.ReadFromJsonAsync<IEnumerable<ImdbMovie>>();
 
-        return Task.WhenAll(moviesWithCategoryTask, moviesWithImgUrlTask, moviesWithYearTask);
+        return Task.WhenAll(moviesWithCategoryTask, moviesWithImgUrlTask, moviesWithYearTask)!;
     }
 
     private static Task EnsureSuccessForAllTasks(HttpResponseMessage[] httpResponseMessages)

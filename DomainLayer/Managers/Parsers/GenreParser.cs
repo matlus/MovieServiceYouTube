@@ -5,8 +5,8 @@ namespace DomainLayer;
 
 public static class GenreParser
 {
-    private static readonly Dictionary<string, Genre> StringToGenreMappings = new ();
-    private static readonly Dictionary<Genre, string> GenreToStringMappings = new ();
+    private static readonly Dictionary<string, Genre> StringToGenreMappings = [];
+    private static readonly Dictionary<Genre, string> GenreToStringMappings = [];
     private static readonly string JoinedGenres;
 
     public static IEnumerable<string> GenreValues

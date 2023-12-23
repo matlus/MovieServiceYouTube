@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using DomainLayer;
@@ -54,8 +55,8 @@ public class EndToEndIntegrationTests
 
         // Assert
         await EnsureSuccess(httpResponseMessage);
-        var actualMovieResource = await httpResponseMessage.Content.ReadAsAsync<IEnumerable<MovieResource>>();
-        Assert.IsTrue(actualMovieResource.Any());
+        var actualMovieResource = await httpResponseMessage.Content.ReadFromJsonAsync<IEnumerable<MovieResource>>();
+        Assert.IsTrue(actualMovieResource!.Any());
     }
 
     [TestMethod]
@@ -68,8 +69,8 @@ public class EndToEndIntegrationTests
 
         // Assert
         await EnsureSuccess(httpResponseMessage);
-        var actualMovieResource = await httpResponseMessage.Content.ReadAsAsync<IEnumerable<MovieResource>>();
-        Assert.IsTrue(actualMovieResource.All(m => m.Genre == validGenre));
+        var actualMovieResource = await httpResponseMessage.Content.ReadFromJsonAsync<IEnumerable<MovieResource>>();
+        Assert.IsTrue(actualMovieResource!.All(m => m.Genre == validGenre));
     }
 
     [TestMethod]
@@ -95,12 +96,11 @@ public class EndToEndIntegrationTests
         var movie = RandomMovieGenerator.GenerateRandomMovies(1).Single();
         var duplicateMovieException = new DuplicateMovieException($"A Movie with the Title: {movie.Title} already exists.");
 
-        var movieResourceJson = $"{{\"title\": \"{movie.Title}\", \"ImageUrl\": \"{movie.ImageUrl}\", \"Genre\": \"{movie.Genre}\", \"Year\": {movie.Year} }}";
-        var movieHttpContent = new StringContent(movieResourceJson, Encoding.UTF8, "application/json");
-        await _httpClient.PostAsync("api/movies", movieHttpContent);
+        var movieResource = new MovieResource(movie.Title, movie.ImageUrl, GenreParser.ToString(movie.Genre), movie.Year);
+        await _httpClient.PostAsJsonAsync("api/movies", movieResource);
 
         // Act
-        var httpResponseMessage = await _httpClient.PostAsync("api/movies", movieHttpContent);
+        var httpResponseMessage = await _httpClient.PostAsJsonAsync("api/movies", movieResource);
 
         // Assert
         await EnsureErrorResponseIsCorrect(httpResponseMessage, HttpStatusCode.BadRequest, duplicateMovieException);
@@ -152,11 +152,10 @@ public class EndToEndIntegrationTests
         // Arrange
         var movie = RandomMovieGenerator.GenerateRandomMovies(1).Single();
 
-        var movieResourceJson = $"{{\"title\": \"{movie.Title}\", \"ImageUrl\": \"{movie.ImageUrl}\", \"Genre\": \"{movie.Genre}\", \"Year\": {movie.Year} }}";
-        var movieHttpContent = new StringContent(movieResourceJson, Encoding.UTF8, "application/json");
+        var movieResource = new MovieResource(movie.Title, movie.ImageUrl, GenreParser.ToString(movie.Genre), movie.Year);
 
         // Act
-        var httpResponseMessage = await _httpClient.PostAsync("api/movies", movieHttpContent);
+        var httpResponseMessage = await _httpClient.PostAsJsonAsync("api/movies", movieResource);
 
         // Assert
         Assert.AreEqual(HttpStatusCode.Created, httpResponseMessage.StatusCode, $$"""The Response content is: {{await httpResponseMessage.Content.ReadAsStringAsync()}} $"The Movie that was used is: Title: {{movie.Title}}, ImageUrl: {{movie.ImageUrl}}, Genre: {{movie.Genre}}, Year: {{movie.Year}}""");
