@@ -349,7 +349,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            StringAssert.Contains(e.Message, " valid Title and can not be null");
+            AssertEx.EnsureStringContains(e.Message, "Title", "can not be null");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "ImageUrl", "Genre", "Year");
         }
         finally
@@ -377,7 +377,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            StringAssert.Contains(e.Message, " valid Title and can not be Empty");
+            AssertEx.EnsureStringContains(e.Message, "Title", "can not be Empty");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "ImageUrl", "Genre", "Year");
         }
         finally
@@ -405,7 +405,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            StringAssert.Contains(e.Message, " valid Title and can not be Whitespaces");
+            AssertEx.EnsureStringContains(e.Message, "Title", "can not be Whitespaces");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "ImageUrl", "Genre", "Year");
         }
         finally
@@ -432,7 +432,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            StringAssert.Contains(e.Message, " valid ImageUrl and can not be null");
+            AssertEx.EnsureStringContains(e.Message, "Movie.ImageUrl", "can not be null");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "Title", "Genre", "Year");
         }
         finally
@@ -460,7 +460,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            StringAssert.Contains(e.Message, " valid ImageUrl and can not be Empty");
+            StringAssert.Contains(e.Message, "ImageUrl and can not be Empty");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "Title", "Genre", "Year");
         }
         finally
@@ -488,7 +488,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            StringAssert.Contains(e.Message, " valid ImageUrl and can not be Whitespaces");
+            AssertEx.EnsureStringContains(e.Message, "ImageUrl", "can not be Whitespaces");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "Title", "Genre", "Year");
         }
         finally
@@ -677,7 +677,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            StringAssert.Contains(e.Message, "The Movie Title must be a valid Title and can not be null");
+            StringAssert.Contains(e.Message, "\"Movie.Title\" must be a valid Movie.Title and can not be null");
         }
         finally
         {

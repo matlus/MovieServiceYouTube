@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DomainLayer.Managers.Validators;
 
 namespace DomainLayer;
 
@@ -48,8 +49,8 @@ internal static class ValidatorMovie
     private static string? ValidateProperties(Movie movie)
     {
         var genreErrorMessage = ValidateGenre(movie.Genre);
-        var titleErrorMessage = ValidateProperty("Title", movie.Title);
-        var imageUrlErrorMessage = ValidateProperty("ImageUrl", movie.ImageUrl);
+        var titleErrorMessage = ValidatorString.Validate("Movie.Title", movie.Title);
+        var imageUrlErrorMessage = ValidatorString.Validate("Movie.ImageUrl", movie.ImageUrl);
         var yearErrorMessage = ValidateYear(movie.Year);
 
         var errorMessages = genreErrorMessage + titleErrorMessage + imageUrlErrorMessage + yearErrorMessage;
@@ -98,38 +99,5 @@ internal static class ValidatorMovie
         }
 
         return errorMessage;
-    }
-
-    private static string? ValidateProperty(string propertyName, string propertyValue)
-    {
-        return DetermineNullEmptyOrWhiteSpaces(propertyValue) switch
-        {
-            StringState.Null => $"The Movie {propertyName} must be a valid {propertyName} and can not be null\r\n",
-            StringState.Empty => $"The Movie {propertyName} must be a valid {propertyName} and can not be Empty\r\n",
-            StringState.WhiteSpaces => $"The Movie {propertyName} must be a valid {propertyName} and can not be Whitespaces\r\n",
-            _ => null,
-        };
-    }
-
-    private static StringState DetermineNullEmptyOrWhiteSpaces(string? data)
-    {
-        if (data == null)
-        {
-            return StringState.Null;
-        }
-        else if (data.Length == 0)
-        {
-            return StringState.Empty;
-        }
-
-        foreach (var chr in data)
-        {
-            if (!char.IsWhiteSpace(chr))
-            {
-                return StringState.Valid;
-            }
-        }
-
-        return StringState.WhiteSpaces;
     }
 }
