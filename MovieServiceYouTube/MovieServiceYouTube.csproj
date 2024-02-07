@@ -6,7 +6,7 @@
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Update="SonarAnalyzer.CSharp" Version="9.15.0.81779">
+    <PackageReference Update="SonarAnalyzer.CSharp" Version="9.19.0.84025">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

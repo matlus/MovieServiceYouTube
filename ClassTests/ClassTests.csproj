@@ -5,8 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.2.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj" />
@@ -14,7 +14,7 @@
     <ProjectReference Include="..\Testing.Shared\Testing.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Update="SonarAnalyzer.CSharp" Version="9.15.0.81779">
+    <PackageReference Update="SonarAnalyzer.CSharp" Version="9.19.0.84025">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

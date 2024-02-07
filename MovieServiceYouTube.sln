@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndToEndIntegrationTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.Shared", "Testing.Shared\Testing.Shared.csproj", "{F6F1B328-E136-4A2A-B2EB-5252EF65C9B1}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MovieDb", "MovieDb\MovieDb.sqlproj", "{7F20BE5F-8F3D-4941-9BD9-F6ED8F816AA4}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MovieDb", "MovieDb\MovieDb.sqlproj", "{9B507EC6-FB8D-4803-A614-D900F67E9F27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,12 +63,12 @@ Global
 		{F6F1B328-E136-4A2A-B2EB-5252EF65C9B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6F1B328-E136-4A2A-B2EB-5252EF65C9B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6F1B328-E136-4A2A-B2EB-5252EF65C9B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F20BE5F-8F3D-4941-9BD9-F6ED8F816AA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F20BE5F-8F3D-4941-9BD9-F6ED8F816AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F20BE5F-8F3D-4941-9BD9-F6ED8F816AA4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{7F20BE5F-8F3D-4941-9BD9-F6ED8F816AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F20BE5F-8F3D-4941-9BD9-F6ED8F816AA4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F20BE5F-8F3D-4941-9BD9-F6ED8F816AA4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9B507EC6-FB8D-4803-A614-D900F67E9F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B507EC6-FB8D-4803-A614-D900F67E9F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B507EC6-FB8D-4803-A614-D900F67E9F27}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9B507EC6-FB8D-4803-A614-D900F67E9F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B507EC6-FB8D-4803-A614-D900F67E9F27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B507EC6-FB8D-4803-A614-D900F67E9F27}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

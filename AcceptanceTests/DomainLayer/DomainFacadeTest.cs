@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AcceptanceTests.DomainLayer.Managers.ServiceLocators;
+using AcceptanceTests.ModelBuilder;
 using AcceptanceTests.TestDataGenerators;
 using AcceptanceTests.TestMediators;
 using DomainLayer;
@@ -17,11 +18,22 @@ public class DomainFacadeTests
 {
     private readonly IEnumerable<Movie> moviesInDb;
     private readonly string dbConnectionString;
+    private readonly ModelBuilder<Movie> movieModelBuilder;
 
     public DomainFacadeTests()
     {
         dbConnectionString = new ServiceLocatorForAcceptanceTesting(null!).CreateConfigurationProvider().GetDbConnectionString();
         moviesInDb = MovieTestDataGenerator.GetAllMovies(dbConnectionString).GetAwaiter().GetResult();
+        movieModelBuilder = InitializeMovieModelBuilder();
+    }
+
+    private static ModelBuilder<Movie> InitializeMovieModelBuilder()
+    {
+        return new ModelBuilder<Movie>()
+          .For(m => m.Title, () => RandomStringGenerator.GetRandomAciiString(50))
+          .For(m => m.ImageUrl, () => $"https://www.{RandomStringGenerator.GetRandomAciiString(20)}.com")
+          .For(m => m.Genre, () => (Genre)RandomStringGenerator.GetRandomInt(0, 4))
+          .For(m => m.Year, () => RandomStringGenerator.GetRandomInt(1900, DateTime.Today.Year));
     }
 
     private static (DomainFacade domainFacade, TestMediator testMediator) CreateDomainFacade()
@@ -35,8 +47,9 @@ public class DomainFacadeTests
     [TestCategory("Acceptance Test")]
     public async Task GetAllMovies_WhenCalled_ReturnsAllMovies()
     {
-        // Arrange
+        // Arrange 
         var (domainFacade, testMediator) = CreateDomainFacade();
+
         try
         {
             var moviesFromService = RandomMovieGenerator.GenerateRandomMovies(50);
@@ -64,6 +77,7 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, testMediator) = CreateDomainFacade();
+
         try
         {
             var randomMovies = new List<Movie>();
@@ -94,6 +108,7 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
+
         try
         {
             var expectedMovie = moviesInDb.First();
@@ -143,6 +158,7 @@ public class DomainFacadeTests
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
         var invalidGenre = (Genre)1000;
+
         try
         {
             // Act
@@ -165,6 +181,7 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, testMediator) = CreateDomainFacade();
+
         try
         {
             testMediator.ExceptionInformation
@@ -191,6 +208,7 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, testMediator) = CreateDomainFacade();
+
         try
         {
             testMediator.ExceptionInformation
@@ -217,6 +235,7 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, testMediator) = CreateDomainFacade();
+
         try
         {
             testMediator.ExceptionInformation
@@ -243,7 +262,8 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        var expectedMovie = RandomMovieGenerator.GenerateRandomMovies(1).Single();
+        var expectedMovie = movieModelBuilder.Build();
+
         try
         {
             // Act
@@ -265,7 +285,8 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        var expectedMovie = RandomMovieGenerator.GenerateRandomMovies(1).Single();
+        var expectedMovie = movieModelBuilder.Build();
+
         try
         {
             // Act
@@ -291,6 +312,7 @@ public class DomainFacadeTests
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
         Movie nullMovie = default!;
+
         try
         {
             // Act
@@ -314,7 +336,10 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: null!, ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.Title, null)
+            .Build();
+
         try
         {
             // Act
@@ -339,7 +364,10 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: string.Empty, ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.Title, string.Empty)
+            .Build();
+
         try
         {
             // Act
@@ -364,7 +392,10 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: "    ", ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.Title, "     ")
+            .Build();
+
         try
         {
             // Act
@@ -389,7 +420,9 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: null!, Genre: Genre.Action, Year: 1900);
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.ImageUrl, null)
+            .Build();
         try
         {
             // Act
@@ -414,7 +447,10 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: string.Empty, Genre: Genre.Action, Year: 1900);
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.ImageUrl, string.Empty)
+            .Build();
+
         try
         {
             // Act
@@ -439,7 +475,10 @@ public class DomainFacadeTests
     {
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: "    ", Genre: Genre.Action, Year: 1900);
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.ImageUrl, "     ")
+            .Build();
+
         try
         {
             // Act
@@ -465,7 +504,10 @@ public class DomainFacadeTests
         // Arrange
         var minimumYear = 1900;
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: "http://someurl", Genre: Genre.Action, Year: minimumYear - 1);
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.Year, minimumYear - 1)
+            .Build();
+
         try
         {
             // Act
@@ -491,7 +533,10 @@ public class DomainFacadeTests
         // Arrange
         var todaysYear = DateTime.Today.Year;
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: "http://someurl", Genre: Genre.Action, Year: todaysYear + 1);
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.Year, todaysYear + 1)
+            .Build();
+
         try
         {
             // Act
@@ -501,7 +546,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            StringAssert.Contains(e.Message, $"The Year, must be between 1900 and {DateTime.Today.Year}");
+            StringAssert.Contains(e.Message, $"The Year, must be between 1900 and {todaysYear}");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "Title", "ImageUrl", "Genre");
         }
         finally
@@ -516,9 +561,11 @@ public class DomainFacadeTests
     {
         // Arrange
         var invalidGenre = (Genre)1000;
-        var todaysYear = DateTime.Today.Year;
         var (domainFacade, _) = CreateDomainFacade();
-        var invalidMovie = new Movie(Title: RandomStringGenerator.GetRandomAciiString(50), ImageUrl: "http://someurl", Genre: invalidGenre, Year: todaysYear);
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.Genre, invalidGenre)
+            .Build();
+
         try
         {
             // Act
@@ -615,7 +662,10 @@ public class DomainFacadeTests
         // Arrange
         var (domainFacade, _) = CreateDomainFacade();
         var movies = RandomMovieGenerator.GenerateRandomMovies(2).ToList();
-        var invalidMovie = new Movie(Title: null!, ImageUrl: "http://someurl", Genre: Genre.Action, Year: 1900);
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.Title, null)
+            .Build();
+        
         movies.Add(invalidMovie);
 
         try
