@@ -145,5 +145,6 @@ internal sealed class ImdbServiceGateway : IDisposable
     public void Dispose()
     {
         Dispose(true);
+        GC.SuppressFinalize(this);
     }
 }

@@ -40,7 +40,7 @@ public sealed class ModelBuilder<T> where T : class
     /// <param name="propertyNameExpression"></param>
     /// <param name="valueGetterDelegate"></param>
     /// <returns></returns>
-    public ModelBuilder<T> For<TValue>(Expression<Func<T, TValue>> propertyNameExpression, Func<object> valueGetterDelegate)
+    public ModelBuilder<T> For<TValue>(Expression<Func<T, TValue>> propertyNameExpression, Func<object?> valueGetterDelegate)
     {
         var memberExpression = (MemberExpression)propertyNameExpression.Body;
         var propertyName = memberExpression.Member.Name;

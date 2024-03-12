@@ -15,6 +15,8 @@ internal enum StringState
 
 internal static class ValidatorMovie
 {
+    private static readonly int maxLengthTitle = 50;
+
     public static void EnsureMovieIsValid(Movie movie)
     {
         EnsureMovieIsNotNull(movie);
@@ -49,7 +51,7 @@ internal static class ValidatorMovie
     private static string? ValidateProperties(Movie movie)
     {
         var genreErrorMessage = ValidateGenre(movie.Genre);
-        var titleErrorMessage = ValidatorString.Validate("Movie.Title", movie.Title);
+        var titleErrorMessage = ValidatorString.Validate("Movie.Title", movie.Title, maxLengthTitle);
         var imageUrlErrorMessage = ValidatorString.Validate("Movie.ImageUrl", movie.ImageUrl);
         var yearErrorMessage = ValidateYear(movie.Year);
 

@@ -8,13 +8,63 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using DomainLayer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MovieServiceCore3;
 using MovieServiceCore3.ResourceModels;
 using Testing.Shared;
 
 namespace EndToEndIntegrationTests;
+
+public sealed class MyWebApplicationFactory : WebApplicationFactory<Startup>
+{
+    protected override IHostBuilder? CreateHostBuilder()
+    {
+        return base.CreateHostBuilder();
+    }
+
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        base.ConfigureWebHost(builder);
+    }
+
+    protected override IHost CreateHost(IHostBuilder builder)
+    {
+        return base.CreateHost(builder);
+    }
+}
+
+public sealed class CustomWebApplicationFactory : WebApplicationFactory<Startup>
+{
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder.ConfigureLogging((context, loggingBuilder) =>
+        {
+            loggingBuilder.ClearProviders();
+            ////loggingBuilder.AddProvider<TestContextLoggerProvider>();
+        });
+
+        builder.ConfigureServices(services =>
+        {
+            ////services.AddScoped<TestContextProvider>();
+            ////services.AddSingleton<ILoggingSink, TestContextLoggingSink>();
+            services.AddHttpContextAccessor();
+        });
+    }
+
+    ////public IServiceScope CreateScope(TestContext testContext)
+    ////{
+    ////    var scope = this.Services.CreateScope();
+    ////    var contextProvider = scope.ServiceProvider.GetRequiredService<TestContextProvider>();
+    ////    contextProvider.Register(testContext);
+    ////    return scope;
+    ////}
+}
 
 [TestClass]
 public class EndToEndIntegrationTests
@@ -24,7 +74,7 @@ public class EndToEndIntegrationTests
     public EndToEndIntegrationTests()
     {
         Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
-        var webApplicationFactory = new WebApplicationFactory<Startup>();
+        var webApplicationFactory = new CustomWebApplicationFactory();
         _httpClient = webApplicationFactory.CreateClient();
     }
 

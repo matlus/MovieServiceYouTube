@@ -89,7 +89,7 @@ internal static class MovieTestDataGenerator
     {
         DbConnection dbConnection = default!;
         DbCommand dbCommand = default!;
-        try
+        try 
         {
             dbConnection = CreateDbConnection(dbConnectionString);
             await dbConnection.OpenAsync();

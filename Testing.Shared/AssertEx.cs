@@ -30,28 +30,6 @@ public static class AssertEx
         }
     }
 
-    public static void EnsureStringContains(string message, params string[] expectedMessageParts)
-    {
-        var exceptionMessages = new StringBuilder();
-        _ = exceptionMessages.AppendLine(CultureInfo.InvariantCulture, $"The Actual Message is: {message}");
-
-        var somePartNotFound = false;
-
-        foreach (var part in expectedMessageParts)
-        {
-            if (!message.Contains(part))
-            {
-                somePartNotFound = true;
-                _ = exceptionMessages.AppendLine(CultureInfo.InvariantCulture, $"The Expected substring: {part}, was not found in the Message.");
-            }
-        }
-
-        if (somePartNotFound)
-        {
-            throw new AssertFailedException(exceptionMessages.ToString());
-        }
-    }
-
     public static void EnsureExceptionMessageDoesNotContains(Exception exception, params string[] expectedMessageParts)
     {
         var exceptionMessages = new StringBuilder();

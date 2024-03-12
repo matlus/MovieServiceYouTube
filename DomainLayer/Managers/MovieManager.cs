@@ -91,5 +91,6 @@ internal sealed class MovieManager : IDisposable
     public void Dispose()
     {
         Dispose(true);
+        GC.SuppressFinalize(this);
     }
 }

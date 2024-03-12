@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DomainLayer;
 using Testing.Shared.TestingHelpers;
 
@@ -15,7 +16,7 @@ public static class RandomMovieGenerator
                     Title: RandomStringGenerator.GetRandomAciiString(50),
                     ImageUrl: RandomStringGenerator.GetRandomAciiString(200),
                     Genre: (Genre)RandomStringGenerator.GetRandomInt(0, 5),
-                    Year: RandomStringGenerator.GetRandomInt(1980, 2020)));
+                    Year: RandomStringGenerator.GetRandomInt(1980, DateTime.Today.Year)));
         }
 
         return randomMovies;

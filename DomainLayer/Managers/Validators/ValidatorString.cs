@@ -30,9 +30,10 @@ internal static class ValidatorString
     {
         var validationMessage = Validate(propertyName, propertyValue);
 
-        return validationMessage == null && propertyValue.Length <= maxLength
-            ? null
-            : $"The property: \"{propertyName}\" can have a maximum length of {maxLength}";
+        return validationMessage
+            ?? (propertyValue.Length > maxLength
+            ? $"The property: \"{propertyName}\" can have a maximum length of {maxLength}" 
+            : null);
     }
 
     public static StringState DetermineNullEmptyOrWhiteSpaces(string data)

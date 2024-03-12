@@ -32,7 +32,7 @@ public class DomainFacadeTests
         return new ModelBuilder<Movie>()
           .For(m => m.Title, () => RandomStringGenerator.GetRandomAciiString(50))
           .For(m => m.ImageUrl, () => $"https://www.{RandomStringGenerator.GetRandomAciiString(20)}.com")
-          .For(m => m.Genre, () => (Genre)RandomStringGenerator.GetRandomInt(0, 4))
+          .For(m => m.Genre, () => (Genre)RandomStringGenerator.GetRandomInt(0, 5))
           .For(m => m.Year, () => RandomStringGenerator.GetRandomInt(1900, DateTime.Today.Year));
     }
 
@@ -349,7 +349,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            AssertEx.EnsureStringContains(e.Message, "Title", "can not be null");
+            AssertEx.EnsureExceptionMessageContains(e, "Title", "can not be null");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "ImageUrl", "Genre", "Year");
         }
         finally
@@ -377,7 +377,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            AssertEx.EnsureStringContains(e.Message, "Title", "can not be Empty");
+            AssertEx.EnsureExceptionMessageContains(e, "Title", "can not be Empty");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "ImageUrl", "Genre", "Year");
         }
         finally
@@ -405,7 +405,36 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            AssertEx.EnsureStringContains(e.Message, "Title", "can not be Whitespaces");
+            AssertEx.EnsureExceptionMessageContains(e, "Title", "can not be Whitespaces");
+            AssertEx.EnsureExceptionMessageDoesNotContains(e, "ImageUrl", "Genre", "Year");
+        }
+        finally
+        {
+            domainFacade.Dispose();
+        }
+    }
+
+    [TestMethod]
+    [TestCategory("Acceptance Test")]
+    public async Task CreateMovie_WhenMovieTitleIsTooLong_ShouldThrow()
+    {
+        // Arrange
+        var maxTitleLength = 50;
+        var (domainFacade, _) = CreateDomainFacade();
+        var invalidMovie = movieModelBuilder
+            .Set(m => m.Title, RandomStringGenerator.GetRandomAciiString(maxTitleLength + 1))
+            .Build();
+
+        try
+        {
+            // Act
+            await domainFacade.CreateMovie(invalidMovie);
+            Assert.Fail("We were expecting a InvalidMovieException exception to be thrown, but no exception was thrown");
+        }
+        catch (InvalidMovieException e)
+        {
+            // Assert
+            AssertEx.EnsureExceptionMessageContains(e, "Title", "can have a maximum length of");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "ImageUrl", "Genre", "Year");
         }
         finally
@@ -432,7 +461,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            AssertEx.EnsureStringContains(e.Message, "Movie.ImageUrl", "can not be null");
+            AssertEx.EnsureExceptionMessageContains(e, "Movie.ImageUrl", "can not be null");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "Title", "Genre", "Year");
         }
         finally
@@ -488,7 +517,7 @@ public class DomainFacadeTests
         catch (InvalidMovieException e)
         {
             // Assert
-            AssertEx.EnsureStringContains(e.Message, "ImageUrl", "can not be Whitespaces");
+            AssertEx.EnsureExceptionMessageContains(e, "ImageUrl", "can not be Whitespaces");
             AssertEx.EnsureExceptionMessageDoesNotContains(e, "Title", "Genre", "Year");
         }
         finally
