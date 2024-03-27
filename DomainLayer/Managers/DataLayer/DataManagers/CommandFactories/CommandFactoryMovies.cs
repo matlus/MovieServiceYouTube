@@ -8,13 +8,13 @@ namespace DomainLayer;
 
 internal static class CommandFactoryMovies
 {
-    private static readonly SqlMetaData[] SqlMetaDataCreateMovies = new SqlMetaData[]
-    {
+    private static readonly SqlMetaData[] SqlMetaDataCreateMovies =
+    [
         new ("Title", SqlDbType.VarChar, 50),
         new ("Genre", SqlDbType.VarChar, 50),
         new ("Year", SqlDbType.Int),
         new ("ImageUrl", SqlDbType.VarChar, 200),
-    };
+    ];
 
     private static void AddReturnValueParameter(DbCommand dbCommand)
     {

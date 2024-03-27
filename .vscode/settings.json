@@ -1,3 +1,5 @@
 {
-    "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
+    "dotnet-test-explorer.testArguments": "/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=lcov.info",
+    "dotnet-test-explorer.testProjectPath": "**/*(AcceptanceTests.csproj|ClassTests.csproj|ControllerTests.csproj)",
 }

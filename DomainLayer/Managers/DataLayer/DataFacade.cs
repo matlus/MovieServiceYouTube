@@ -3,11 +3,9 @@ using System.Threading.Tasks;
 
 namespace DomainLayer;
 
-internal sealed class DataFacade
+internal sealed class DataFacade(string dbConnectionString)
 {
-    private MovieDataManager MovieDataManager { get; }
-
-    public DataFacade(string dbConnectionString) => MovieDataManager = new MovieDataManager(dbConnectionString);
+    private MovieDataManager MovieDataManager { get; } = new MovieDataManager(dbConnectionString);
 
     public Task<int> CreateMovie(Movie movie)
     {

@@ -14,9 +14,7 @@ public enum Genre
 }
 
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
-internal sealed class EnumDescriptionAttribute : Attribute
+internal sealed class EnumDescriptionAttribute(string description) : Attribute
 {
-    public string Description { get; }
-
-    public EnumDescriptionAttribute(string description) => Description = description;
+    public string Description { get; } = description;
 }
