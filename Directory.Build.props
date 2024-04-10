@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<Nullable>enable</Nullable>
+		<TargetFramework>net8.0</TargetFramework>		
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisMode>recommended</AnalysisMode>
 		<AnalysisLevel>latest</AnalysisLevel>

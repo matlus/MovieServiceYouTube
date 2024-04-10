@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
-namespace DomainLayer.Managers.Validators;
+namespace DomainLayer;
+
 internal enum StringState
 {
     Null,
@@ -15,16 +12,13 @@ internal enum StringState
 
 internal static class ValidatorString
 {
-    public static string? Validate(string propertyName, string propertyValue)
+    public static string? Validate(string propertyName, string propertyValue) => DetermineNullEmptyOrWhiteSpaces(propertyValue) switch
     {
-        return DetermineNullEmptyOrWhiteSpaces(propertyValue) switch
-        {
-            StringState.Null => $"The property: \"{propertyName}\" must be a valid {propertyName} and can not be null",
-            StringState.Empty => $"The property: \"{propertyName}\" must be a valid {propertyName} and can not be Empty",
-            StringState.WhiteSpaces => $"The property: \"{propertyName}\" must be a valid {propertyName} and can not be Whitespaces",
-            _ => null,
-        };
-    }
+        StringState.Null => $"The property: \"{propertyName}\" must be a valid {propertyName} and can not be null",
+        StringState.Empty => $"The property: \"{propertyName}\" must be a valid {propertyName} and can not be Empty",
+        StringState.WhiteSpaces => $"The property: \"{propertyName}\" must be a valid {propertyName} and can not be Whitespaces",
+        _ => null,
+    };
 
     public static string? Validate(string propertyName, string propertyValue, int maxLength)
     {
@@ -47,14 +41,6 @@ internal static class ValidatorString
             return StringState.Empty;
         }
 
-        foreach (var chr in data)
-        {
-            if (!char.IsWhiteSpace(chr))
-            {
-                return StringState.Valid;
-            }
-        }
-
-        return StringState.WhiteSpaces;
+        return data.All(char.IsWhiteSpace) ? StringState.WhiteSpaces : StringState.Valid;
     }
 }

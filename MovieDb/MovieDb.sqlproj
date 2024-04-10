@@ -3,7 +3,7 @@
   <Sdk Name="Microsoft.Build.Sql" Version="0.1.14-preview" />
   <PropertyGroup>
     <Name>MovieDb</Name>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <ModelCollation>1033, CI</ModelCollation>
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -11,4 +11,33 @@
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{9b507ec6-fb8d-4803-a614-d900f67e9f27}</ProjectGuid>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="MovieDb.Production.publish.xml" />
+    <None Include="MovieDb.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="scripts" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\Views" />
+    <Folder Include="dbo\User Defined Types" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="scripts\Script.PostDeployment1.sql" />
+    <Build Include="dbo\Stored Procedures\CreateMovie.sql" />
+    <Build Include="dbo\Stored Procedures\CreateMoviesTvpDistinctInsertInto.sql" />
+    <Build Include="dbo\Stored Procedures\CreateMoviesTvpMergeInsertInto.sql" />
+    <Build Include="dbo\Stored Procedures\CreateMoviesTvpMergeMerge.sql" />
+    <Build Include="dbo\Stored Procedures\CreateMoviesTvpUsingCursor.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllMovies.sql" />
+    <Build Include="dbo\Stored Procedures\GetMovieById.sql" />
+    <Build Include="dbo\Stored Procedures\GetMoviesByGenre.sql" />
+    <Build Include="dbo\Stored Procedures\GetMoviesByYear.sql" />
+    <Build Include="dbo\Tables\Assoc_MovieGenre.sql" />
+    <Build Include="dbo\Tables\Genre.sql" />
+    <Build Include="dbo\Tables\Movie.sql" />
+    <Build Include="dbo\Views\MovieVw.sql" />
+    <Build Include="dbo\User Defined Types\MovieTvp.sql" />
+  </ItemGroup>
 </Project>

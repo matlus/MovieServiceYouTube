@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DomainLayer.Managers.Validators;
 
 namespace DomainLayer;
-
-internal enum StringState
-{
-    Null,
-    Empty,
-    WhiteSpaces,
-    Valid,
-}
 
 internal static class ValidatorMovie
 {

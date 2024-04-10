@@ -1,40 +1,43 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="DomainLayer\Managers\Services\**"/>
-    <EmbeddedResource Remove="DomainLayer\Managers\Services\**"/>
-    <None Remove="DomainLayer\Managers\Services\**"/>
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="appsettings.Development.json"/>
-    <None Remove="appsettings.json"/>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="appsettings.Development.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
-    <PackageReference Include="MSTest.TestAdapter" Version="3.2.0"/>
-    <PackageReference Include="MSTest.TestFramework" Version="3.2.0"/>
-    <PackageReference Include="coverlet.msbuild" Version="6.0.2"/>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DomainLayer\DomainLayer.csproj"/>
-    <ProjectReference Include="..\Testing.Shared\Testing.Shared.csproj"/>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="SonarAnalyzer.CSharp" Version="9.19.0.84025">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<RunAnalyzersDuringBuild>True</RunAnalyzersDuringBuild>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="DomainLayer\Managers\Services\**"/>
+		<EmbeddedResource Remove="DomainLayer\Managers\Services\**"/>
+		<None Remove="DomainLayer\Managers\Services\**"/>
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="appsettings.Development.json"/>
+		<None Remove="appsettings.json"/>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="appsettings.Development.json">
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+		<PackageReference Include="MSTest.TestAdapter" Version="3.2.0"/>
+		<PackageReference Include="MSTest.TestFramework" Version="3.2.0"/>
+		<PackageReference Include="coverlet.msbuild" Version="6.0.2"/>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DomainLayer\DomainLayer.csproj"/>
+		<ProjectReference Include="..\Testing.Shared\Testing.Shared.csproj"/>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Update="SonarAnalyzer.CSharp" Version="9.19.0.84025">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 </Project>
