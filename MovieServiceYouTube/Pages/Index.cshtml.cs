@@ -6,19 +6,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MovieServiceCore3.Pages;
 
-public class IndexModel : PageModel
+public class IndexModel(DomainFacade domainFacade) : PageModel
 {
-    private readonly DomainFacade _domainFacade;
+    private readonly DomainFacade _domainFacade = domainFacade;
 
-    public IEnumerable<Movie>? Movies { get; private set; }
+    public IEnumerable<Movie> Movies { get; private set; } = default!;
 
     [BindProperty(SupportsGet = true)]
     public string? Genre { get; set; }
-
-    public IndexModel(DomainFacade domainFacade)
-    {
-        _domainFacade = domainFacade;
-    }
 
     public async Task OnGetAsync()
     {

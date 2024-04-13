@@ -330,7 +330,9 @@ dotnet_diagnostic.CA1069.severity = warning
 dotnet_diagnostic.CA1712.severity = suggestion
 dotnet_diagnostic.CA1716.severity = suggestion
 dotnet_diagnostic.CA1850.severity = warning
-dotnet_style_prefer_collection_expression = true:suggestion
+dotnet_style_prefer_collection_expression = when_types_exactly_match:suggestion
+dotnet_diagnostic.CA1859.severity = none
+dotnet_diagnostic.CA1016.severity = none
 [*.vb]
 dotnet_diagnostic.CA1047.severity = warning
 

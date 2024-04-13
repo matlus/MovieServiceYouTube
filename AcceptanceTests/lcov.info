@@ -1,652 +1,652 @@
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\DomainFacade.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\DomainFacade.cs
 FN:17,DomainLayer.MovieManager DomainLayer.DomainFacade::get_MovieManager()
-FNDA:0,DomainLayer.MovieManager DomainLayer.DomainFacade::get_MovieManager()
-DA:18,0
+FNDA:77,DomainLayer.MovieManager DomainLayer.DomainFacade::get_MovieManager()
+DA:18,77
 FN:27,System.Threading.Tasks.Task`1<DomainLayer.Movie> DomainLayer.DomainFacade::GetMovieById(System.Int32)
-FNDA:0,System.Threading.Tasks.Task`1<DomainLayer.Movie> DomainLayer.DomainFacade::GetMovieById(System.Int32)
-DA:28,0
-DA:29,0
-DA:30,0
+FNDA:2,System.Threading.Tasks.Task`1<DomainLayer.Movie> DomainLayer.DomainFacade::GetMovieById(System.Int32)
+DA:28,2
+DA:29,2
+DA:30,2
 FN:32,System.Threading.Tasks.Task`1<System.Collections.Immutable.ImmutableList`1<DomainLayer.Movie>> DomainLayer.DomainFacade::GetAllMovies()
-FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Immutable.ImmutableList`1<DomainLayer.Movie>> DomainLayer.DomainFacade::GetAllMovies()
-DA:33,0
-DA:34,0
-DA:35,0
+FNDA:4,System.Threading.Tasks.Task`1<System.Collections.Immutable.ImmutableList`1<DomainLayer.Movie>> DomainLayer.DomainFacade::GetAllMovies()
+DA:33,4
+DA:34,4
+DA:35,4
 FN:37,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>> DomainLayer.DomainFacade::GetMoviesByGenre(DomainLayer.Genre)
-FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>> DomainLayer.DomainFacade::GetMoviesByGenre(DomainLayer.Genre)
-DA:38,0
-DA:39,0
-DA:40,0
+FNDA:2,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>> DomainLayer.DomainFacade::GetMoviesByGenre(DomainLayer.Genre)
+DA:38,2
+DA:39,2
+DA:40,2
 FN:42,System.Threading.Tasks.Task`1<System.Int32> DomainLayer.DomainFacade::CreateMovie(DomainLayer.Movie)
-FNDA:0,System.Threading.Tasks.Task`1<System.Int32> DomainLayer.DomainFacade::CreateMovie(DomainLayer.Movie)
-DA:43,0
-DA:44,0
-DA:45,0
+FNDA:14,System.Threading.Tasks.Task`1<System.Int32> DomainLayer.DomainFacade::CreateMovie(DomainLayer.Movie)
+DA:43,14
+DA:44,14
+DA:45,3
 FN:47,System.Threading.Tasks.Task DomainLayer.DomainFacade::CreateMovies(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
-FNDA:0,System.Threading.Tasks.Task DomainLayer.DomainFacade::CreateMovies(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
-DA:48,0
-DA:49,0
-DA:50,0
+FNDA:5,System.Threading.Tasks.Task DomainLayer.DomainFacade::CreateMovies(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
+DA:48,5
+DA:49,5
+DA:50,5
 FN:62,System.Void DomainLayer.DomainFacade::Dispose()
-FNDA:0,System.Void DomainLayer.DomainFacade::Dispose()
-DA:63,0
-DA:64,0
-DA:65,0
-DA:66,0
+FNDA:25,System.Void DomainLayer.DomainFacade::Dispose()
+DA:63,25
+DA:64,25
+DA:65,25
+DA:66,25
 FN:20,System.Void DomainLayer.DomainFacade::.ctor()
 FNDA:0,System.Void DomainLayer.DomainFacade::.ctor()
 DA:21,0
 DA:22,0
 DA:23,0
 FN:24,System.Void DomainLayer.DomainFacade::.ctor(DomainLayer.ServiceLocatorBase)
-FNDA:0,System.Void DomainLayer.DomainFacade::.ctor(DomainLayer.ServiceLocatorBase)
-DA:25,0
+FNDA:50,System.Void DomainLayer.DomainFacade::.ctor(DomainLayer.ServiceLocatorBase)
+DA:25,50
 LF:24
-LH:0
+LH:21
 BRF:0
 BRH:0
 FNF:9
-FNH:0
+FNH:8
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\ConfigurationProviders\ConfigurationProvider.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\ConfigurationProviders\ConfigurationProvider.cs
 FN:25,System.Void DomainLayer.ConfigurationProvider::LoadEnvironmentSpecificAppSettings(Microsoft.Extensions.Configuration.ConfigurationBuilder)
-FNDA:0,System.Void DomainLayer.ConfigurationProvider::LoadEnvironmentSpecificAppSettings(Microsoft.Extensions.Configuration.ConfigurationBuilder)
-DA:26,0
-DA:27,0
-DA:28,0
-DA:29,0
+FNDA:57,System.Void DomainLayer.ConfigurationProvider::LoadEnvironmentSpecificAppSettings(Microsoft.Extensions.Configuration.ConfigurationBuilder)
+DA:26,57
+DA:27,57
+DA:28,57
+DA:29,57
 DA:30,0
 DA:31,0
 DA:32,0
-DA:33,0
+DA:33,57
 BRDA:29,37,0,0
-BRDA:29,37,1,0
+BRDA:29,37,1,57
 FN:35,System.String DomainLayer.ConfigurationProvider::RetrieveConfigurationSettingValue(System.String)
-FNDA:0,System.String DomainLayer.ConfigurationProvider::RetrieveConfigurationSettingValue(System.String)
-DA:36,0
-DA:37,0
-DA:38,0
+FNDA:57,System.String DomainLayer.ConfigurationProvider::RetrieveConfigurationSettingValue(System.String)
+DA:36,57
+DA:37,57
+DA:38,57
 FN:11,System.Void DomainLayer.ConfigurationProvider::.ctor()
-FNDA:0,System.Void DomainLayer.ConfigurationProvider::.ctor()
-DA:12,0
-DA:13,0
-DA:14,0
-DA:15,0
-DA:17,0
-DA:19,0
-DA:20,0
+FNDA:57,System.Void DomainLayer.ConfigurationProvider::.ctor()
+DA:12,57
+DA:13,57
+DA:14,57
+DA:15,57
+DA:17,57
+DA:19,57
+DA:20,57
 LF:18
-LH:0
+LH:15
 BRF:2
-BRH:0
+BRH:1
 FNF:3
-FNH:0
+FNH:3
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\ConfigurationProviders\ConfigurationProviderBase.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\ConfigurationProviders\ConfigurationProviderBase.cs
 FN:5,System.String DomainLayer.ConfigurationProviderBase::GetImdbServiceBaseUrl()
-FNDA:0,System.String DomainLayer.ConfigurationProviderBase::GetImdbServiceBaseUrl()
-DA:6,0
-DA:7,0
-DA:8,0
-DA:9,0
+FNDA:5,System.String DomainLayer.ConfigurationProviderBase::GetImdbServiceBaseUrl()
+DA:6,5
+DA:7,5
+DA:8,5
+DA:9,5
 BRDA:8,25,0,0
-BRDA:8,25,1,0
+BRDA:8,25,1,5
 FN:11,System.String DomainLayer.ConfigurationProviderBase::GetDbConnectionString()
-FNDA:0,System.String DomainLayer.ConfigurationProviderBase::GetDbConnectionString()
-DA:12,0
-DA:13,0
-DA:14,0
+FNDA:52,System.String DomainLayer.ConfigurationProviderBase::GetDbConnectionString()
+DA:12,52
+DA:13,52
+DA:14,52
 FN:16,System.String DomainLayer.ConfigurationProviderBase::RetrieveConfigurationSettingValueThrowIfMissing(System.String)
-FNDA:0,System.String DomainLayer.ConfigurationProviderBase::RetrieveConfigurationSettingValueThrowIfMissing(System.String)
-DA:17,0
-DA:18,0
-DA:19,0
+FNDA:57,System.String DomainLayer.ConfigurationProviderBase::RetrieveConfigurationSettingValueThrowIfMissing(System.String)
+DA:17,57
+DA:18,57
+DA:19,57
 DA:20,0
 DA:21,0
-DA:23,0
+DA:23,57
 DA:24,0
 DA:25,0
-DA:27,0
+DA:27,57
 DA:28,0
 DA:29,0
-DA:32,0
-DA:33,0
+DA:32,57
+DA:33,57
 BRDA:19,15,0,0
-BRDA:19,15,1,0
+BRDA:19,15,1,57
 BRDA:23,51,0,0
-BRDA:23,51,1,0
+BRDA:23,51,1,57
 BRDA:27,84,0,0
-BRDA:27,84,1,0
+BRDA:27,84,1,57
 FN:35,System.Boolean DomainLayer.ConfigurationProviderBase::IsWhiteSpaces(System.String)
-FNDA:0,System.Boolean DomainLayer.ConfigurationProviderBase::IsWhiteSpaces(System.String)
-DA:36,0
-DA:37,0
-DA:38,0
-DA:39,0
-DA:40,0
-DA:41,0
+FNDA:57,System.Boolean DomainLayer.ConfigurationProviderBase::IsWhiteSpaces(System.String)
+DA:36,57
+DA:37,228
+DA:38,57
+DA:39,57
+DA:40,57
+DA:41,57
 DA:43,0
 DA:45,0
-DA:46,0
-BRDA:37,48,1,0
-BRDA:39,28,0,0
+DA:46,57
+BRDA:37,48,1,57
+BRDA:39,28,0,57
 BRDA:39,28,1,0
 BRDA:37,48,0,0
 LF:29
-LH:0
+LH:21
 BRF:12
-BRH:0
+BRH:6
 FNF:4
-FNH:0
+FNH:4
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\DataLayer\DataFacade.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\DataLayer\DataFacade.cs
 FN:7,DomainLayer.MovieDataManager DomainLayer.DataFacade::get_MovieDataManager()
-FNDA:0,DomainLayer.MovieDataManager DomainLayer.DataFacade::get_MovieDataManager()
-DA:8,0
+FNDA:38,DomainLayer.MovieDataManager DomainLayer.DataFacade::get_MovieDataManager()
+DA:8,38
 FN:10,System.Threading.Tasks.Task`1<System.Int32> DomainLayer.DataFacade::CreateMovie(DomainLayer.Movie)
-FNDA:0,System.Threading.Tasks.Task`1<System.Int32> DomainLayer.DataFacade::CreateMovie(DomainLayer.Movie)
-DA:11,0
-DA:12,0
-DA:13,0
+FNDA:3,System.Threading.Tasks.Task`1<System.Int32> DomainLayer.DataFacade::CreateMovie(DomainLayer.Movie)
+DA:11,3
+DA:12,3
+DA:13,3
 FN:20,System.Threading.Tasks.Task`1<DomainLayer.Movie> DomainLayer.DataFacade::GetMovieById(System.Int32)
-FNDA:0,System.Threading.Tasks.Task`1<DomainLayer.Movie> DomainLayer.DataFacade::GetMovieById(System.Int32)
-DA:21,0
-DA:22,0
-DA:23,0
+FNDA:2,System.Threading.Tasks.Task`1<DomainLayer.Movie> DomainLayer.DataFacade::GetMovieById(System.Int32)
+DA:21,2
+DA:22,2
+DA:23,2
 FN:25,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>> DomainLayer.DataFacade::GetMovieByGenre(DomainLayer.Genre)
-FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>> DomainLayer.DataFacade::GetMovieByGenre(DomainLayer.Genre)
-DA:26,0
-DA:27,0
-DA:28,0
+FNDA:1,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>> DomainLayer.DataFacade::GetMovieByGenre(DomainLayer.Genre)
+DA:26,1
+DA:27,1
+DA:28,1
 FN:30,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>> DomainLayer.DataFacade::GetAllMovies()
-FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>> DomainLayer.DataFacade::GetAllMovies()
-DA:31,0
-DA:32,0
-DA:33,0
+FNDA:4,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>> DomainLayer.DataFacade::GetAllMovies()
+DA:31,4
+DA:32,4
+DA:33,4
 FN:5,System.Void DomainLayer.DataFacade::.ctor(System.String)
-FNDA:0,System.Void DomainLayer.DataFacade::.ctor(System.String)
-DA:6,0
+FNDA:25,System.Void DomainLayer.DataFacade::.ctor(System.String)
+DA:6,25
 FN:15,System.Void DomainLayer.DataFacade/<CreateMovies>d__5::MoveNext()
-FNDA:0,System.Void DomainLayer.DataFacade/<CreateMovies>d__5::MoveNext()
-DA:16,0
-DA:17,0
-DA:18,0
+FNDA:3,System.Void DomainLayer.DataFacade/<CreateMovies>d__5::MoveNext()
+DA:16,3
+DA:17,3
+DA:18,2
 LF:17
-LH:0
+LH:17
 BRF:0
 BRH:0
 FNF:7
-FNH:0
+FNH:7
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\DataLayer\DataManagers\CommandFactories\CommandFactoryMovies.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\DataLayer\DataManagers\CommandFactories\CommandFactoryMovies.cs
 FN:19,System.Void DomainLayer.CommandFactoryMovies::AddReturnValueParameter(System.Data.Common.DbCommand)
-FNDA:0,System.Void DomainLayer.CommandFactoryMovies::AddReturnValueParameter(System.Data.Common.DbCommand)
-DA:20,0
-DA:21,0
-DA:22,0
+FNDA:15,System.Void DomainLayer.CommandFactoryMovies::AddReturnValueParameter(System.Data.Common.DbCommand)
+DA:20,15
+DA:21,15
+DA:22,15
 FN:24,System.Void DomainLayer.CommandFactoryMovies::AddCommandParameter(System.Data.Common.DbCommand,System.String,System.Data.ParameterDirection,System.Data.DbType,System.Object,System.Int32)
-FNDA:0,System.Void DomainLayer.CommandFactoryMovies::AddCommandParameter(System.Data.Common.DbCommand,System.String,System.Data.ParameterDirection,System.Data.DbType,System.Object,System.Int32)
-DA:25,0
-DA:26,0
-DA:27,0
-DA:28,0
-DA:29,0
-DA:30,0
-DA:31,0
-DA:32,0
-DA:33,0
+FNDA:34,System.Void DomainLayer.CommandFactoryMovies::AddCommandParameter(System.Data.Common.DbCommand,System.String,System.Data.ParameterDirection,System.Data.DbType,System.Object,System.Int32)
+DA:25,34
+DA:26,34
+DA:27,34
+DA:28,34
+DA:29,34
+DA:30,34
+DA:31,34
+DA:32,34
+DA:33,34
 FN:35,System.Void DomainLayer.CommandFactoryMovies::AddCommandParameterTvp(System.Data.Common.DbCommand,System.String,System.Object)
-FNDA:0,System.Void DomainLayer.CommandFactoryMovies::AddCommandParameterTvp(System.Data.Common.DbCommand,System.String,System.Object)
-DA:36,0
-DA:37,0
-DA:38,0
-DA:39,0
-DA:40,0
-DA:41,0
-DA:42,0
-DA:43,0
+FNDA:4,System.Void DomainLayer.CommandFactoryMovies::AddCommandParameterTvp(System.Data.Common.DbCommand,System.String,System.Object)
+DA:36,4
+DA:37,4
+DA:38,4
+DA:39,4
+DA:40,4
+DA:41,4
+DA:42,4
+DA:43,4
 FN:45,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForGetMovieById(System.Data.Common.DbConnection,System.Int32)
-FNDA:0,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForGetMovieById(System.Data.Common.DbConnection,System.Int32)
-DA:46,0
-DA:47,0
-DA:48,0
-DA:49,0
-DA:50,0
-DA:51,0
-DA:52,0
-DA:53,0
+FNDA:2,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForGetMovieById(System.Data.Common.DbConnection,System.Int32)
+DA:46,2
+DA:47,2
+DA:48,2
+DA:49,2
+DA:50,2
+DA:51,2
+DA:52,2
+DA:53,2
 FN:55,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForGetAllMovies(System.Data.Common.DbConnection)
-FNDA:0,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForGetAllMovies(System.Data.Common.DbConnection)
-DA:56,0
-DA:57,0
-DA:58,0
-DA:59,0
-DA:60,0
-DA:61,0
-DA:62,0
+FNDA:4,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForGetAllMovies(System.Data.Common.DbConnection)
+DA:56,4
+DA:57,4
+DA:58,4
+DA:59,4
+DA:60,4
+DA:61,4
+DA:62,4
 FN:64,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForGetMoviesByGenre(System.Data.Common.DbConnection,DomainLayer.Genre)
-FNDA:0,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForGetMoviesByGenre(System.Data.Common.DbConnection,DomainLayer.Genre)
-DA:65,0
-DA:66,0
-DA:67,0
-DA:68,0
-DA:69,0
-DA:70,0
-DA:71,0
-DA:72,0
+FNDA:1,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForGetMoviesByGenre(System.Data.Common.DbConnection,DomainLayer.Genre)
+DA:65,1
+DA:66,1
+DA:67,1
+DA:68,1
+DA:69,1
+DA:70,1
+DA:71,1
+DA:72,1
 FN:97,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForCreateMoviesTvpDistinctInsertInto(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
-FNDA:0,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForCreateMoviesTvpDistinctInsertInto(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
-DA:98,0
-DA:99,0
-DA:100,0
+FNDA:4,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForCreateMoviesTvpDistinctInsertInto(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
+DA:98,4
+DA:99,4
+DA:100,4
 FN:108,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForCreateMoviesUsingTvp(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>,System.String)
-FNDA:0,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForCreateMoviesUsingTvp(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>,System.String)
-DA:109,0
-DA:110,0
-DA:111,0
-DA:112,0
-DA:113,0
-DA:114,0
-DA:115,0
-DA:116,0
-DA:117,0
+FNDA:4,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForCreateMoviesUsingTvp(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>,System.String)
+DA:109,4
+DA:110,4
+DA:111,4
+DA:112,4
+DA:113,4
+DA:114,4
+DA:115,4
+DA:116,4
+DA:117,4
 FN:119,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForCreateMovie(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,DomainLayer.Movie)
-FNDA:0,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForCreateMovie(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,DomainLayer.Movie)
-DA:120,0
-DA:121,0
-DA:122,0
-DA:123,0
-DA:124,0
-DA:125,0
-DA:126,0
-DA:127,0
-DA:128,0
-DA:129,0
-DA:130,0
-DA:131,0
+FNDA:4,System.Data.Common.DbCommand DomainLayer.CommandFactoryMovies::CreateCommandForCreateMovie(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,DomainLayer.Movie)
+DA:120,4
+DA:121,4
+DA:122,4
+DA:123,4
+DA:124,4
+DA:125,4
+DA:126,4
+DA:127,4
+DA:128,4
+DA:129,4
+DA:130,4
+DA:131,4
 FN:10,System.Void DomainLayer.CommandFactoryMovies::.cctor()
-FNDA:0,System.Void DomainLayer.CommandFactoryMovies::.cctor()
-DA:11,0
-DA:12,0
-DA:13,0
-DA:14,0
-DA:15,0
-DA:16,0
-DA:17,0
+FNDA:1,System.Void DomainLayer.CommandFactoryMovies::.cctor()
+DA:11,1
+DA:12,1
+DA:13,1
+DA:14,1
+DA:15,1
+DA:16,1
+DA:17,1
 FN:133,System.Boolean DomainLayer.CommandFactoryMovies/<ConvertToSqlDataRecord>d__10::MoveNext()
-FNDA:0,System.Boolean DomainLayer.CommandFactoryMovies/<ConvertToSqlDataRecord>d__10::MoveNext()
-DA:134,0
-DA:135,0
-DA:137,0
-DA:138,0
-DA:139,0
-DA:140,0
-DA:141,0
-DA:142,0
-DA:144,0
-DA:145,0
-DA:146,0
-DA:148,0
-DA:149,0
-DA:150,0
-DA:151,0
-DA:152,0
-DA:153,0
-BRDA:137,293,1,0
-BRDA:139,121,0,0
-BRDA:139,121,1,0
-BRDA:137,293,0,0
+FNDA:4,System.Boolean DomainLayer.CommandFactoryMovies/<ConvertToSqlDataRecord>d__10::MoveNext()
+DA:134,4
+DA:135,4
+DA:137,32
+DA:138,10
+DA:139,10
+DA:140,1
+DA:141,1
+DA:142,1
+DA:144,9
+DA:145,9
+DA:146,9
+DA:148,10
+DA:149,10
+DA:150,10
+DA:151,10
+DA:152,10
+DA:153,4
+BRDA:137,293,1,10
+BRDA:139,121,0,1
+BRDA:139,121,1,9
+BRDA:137,293,0,4
 LF:91
-LH:0
+LH:91
 BRF:4
-BRH:0
+BRH:4
 FNF:11
-FNH:0
+FNH:11
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\DataLayer\DataManagers\MovieDataManager.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\DataLayer\DataManagers\MovieDataManager.cs
 FN:16,System.Data.Common.DbConnection DomainLayer.MovieDataManager::CreateDbConnection()
-FNDA:0,System.Data.Common.DbConnection DomainLayer.MovieDataManager::CreateDbConnection()
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
+FNDA:15,System.Data.Common.DbConnection DomainLayer.MovieDataManager::CreateDbConnection()
+DA:17,15
+DA:18,15
+DA:19,15
+DA:20,15
+DA:21,15
 FN:10,System.Void DomainLayer.MovieDataManager::.ctor(System.String)
-FNDA:0,System.Void DomainLayer.MovieDataManager::.ctor(System.String)
-DA:11,0
-DA:13,0
-DA:14,0
+FNDA:27,System.Void DomainLayer.MovieDataManager::.ctor(System.String)
+DA:11,27
+DA:13,27
+DA:14,27
 FN:74,System.String DomainLayer.MovieDataManager/<>c::<CreateMovies>b__5_0(DomainLayer.Movie)
-FNDA:0,System.String DomainLayer.MovieDataManager/<>c::<CreateMovies>b__5_0(DomainLayer.Movie)
-DA:75,0
+FNDA:3,System.String DomainLayer.MovieDataManager/<>c::<CreateMovies>b__5_0(DomainLayer.Movie)
+DA:75,3
 FN:23,System.Void DomainLayer.MovieDataManager/<CreateMovie>d__4::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieDataManager/<CreateMovie>d__4::MoveNext()
-DA:24,0
-DA:25,0
-DA:26,0
-DA:27,0
-DA:30,0
-DA:31,0
-DA:32,0
-DA:33,0
-DA:34,0
-DA:35,0
-DA:36,0
-DA:38,0
-DA:39,0
-DA:40,0
-DA:42,0
-DA:43,0
-DA:44,0
-DA:47,0
-DA:48,0
-DA:52,0
-DA:53,0
-DA:54,0
-DA:55,0
-BRDA:42,474,0,0
-BRDA:42,474,1,0
+FNDA:4,System.Void DomainLayer.MovieDataManager/<CreateMovie>d__4::MoveNext()
+DA:24,4
+DA:25,4
+DA:26,4
+DA:27,4
+DA:30,4
+DA:31,4
+DA:32,4
+DA:33,4
+DA:34,4
+DA:35,2
+DA:36,2
+DA:38,2
+DA:39,2
+DA:40,2
+DA:42,2
+DA:43,1
+DA:44,1
+DA:47,1
+DA:48,1
+DA:52,4
+DA:53,4
+DA:54,4
+DA:55,2
+BRDA:42,474,0,1
+BRDA:42,474,1,1
 FN:57,System.Void DomainLayer.MovieDataManager/<CreateMovies>d__5::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieDataManager/<CreateMovies>d__5::MoveNext()
-DA:58,0
-DA:59,0
-DA:60,0
-DA:61,0
-DA:63,0
-DA:64,0
-DA:65,0
-DA:66,0
-DA:67,0
-DA:68,0
-DA:69,0
-DA:70,0
-DA:71,0
-DA:72,0
-DA:73,0
-DA:74,0
-DA:76,0
-DA:79,0
-DA:80,0
-DA:84,0
-DA:85,0
-DA:86,0
-DA:87,0
-BRDA:73,443,0,0
-BRDA:73,443,1,0
+FNDA:4,System.Void DomainLayer.MovieDataManager/<CreateMovies>d__5::MoveNext()
+DA:58,4
+DA:59,4
+DA:60,4
+DA:61,4
+DA:63,4
+DA:64,4
+DA:65,4
+DA:66,4
+DA:67,4
+DA:68,2
+DA:69,2
+DA:70,2
+DA:71,2
+DA:72,2
+DA:73,2
+DA:74,1
+DA:76,1
+DA:79,1
+DA:80,1
+DA:84,4
+DA:85,4
+DA:86,4
+DA:87,2
+BRDA:73,443,0,1
+BRDA:73,443,1,1
 FN:143,System.Void DomainLayer.MovieDataManager/<DisposeAsync>d__9::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieDataManager/<DisposeAsync>d__9::MoveNext()
-DA:144,0
-DA:145,0
-DA:146,0
-DA:147,0
-DA:148,0
-DA:149,0
+FNDA:15,System.Void DomainLayer.MovieDataManager/<DisposeAsync>d__9::MoveNext()
+DA:144,15
+DA:145,15
+DA:146,15
+DA:147,15
+DA:148,15
+DA:149,15
 FN:125,System.Void DomainLayer.MovieDataManager/<GetAllMovies>d__8::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieDataManager/<GetAllMovies>d__8::MoveNext()
-DA:126,0
-DA:127,0
-DA:128,0
-DA:129,0
-DA:131,0
-DA:132,0
-DA:133,0
-DA:134,0
-DA:135,0
-DA:138,0
-DA:139,0
-DA:140,0
-DA:141,0
+FNDA:4,System.Void DomainLayer.MovieDataManager/<GetAllMovies>d__8::MoveNext()
+DA:126,4
+DA:127,4
+DA:128,4
+DA:129,4
+DA:131,4
+DA:132,4
+DA:133,4
+DA:134,4
+DA:135,4
+DA:138,4
+DA:139,4
+DA:140,4
+DA:141,4
 FN:107,System.Void DomainLayer.MovieDataManager/<GetMovieByGenre>d__7::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieDataManager/<GetMovieByGenre>d__7::MoveNext()
-DA:108,0
-DA:109,0
-DA:110,0
-DA:111,0
-DA:113,0
-DA:114,0
-DA:115,0
-DA:116,0
-DA:117,0
-DA:120,0
-DA:121,0
-DA:122,0
-DA:123,0
+FNDA:1,System.Void DomainLayer.MovieDataManager/<GetMovieByGenre>d__7::MoveNext()
+DA:108,1
+DA:109,1
+DA:110,1
+DA:111,1
+DA:113,1
+DA:114,1
+DA:115,1
+DA:116,1
+DA:117,1
+DA:120,1
+DA:121,1
+DA:122,1
+DA:123,1
 FN:89,System.Void DomainLayer.MovieDataManager/<GetMovieById>d__6::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieDataManager/<GetMovieById>d__6::MoveNext()
-DA:90,0
-DA:91,0
-DA:92,0
-DA:93,0
-DA:95,0
-DA:96,0
-DA:97,0
-DA:98,0
-DA:99,0
-DA:102,0
-DA:103,0
-DA:104,0
-DA:105,0
+FNDA:2,System.Void DomainLayer.MovieDataManager/<GetMovieById>d__6::MoveNext()
+DA:90,2
+DA:91,2
+DA:92,2
+DA:93,2
+DA:95,2
+DA:96,2
+DA:97,2
+DA:98,2
+DA:99,2
+DA:102,2
+DA:103,2
+DA:104,2
+DA:105,2
 FN:151,System.Void DomainLayer.MovieDataManager/<MapToMovie>d__10::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieDataManager/<MapToMovie>d__10::MoveNext()
-DA:152,0
-DA:153,0
-DA:154,0
-DA:155,0
-DA:156,0
-DA:157,0
-DA:158,0
-DA:159,0
-DA:160,0
-BRDA:153,137,0,0
-BRDA:153,137,1,0
+FNDA:2,System.Void DomainLayer.MovieDataManager/<MapToMovie>d__10::MoveNext()
+DA:152,2
+DA:153,2
+DA:154,2
+DA:155,2
+DA:156,2
+DA:157,2
+DA:158,2
+DA:159,2
+DA:160,2
+BRDA:153,137,0,1
+BRDA:153,137,1,1
 FN:162,System.Void DomainLayer.MovieDataManager/<MapToMovies>d__11::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieDataManager/<MapToMovies>d__11::MoveNext()
-DA:163,0
-DA:164,0
-DA:166,0
-DA:167,0
-DA:168,0
-DA:169,0
-DA:170,0
-DA:171,0
-DA:172,0
-DA:173,0
-DA:175,0
-DA:176,0
-BRDA:166,254,1,0
-BRDA:166,254,0,0
+FNDA:5,System.Void DomainLayer.MovieDataManager/<MapToMovies>d__11::MoveNext()
+DA:163,5
+DA:164,5
+DA:166,303
+DA:167,298
+DA:168,298
+DA:169,298
+DA:170,298
+DA:171,298
+DA:172,298
+DA:173,298
+DA:175,5
+DA:176,5
+BRDA:166,254,1,298
+BRDA:166,254,0,5
 LF:121
-LH:0
+LH:121
 BRF:8
-BRH:0
+BRH:8
 FNF:11
-FNH:0
+FNH:11
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\Enums\Genre.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\Enums\Genre.cs
 FN:18,System.String DomainLayer.EnumDescriptionAttribute::get_Description()
-FNDA:0,System.String DomainLayer.EnumDescriptionAttribute::get_Description()
-DA:19,0
+FNDA:5,System.String DomainLayer.EnumDescriptionAttribute::get_Description()
+DA:19,5
 FN:16,System.Void DomainLayer.EnumDescriptionAttribute::.ctor(System.String)
-FNDA:0,System.Void DomainLayer.EnumDescriptionAttribute::.ctor(System.String)
-DA:17,0
+FNDA:2,System.Void DomainLayer.EnumDescriptionAttribute::.ctor(System.String)
+DA:17,2
 LF:2
-LH:0
+LH:2
 BRF:0
 BRH:0
 FNF:2
-FNH:0
+FNH:2
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\MovieManager.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\MovieManager.cs
 FN:15,DomainLayer.ConfigurationProviderBase DomainLayer.MovieManager::get_ConfigurationProvider()
-FNDA:0,DomainLayer.ConfigurationProviderBase DomainLayer.MovieManager::get_ConfigurationProvider()
-DA:16,0
+FNDA:25,DomainLayer.ConfigurationProviderBase DomainLayer.MovieManager::get_ConfigurationProvider()
+DA:16,25
 FN:19,DomainLayer.ImdbServiceGateway DomainLayer.MovieManager::get_ImdbServiceGateway()
-FNDA:0,DomainLayer.ImdbServiceGateway DomainLayer.MovieManager::get_ImdbServiceGateway()
-DA:20,0
-BRDA:20,7,0,0
-BRDA:20,7,1,0
+FNDA:5,DomainLayer.ImdbServiceGateway DomainLayer.MovieManager::get_ImdbServiceGateway()
+DA:20,5
+BRDA:20,7,0,5
+BRDA:20,7,1,5
 FN:21,DomainLayer.DataFacade DomainLayer.MovieManager::get_DataFacade()
-FNDA:0,DomainLayer.DataFacade DomainLayer.MovieManager::get_DataFacade()
-DA:22,0
+FNDA:13,DomainLayer.DataFacade DomainLayer.MovieManager::get_DataFacade()
+DA:22,13
 FN:31,System.Threading.Tasks.Task`1<System.Int32> DomainLayer.MovieManager::CreateMovie(DomainLayer.Movie)
-FNDA:0,System.Threading.Tasks.Task`1<System.Int32> DomainLayer.MovieManager::CreateMovie(DomainLayer.Movie)
-DA:32,0
-DA:33,0
-DA:34,0
-DA:35,0
+FNDA:14,System.Threading.Tasks.Task`1<System.Int32> DomainLayer.MovieManager::CreateMovie(DomainLayer.Movie)
+DA:32,14
+DA:33,14
+DA:34,3
+DA:35,3
 FN:49,System.Threading.Tasks.Task`1<System.Collections.Immutable.ImmutableList`1<DomainLayer.Movie>> DomainLayer.MovieManager::GetAllMovies()
-FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Immutable.ImmutableList`1<DomainLayer.Movie>> DomainLayer.MovieManager::GetAllMovies()
-DA:50,0
-DA:51,0
-DA:52,0
-DA:53,0
-DA:54,0
+FNDA:4,System.Threading.Tasks.Task`1<System.Collections.Immutable.ImmutableList`1<DomainLayer.Movie>> DomainLayer.MovieManager::GetAllMovies()
+DA:50,4
+DA:51,4
+DA:52,4
+DA:53,4
+DA:54,4
 FN:91,System.Void DomainLayer.MovieManager::Dispose()
-FNDA:0,System.Void DomainLayer.MovieManager::Dispose()
-DA:92,0
-DA:93,0
-DA:94,0
-DA:95,0
+FNDA:25,System.Void DomainLayer.MovieManager::Dispose()
+DA:92,25
+DA:93,25
+DA:94,25
+DA:95,25
 FN:23,System.Void DomainLayer.MovieManager::.ctor(DomainLayer.ServiceLocatorBase)
-FNDA:0,System.Void DomainLayer.MovieManager::.ctor(DomainLayer.ServiceLocatorBase)
-DA:24,0
-DA:25,0
-DA:26,0
-DA:27,0
-DA:28,0
-DA:29,0
+FNDA:25,System.Void DomainLayer.MovieManager::.ctor(DomainLayer.ServiceLocatorBase)
+DA:24,25
+DA:25,25
+DA:26,25
+DA:27,25
+DA:28,25
+DA:29,25
 FN:74,System.Boolean DomainLayer.MovieManager/<>c__DisplayClass17_0::<GetMoviesByGenre>b__0(DomainLayer.Movie)
-FNDA:0,System.Boolean DomainLayer.MovieManager/<>c__DisplayClass17_0::<GetMoviesByGenre>b__0(DomainLayer.Movie)
-DA:75,0
+FNDA:51,System.Boolean DomainLayer.MovieManager/<>c__DisplayClass17_0::<GetMoviesByGenre>b__0(DomainLayer.Movie)
+DA:75,51
 FN:37,System.Void DomainLayer.MovieManager/<CreateMovies>d__13::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieManager/<CreateMovies>d__13::MoveNext()
-DA:38,0
-DA:39,0
-DA:40,0
-DA:41,0
+FNDA:5,System.Void DomainLayer.MovieManager/<CreateMovies>d__13::MoveNext()
+DA:38,5
+DA:39,5
+DA:40,3
+DA:41,2
 FN:43,System.Void DomainLayer.MovieManager/<GetMovieById>d__14::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieManager/<GetMovieById>d__14::MoveNext()
-DA:44,0
-DA:45,0
-DA:46,0
-DA:47,0
-BRDA:46,168,0,0
-BRDA:46,168,1,0
+FNDA:2,System.Void DomainLayer.MovieManager/<GetMovieById>d__14::MoveNext()
+DA:44,2
+DA:45,2
+DA:46,2
+DA:47,1
+BRDA:46,168,0,1
+BRDA:46,168,1,1
 FN:67,System.Void DomainLayer.MovieManager/<GetMoviesByGenre>d__17::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieManager/<GetMoviesByGenre>d__17::MoveNext()
-DA:68,0
-DA:69,0
-DA:70,0
-DA:71,0
-DA:72,0
-DA:74,0
-DA:76,0
-DA:77,0
+FNDA:2,System.Void DomainLayer.MovieManager/<GetMoviesByGenre>d__17::MoveNext()
+DA:68,2
+DA:69,2
+DA:70,1
+DA:71,1
+DA:72,1
+DA:74,1
+DA:76,1
+DA:77,1
 FN:56,System.Void DomainLayer.MovieManager/<GetMoviesFromCombinedTasks>d__16::MoveNext()
-FNDA:0,System.Void DomainLayer.MovieManager/<GetMoviesFromCombinedTasks>d__16::MoveNext()
-DA:57,0
-DA:58,0
-DA:60,0
-DA:61,0
-DA:63,0
-DA:64,0
-DA:65,0
+FNDA:4,System.Void DomainLayer.MovieManager/<GetMoviesFromCombinedTasks>d__16::MoveNext()
+DA:57,4
+DA:58,4
+DA:60,1
+DA:61,1
+DA:63,1
+DA:64,1
+DA:65,1
 LF:46
-LH:0
+LH:46
 BRF:4
-BRH:0
+BRH:4
 FNF:12
-FNH:0
+FNH:12
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\Parsers\GenreParser.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\Parsers\GenreParser.cs
 FN:53,DomainLayer.Genre DomainLayer.GenreParser::Parse(System.String)
-FNDA:0,DomainLayer.Genre DomainLayer.GenreParser::Parse(System.String)
-DA:54,0
-DA:55,0
+FNDA:2230,DomainLayer.Genre DomainLayer.GenreParser::Parse(System.String)
+DA:54,2230
+DA:55,2230
 DA:56,0
 DA:57,0
-DA:60,0
-DA:62,0
-DA:63,0
-DA:64,0
-DA:65,0
+DA:60,2230
+DA:62,2230
+DA:63,2230
+DA:64,2230
+DA:65,2230
 BRDA:55,9,0,0
-BRDA:55,9,1,0
+BRDA:55,9,1,2230
 BRDA:62,63,0,0
-BRDA:62,63,1,0
+BRDA:62,63,1,2230
 FN:67,System.String DomainLayer.GenreParser::ToString(DomainLayer.Genre)
-FNDA:0,System.String DomainLayer.GenreParser::ToString(DomainLayer.Genre)
-DA:68,0
-DA:69,0
-DA:70,0
-DA:71,0
+FNDA:115,System.String DomainLayer.GenreParser::ToString(DomainLayer.Genre)
+DA:68,115
+DA:69,115
+DA:70,115
+DA:71,115
 FN:73,System.Void DomainLayer.GenreParser::Validate(DomainLayer.Genre)
-FNDA:0,System.Void DomainLayer.GenreParser::Validate(DomainLayer.Genre)
-DA:74,0
-DA:75,0
-DA:77,0
-DA:78,0
-DA:79,0
-DA:81,0
-BRDA:77,14,0,0
-BRDA:77,14,1,0
+FNDA:117,System.Void DomainLayer.GenreParser::Validate(DomainLayer.Genre)
+DA:74,117
+DA:75,117
+DA:77,117
+DA:78,1
+DA:79,1
+DA:81,116
+BRDA:77,14,0,1
+BRDA:77,14,1,116
 FN:83,System.String DomainLayer.GenreParser::ValidationMessage(DomainLayer.Genre)
-FNDA:0,System.String DomainLayer.GenreParser::ValidationMessage(DomainLayer.Genre)
-DA:84,0
-DA:85,0
-DA:86,0
-BRDA:85,12,0,0
-BRDA:85,12,1,0
+FNDA:142,System.String DomainLayer.GenreParser::ValidationMessage(DomainLayer.Genre)
+DA:84,142
+DA:85,142
+DA:86,142
+BRDA:85,12,0,140
+BRDA:85,12,1,2
 FN:7,System.Void DomainLayer.GenreParser::.cctor()
-FNDA:0,System.Void DomainLayer.GenreParser::.cctor()
-DA:8,0
-DA:9,0
-DA:24,0
-DA:25,0
-DA:27,0
-DA:28,0
-DA:29,0
-DA:31,0
-DA:32,0
-DA:34,0
-DA:35,0
-DA:36,0
-DA:37,0
-DA:38,0
-DA:40,0
-DA:41,0
-DA:43,0
-DA:44,0
-DA:45,0
-DA:46,0
-DA:47,0
-DA:48,0
-DA:50,0
-DA:51,0
-BRDA:27,262,1,0
-BRDA:34,102,0,0
-BRDA:34,102,1,0
-BRDA:43,250,1,0
-BRDA:43,250,0,0
-BRDA:27,262,0,0
+FNDA:1,System.Void DomainLayer.GenreParser::.cctor()
+DA:8,1
+DA:9,1
+DA:24,1
+DA:25,1
+DA:27,13
+DA:28,5
+DA:29,5
+DA:31,5
+DA:32,5
+DA:34,5
+DA:35,4
+DA:36,4
+DA:37,4
+DA:38,4
+DA:40,1
+DA:41,1
+DA:43,7
+DA:44,2
+DA:45,2
+DA:46,2
+DA:47,1
+DA:48,5
+DA:50,1
+DA:51,1
+BRDA:27,262,1,5
+BRDA:34,102,0,4
+BRDA:34,102,1,1
+BRDA:43,250,1,2
+BRDA:43,250,0,1
+BRDA:27,262,0,1
 FN:14,System.Boolean DomainLayer.GenreParser/<get_GenreValues>d__4::MoveNext()
-FNDA:0,System.Boolean DomainLayer.GenreParser/<get_GenreValues>d__4::MoveNext()
-DA:15,0
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-BRDA:16,142,1,0
-BRDA:16,142,0,0
+FNDA:1,System.Boolean DomainLayer.GenreParser/<get_GenreValues>d__4::MoveNext()
+DA:15,1
+DA:16,13
+DA:17,5
+DA:18,5
+DA:19,5
+DA:20,1
+BRDA:16,142,1,5
+BRDA:16,142,0,1
 LF:52
-LH:0
+LH:50
 BRF:16
-BRH:0
+BRH:14
 FNF:6
-FNH:0
+FNH:6
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\ServiceLocators\ServiceLocator.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\ServiceLocators\ServiceLocator.cs
 FN:8,DomainLayer.ConfigurationProviderBase DomainLayer.ServiceLocator::CreateConfigurationProviderCore()
 FNDA:0,DomainLayer.ConfigurationProviderBase DomainLayer.ServiceLocator::CreateConfigurationProviderCore()
 DA:9,0
@@ -672,306 +672,306 @@ BRH:0
 FNF:3
 FNH:0
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\ServiceLocators\ServiceLocatorBase.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\ServiceLocators\ServiceLocatorBase.cs
 FN:7,DomainLayer.ImdbServiceGateway DomainLayer.ServiceLocatorBase::CreateImdbServiceGateway()
-FNDA:0,DomainLayer.ImdbServiceGateway DomainLayer.ServiceLocatorBase::CreateImdbServiceGateway()
-DA:8,0
-DA:9,0
-DA:10,0
+FNDA:5,DomainLayer.ImdbServiceGateway DomainLayer.ServiceLocatorBase::CreateImdbServiceGateway()
+DA:8,5
+DA:9,5
+DA:10,5
 FN:12,DomainLayer.ConfigurationProviderBase DomainLayer.ServiceLocatorBase::CreateConfigurationProvider()
-FNDA:0,DomainLayer.ConfigurationProviderBase DomainLayer.ServiceLocatorBase::CreateConfigurationProvider()
-DA:13,0
-DA:14,0
-DA:15,0
+FNDA:57,DomainLayer.ConfigurationProviderBase DomainLayer.ServiceLocatorBase::CreateConfigurationProvider()
+DA:13,57
+DA:14,57
+DA:15,57
 FN:17,System.Net.Http.HttpMessageHandler DomainLayer.ServiceLocatorBase::CreateHttpMessageHandler()
-FNDA:0,System.Net.Http.HttpMessageHandler DomainLayer.ServiceLocatorBase::CreateHttpMessageHandler()
-DA:18,0
-DA:19,0
-DA:20,0
+FNDA:5,System.Net.Http.HttpMessageHandler DomainLayer.ServiceLocatorBase::CreateHttpMessageHandler()
+DA:18,5
+DA:19,5
+DA:20,5
 LF:9
-LH:0
+LH:9
 BRF:0
 BRH:0
 FNF:3
-FNH:0
+FNH:3
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\Services\ImdbService\ImdbServiceGateway.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\Services\ImdbService\ImdbServiceGateway.cs
 FN:24,System.Net.Http.HttpClient DomainLayer.ImdbServiceGateway::CreateHttpClient(System.String)
-FNDA:0,System.Net.Http.HttpClient DomainLayer.ImdbServiceGateway::CreateHttpClient(System.String)
-DA:25,0
-DA:26,0
-DA:28,0
-DA:29,0
-DA:30,0
-DA:31,0
-DA:33,0
-DA:34,0
+FNDA:5,System.Net.Http.HttpClient DomainLayer.ImdbServiceGateway::CreateHttpClient(System.String)
+DA:25,5
+DA:26,5
+DA:28,5
+DA:29,5
+DA:30,5
+DA:31,5
+DA:33,5
+DA:34,5
 FN:36,System.Net.Http.HttpMessageHandler DomainLayer.ImdbServiceGateway::MakeHttpMessageHandler()
-FNDA:0,System.Net.Http.HttpMessageHandler DomainLayer.ImdbServiceGateway::MakeHttpMessageHandler()
-DA:37,0
-DA:38,0
-DA:39,0
+FNDA:5,System.Net.Http.HttpMessageHandler DomainLayer.ImdbServiceGateway::MakeHttpMessageHandler()
+DA:37,5
+DA:38,5
+DA:39,5
 FN:58,System.Collections.Immutable.ImmutableList`1<DomainLayer.Movie> DomainLayer.ImdbServiceGateway::JoinImdbMoviesMapToMovies(System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>,System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>,System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>)
-FNDA:0,System.Collections.Immutable.ImmutableList`1<DomainLayer.Movie> DomainLayer.ImdbServiceGateway::JoinImdbMoviesMapToMovies(System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>,System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>,System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>)
-DA:59,0
-DA:60,0
-DA:62,0
-DA:63,0
-DA:64,0
-DA:65,0
-DA:66,0
-DA:67,0
-DA:68,0
-DA:70,0
-DA:71,0
-DA:73,0
-DA:74,0
-DA:76,0
-DA:77,0
-DA:78,0
-DA:79,0
-DA:80,0
-DA:81,0
-DA:82,0
-DA:84,0
-DA:85,0
-BRDA:66,126,1,0
-BRDA:66,126,0,0
+FNDA:2,System.Collections.Immutable.ImmutableList`1<DomainLayer.Movie> DomainLayer.ImdbServiceGateway::JoinImdbMoviesMapToMovies(System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>,System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>,System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>)
+DA:59,2
+DA:60,2
+DA:62,2
+DA:63,2
+DA:64,2
+DA:65,2
+DA:66,102
+DA:67,100
+DA:68,100
+DA:70,100
+DA:71,100
+DA:73,100
+DA:74,100
+DA:76,100
+DA:77,100
+DA:78,100
+DA:79,100
+DA:80,100
+DA:81,100
+DA:82,2
+DA:84,2
+DA:85,2
+BRDA:66,126,1,100
+BRDA:66,126,0,2
 FN:87,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>[]> DomainLayer.ImdbServiceGateway::GetMoviesFromHttpContent(System.Net.Http.HttpContent,System.Net.Http.HttpContent,System.Net.Http.HttpContent)
-FNDA:0,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>[]> DomainLayer.ImdbServiceGateway::GetMoviesFromHttpContent(System.Net.Http.HttpContent,System.Net.Http.HttpContent,System.Net.Http.HttpContent)
-DA:88,0
-DA:89,0
-DA:90,0
-DA:91,0
-DA:93,0
-DA:94,0
+FNDA:2,System.Threading.Tasks.Task`1<System.Collections.Generic.IEnumerable`1<DomainLayer.ImdbMovie>[]> DomainLayer.ImdbServiceGateway::GetMoviesFromHttpContent(System.Net.Http.HttpContent,System.Net.Http.HttpContent,System.Net.Http.HttpContent)
+DA:88,2
+DA:89,2
+DA:90,2
+DA:91,2
+DA:93,2
+DA:94,2
 FN:96,System.Threading.Tasks.Task DomainLayer.ImdbServiceGateway::EnsureSuccessForAllTasks(System.Net.Http.HttpResponseMessage[])
-FNDA:0,System.Threading.Tasks.Task DomainLayer.ImdbServiceGateway::EnsureSuccessForAllTasks(System.Net.Http.HttpResponseMessage[])
-DA:97,0
-DA:98,0
-DA:99,0
-DA:100,0
-DA:102,0
-DA:103,0
+FNDA:5,System.Threading.Tasks.Task DomainLayer.ImdbServiceGateway::EnsureSuccessForAllTasks(System.Net.Http.HttpResponseMessage[])
+DA:97,5
+DA:98,5
+DA:99,5
+DA:100,5
+DA:102,5
+DA:103,5
 FN:105,System.Threading.Tasks.Task`1<System.Net.Http.HttpResponseMessage[]> DomainLayer.ImdbServiceGateway::MakeConcurrentGetAsyncCalls(System.Net.Http.HttpClient,System.String,System.String,System.String)
-FNDA:0,System.Threading.Tasks.Task`1<System.Net.Http.HttpResponseMessage[]> DomainLayer.ImdbServiceGateway::MakeConcurrentGetAsyncCalls(System.Net.Http.HttpClient,System.String,System.String,System.String)
-DA:106,0
-DA:107,0
-DA:108,0
-DA:109,0
-DA:111,0
-DA:112,0
+FNDA:5,System.Threading.Tasks.Task`1<System.Net.Http.HttpResponseMessage[]> DomainLayer.ImdbServiceGateway::MakeConcurrentGetAsyncCalls(System.Net.Http.HttpClient,System.String,System.String,System.String)
+DA:106,5
+DA:107,5
+DA:108,5
+DA:109,5
+DA:111,5
+DA:112,5
 FN:145,System.Void DomainLayer.ImdbServiceGateway::Dispose()
-FNDA:0,System.Void DomainLayer.ImdbServiceGateway::Dispose()
-DA:146,0
-DA:147,0
-DA:148,0
-DA:149,0
+FNDA:5,System.Void DomainLayer.ImdbServiceGateway::Dispose()
+DA:146,5
+DA:147,5
+DA:148,5
+DA:149,5
 FN:17,System.Void DomainLayer.ImdbServiceGateway::.ctor(DomainLayer.IHttpMessageHandlerProvider,System.String)
-FNDA:0,System.Void DomainLayer.ImdbServiceGateway::.ctor(DomainLayer.IHttpMessageHandlerProvider,System.String)
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-DA:22,0
+FNDA:5,System.Void DomainLayer.ImdbServiceGateway::.ctor(DomainLayer.IHttpMessageHandlerProvider,System.String)
+DA:18,5
+DA:19,5
+DA:20,5
+DA:21,5
+DA:22,5
 FN:114,System.Void DomainLayer.ImdbServiceGateway/<EnsureSuccess>d__11::MoveNext()
-FNDA:0,System.Void DomainLayer.ImdbServiceGateway/<EnsureSuccess>d__11::MoveNext()
-DA:115,0
-DA:116,0
-DA:117,0
-DA:118,0
-DA:121,0
-DA:123,0
-DA:124,0
-DA:125,0
-DA:126,0
-DA:127,0
-DA:128,0
-DA:129,0
-DA:130,0
-DA:131,0
-BRDA:116,23,0,0
-BRDA:116,23,1,0
-BRDA:123,185,0,0
-BRDA:123,185,1,0
-BRDA:123,196,1,0
-BRDA:123,196,0,0
+FNDA:15,System.Void DomainLayer.ImdbServiceGateway/<EnsureSuccess>d__11::MoveNext()
+DA:115,15
+DA:116,15
+DA:117,6
+DA:118,6
+DA:121,9
+DA:123,9
+DA:124,9
+DA:125,3
+DA:126,3
+DA:127,3
+DA:128,9
+DA:129,9
+DA:130,9
+DA:131,6
+BRDA:116,23,0,6
+BRDA:116,23,1,9
+BRDA:123,185,0,6
+BRDA:123,185,1,3
+BRDA:123,196,1,3
+BRDA:123,196,0,3
 FN:41,System.Void DomainLayer.ImdbServiceGateway/<GetAllMovies>d__6::MoveNext()
-FNDA:0,System.Void DomainLayer.ImdbServiceGateway/<GetAllMovies>d__6::MoveNext()
-DA:42,0
-DA:43,0
-DA:44,0
-DA:46,0
-DA:48,0
-DA:49,0
-DA:51,0
-DA:52,0
-DA:53,0
-DA:55,0
-DA:56,0
+FNDA:5,System.Void DomainLayer.ImdbServiceGateway/<GetAllMovies>d__6::MoveNext()
+DA:42,5
+DA:43,5
+DA:44,5
+DA:46,5
+DA:48,2
+DA:49,2
+DA:51,2
+DA:52,2
+DA:53,2
+DA:55,2
+DA:56,2
 LF:85
-LH:0
+LH:85
 BRF:8
-BRH:0
+BRH:8
 FNF:10
-FNH:0
+FNH:10
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\Validators\ValidatorMovie.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\Validators\ValidatorMovie.cs
 FN:11,System.Void DomainLayer.ValidatorMovie::EnsureMovieIsValid(DomainLayer.Movie)
-FNDA:0,System.Void DomainLayer.ValidatorMovie::EnsureMovieIsValid(DomainLayer.Movie)
-DA:12,0
-DA:13,0
-DA:14,0
-DA:15,0
-DA:16,0
+FNDA:14,System.Void DomainLayer.ValidatorMovie::EnsureMovieIsValid(DomainLayer.Movie)
+DA:12,14
+DA:13,14
+DA:14,13
+DA:15,13
+DA:16,3
 FN:18,System.Void DomainLayer.ValidatorMovie::EnsureMoviesAreValid(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
-FNDA:0,System.Void DomainLayer.ValidatorMovie::EnsureMoviesAreValid(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
-DA:19,0
-DA:20,0
-DA:22,0
-DA:23,0
-DA:24,0
-DA:25,0
-DA:26,0
-DA:27,0
-DA:28,0
-DA:29,0
-DA:30,0
-DA:32,0
-DA:34,0
-DA:35,0
-DA:36,0
-DA:37,0
-DA:39,0
-DA:40,0
-BRDA:23,71,1,0
-BRDA:26,51,0,0
-BRDA:26,51,1,0
-BRDA:23,71,0,0
-BRDA:34,106,0,0
-BRDA:34,106,1,0
+FNDA:5,System.Void DomainLayer.ValidatorMovie::EnsureMoviesAreValid(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
+DA:19,5
+DA:20,5
+DA:22,4
+DA:23,36
+DA:24,12
+DA:25,12
+DA:26,12
+DA:27,1
+DA:28,1
+DA:29,1
+DA:30,12
+DA:32,4
+DA:34,4
+DA:35,3
+DA:36,3
+DA:37,3
+DA:39,4
+DA:40,3
+BRDA:23,71,1,12
+BRDA:26,51,0,1
+BRDA:26,51,1,12
+BRDA:23,71,0,4
+BRDA:34,106,0,3
+BRDA:34,106,1,4
 FN:42,System.String DomainLayer.ValidatorMovie::ValidateProperties(DomainLayer.Movie)
-FNDA:0,System.String DomainLayer.ValidatorMovie::ValidateProperties(DomainLayer.Movie)
-DA:43,0
-DA:44,0
-DA:45,0
-DA:46,0
-DA:47,0
-DA:49,0
-DA:50,0
-DA:51,0
-BRDA:50,82,0,0
-BRDA:50,82,1,0
+FNDA:25,System.String DomainLayer.ValidatorMovie::ValidateProperties(DomainLayer.Movie)
+DA:43,25
+DA:44,25
+DA:45,25
+DA:46,25
+DA:47,25
+DA:49,25
+DA:50,25
+DA:51,25
+BRDA:50,82,0,11
+BRDA:50,82,1,14
 FN:53,System.Void DomainLayer.ValidatorMovie::EnsureNoErrors(System.String)
-FNDA:0,System.Void DomainLayer.ValidatorMovie::EnsureNoErrors(System.String)
-DA:54,0
-DA:55,0
-DA:56,0
-DA:57,0
-DA:59,0
-BRDA:55,7,0,0
-BRDA:55,7,1,0
+FNDA:17,System.Void DomainLayer.ValidatorMovie::EnsureNoErrors(System.String)
+DA:54,17
+DA:55,17
+DA:56,11
+DA:57,11
+DA:59,6
+BRDA:55,7,0,11
+BRDA:55,7,1,6
 FN:61,System.Void DomainLayer.ValidatorMovie::EnsureMovieIsNotNull(DomainLayer.Movie)
-FNDA:0,System.Void DomainLayer.ValidatorMovie::EnsureMovieIsNotNull(DomainLayer.Movie)
-DA:62,0
-DA:63,0
-DA:64,0
-DA:65,0
-DA:67,0
-BRDA:63,10,0,0
-BRDA:63,10,1,0
+FNDA:14,System.Void DomainLayer.ValidatorMovie::EnsureMovieIsNotNull(DomainLayer.Movie)
+DA:62,14
+DA:63,14
+DA:64,1
+DA:65,1
+DA:67,13
+BRDA:63,10,0,1
+BRDA:63,10,1,13
 FN:69,System.Void DomainLayer.ValidatorMovie::EnsureMoviesAreNotNull(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
-FNDA:0,System.Void DomainLayer.ValidatorMovie::EnsureMoviesAreNotNull(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
-DA:70,0
-DA:71,0
-DA:72,0
-DA:73,0
-DA:75,0
-BRDA:71,12,0,0
-BRDA:71,12,1,0
+FNDA:5,System.Void DomainLayer.ValidatorMovie::EnsureMoviesAreNotNull(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
+DA:70,5
+DA:71,5
+DA:72,1
+DA:73,1
+DA:75,4
+BRDA:71,12,0,1
+BRDA:71,12,1,4
 FN:77,System.String DomainLayer.ValidatorMovie::ValidateYear(System.Int32)
-FNDA:0,System.String DomainLayer.ValidatorMovie::ValidateYear(System.Int32)
-DA:78,0
-DA:81,0
-DA:82,0
-DA:83,0
-DA:84,0
-BRDA:81,7,0,0
-BRDA:81,7,1,0
-BRDA:81,23,0,0
-BRDA:81,23,1,0
+FNDA:25,System.String DomainLayer.ValidatorMovie::ValidateYear(System.Int32)
+DA:78,25
+DA:81,25
+DA:82,25
+DA:83,25
+DA:84,25
+BRDA:81,7,0,24
+BRDA:81,7,1,2
+BRDA:81,23,0,2
+BRDA:81,23,1,23
 FN:86,System.String DomainLayer.ValidatorMovie::ValidateGenre(DomainLayer.Genre)
-FNDA:0,System.String DomainLayer.ValidatorMovie::ValidateGenre(DomainLayer.Genre)
-DA:87,0
-DA:88,0
-DA:89,0
-DA:90,0
-DA:91,0
-DA:92,0
-DA:94,0
-DA:95,0
-BRDA:89,14,0,0
-BRDA:89,14,1,0
+FNDA:25,System.String DomainLayer.ValidatorMovie::ValidateGenre(DomainLayer.Genre)
+DA:87,25
+DA:88,25
+DA:89,25
+DA:90,1
+DA:91,1
+DA:92,1
+DA:94,25
+DA:95,25
+BRDA:89,14,0,1
+BRDA:89,14,1,25
 FN:8,System.Void DomainLayer.ValidatorMovie::.cctor()
-FNDA:0,System.Void DomainLayer.ValidatorMovie::.cctor()
-DA:9,0
+FNDA:1,System.Void DomainLayer.ValidatorMovie::.cctor()
+DA:9,1
 LF:60
-LH:0
+LH:60
 BRF:20
-BRH:0
+BRH:20
 FNF:9
-FNH:0
+FNH:9
 end_of_record
-SF:d:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\Validators\ValidatorString.cs
+SF:D:\Source\Repos\MovieServiceYouTube\DomainLayer\Managers\Validators\ValidatorString.cs
 FN:14,System.String DomainLayer.ValidatorString::Validate(System.String,System.String)
-FNDA:0,System.String DomainLayer.ValidatorString::Validate(System.String,System.String)
-DA:15,0
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-BRDA:15,12,1,0
-BRDA:15,12,2,0
-BRDA:15,12,3,0
-BRDA:15,12,0,0
+FNDA:50,System.String DomainLayer.ValidatorString::Validate(System.String,System.String)
+DA:15,50
+DA:16,50
+DA:17,3
+DA:18,2
+DA:19,2
+DA:20,43
+DA:21,50
+BRDA:15,12,1,3
+BRDA:15,12,2,2
+BRDA:15,12,3,2
+BRDA:15,12,0,43
 FN:23,System.String DomainLayer.ValidatorString::Validate(System.String,System.String,System.Int32)
-FNDA:0,System.String DomainLayer.ValidatorString::Validate(System.String,System.String,System.Int32)
-DA:24,0
-DA:25,0
-DA:27,0
-DA:28,0
-DA:29,0
-DA:30,0
-DA:31,0
-BRDA:27,11,0,0
-BRDA:27,21,0,0
-BRDA:27,21,1,0
-BRDA:27,11,1,0
+FNDA:25,System.String DomainLayer.ValidatorString::Validate(System.String,System.String,System.Int32)
+DA:24,25
+DA:25,25
+DA:27,25
+DA:28,25
+DA:29,25
+DA:30,25
+DA:31,25
+BRDA:27,11,0,21
+BRDA:27,21,0,20
+BRDA:27,21,1,1
+BRDA:27,11,1,25
 FN:33,DomainLayer.StringState DomainLayer.ValidatorString::DetermineNullEmptyOrWhiteSpaces(System.String)
-FNDA:0,DomainLayer.StringState DomainLayer.ValidatorString::DetermineNullEmptyOrWhiteSpaces(System.String)
-DA:34,0
-DA:35,0
-DA:36,0
-DA:37,0
-DA:39,0
-DA:40,0
-DA:41,0
-DA:44,0
-DA:45,0
-BRDA:35,7,0,0
-BRDA:35,7,1,0
-BRDA:39,25,0,0
-BRDA:39,25,1,0
-BRDA:44,65,0,0
-BRDA:44,65,1,0
+FNDA:50,DomainLayer.StringState DomainLayer.ValidatorString::DetermineNullEmptyOrWhiteSpaces(System.String)
+DA:34,50
+DA:35,50
+DA:36,3
+DA:37,3
+DA:39,47
+DA:40,2
+DA:41,2
+DA:44,45
+DA:45,50
+BRDA:35,7,0,3
+BRDA:35,7,1,47
+BRDA:39,25,0,2
+BRDA:39,25,1,45
+BRDA:44,65,0,43
+BRDA:44,65,1,2
 LF:23
-LH:0
+LH:23
 BRF:14
-BRH:0
+BRH:14
 FNF:3
-FNH:0
+FNH:3
 end_of_record
 SF:C:\Users\shivk\.nuget\packages\microsoft.net.test.sdk\17.8.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.cs
 FN:3,System.Void AutoGeneratedProgram::Main(System.String[])
@@ -986,102 +986,102 @@ FNH:0
 end_of_record
 SF:d:\Source\Repos\MovieServiceYouTube\Testing.Shared\AssertEx.cs
 FN:10,System.Void Testing.Shared.AssertEx::EnsureExceptionMessageContains(System.Exception,System.String[])
-FNDA:0,System.Void Testing.Shared.AssertEx::EnsureExceptionMessageContains(System.Exception,System.String[])
-DA:11,0
-DA:12,0
-DA:13,0
-DA:14,0
-DA:16,0
-DA:18,0
-DA:19,0
-DA:20,0
+FNDA:10,System.Void Testing.Shared.AssertEx::EnsureExceptionMessageContains(System.Exception,System.String[])
+DA:11,10
+DA:12,10
+DA:13,10
+DA:14,10
+DA:16,10
+DA:18,72
+DA:19,21
+DA:20,21
 DA:21,0
 DA:22,0
 DA:23,0
 DA:24,0
-DA:25,0
-DA:27,0
+DA:25,21
+DA:27,10
 DA:28,0
 DA:29,0
-DA:31,0
-BRDA:18,258,1,0
+DA:31,10
+BRDA:18,258,1,21
 BRDA:20,173,0,0
-BRDA:20,173,1,0
-BRDA:18,258,0,0
+BRDA:20,173,1,21
+BRDA:18,258,0,10
 BRDA:27,265,0,0
-BRDA:27,265,1,0
+BRDA:27,265,1,10
 FN:33,System.Void Testing.Shared.AssertEx::EnsureExceptionMessageDoesNotContains(System.Exception,System.String[])
-FNDA:0,System.Void Testing.Shared.AssertEx::EnsureExceptionMessageDoesNotContains(System.Exception,System.String[])
-DA:34,0
-DA:35,0
-DA:36,0
-DA:37,0
-DA:39,0
-DA:41,0
-DA:42,0
-DA:43,0
+FNDA:10,System.Void Testing.Shared.AssertEx::EnsureExceptionMessageDoesNotContains(System.Exception,System.String[])
+DA:34,10
+DA:35,10
+DA:36,10
+DA:37,10
+DA:39,10
+DA:41,90
+DA:42,30
+DA:43,30
 DA:44,0
 DA:45,0
 DA:46,0
 DA:47,0
-DA:48,0
-DA:50,0
+DA:48,30
+DA:50,10
 DA:51,0
 DA:52,0
-DA:54,0
-BRDA:41,255,1,0
+DA:54,10
+BRDA:41,255,1,30
 BRDA:43,170,0,0
-BRDA:43,170,1,0
-BRDA:41,255,0,0
+BRDA:43,170,1,30
+BRDA:41,255,0,10
 BRDA:50,262,0,0
-BRDA:50,262,1,0
+BRDA:50,262,1,10
 LF:34
-LH:0
+LH:22
 BRF:12
-BRH:0
+BRH:8
 FNF:2
-FNH:0
+FNH:2
 end_of_record
 SF:d:\Source\Repos\MovieServiceYouTube\Testing.Shared\EqualityComparers\MovieEqualityComparer.cs
 FN:10,System.Boolean Testing.Shared.MovieEqualityComparer::Equals(DomainLayer.Movie,DomainLayer.Movie)
-FNDA:0,System.Boolean Testing.Shared.MovieEqualityComparer::Equals(DomainLayer.Movie,DomainLayer.Movie)
-DA:11,0
-DA:12,0
-DA:13,0
-DA:14,0
-DA:15,0
-BRDA:11,7,0,0
-BRDA:11,16,0,0
-BRDA:11,35,0,0
-BRDA:11,54,0,0
-BRDA:11,68,0,0
+FNDA:306,System.Boolean Testing.Shared.MovieEqualityComparer::Equals(DomainLayer.Movie,DomainLayer.Movie)
+DA:11,306
+DA:12,306
+DA:13,306
+DA:14,306
+DA:15,306
+BRDA:11,7,0,306
+BRDA:11,16,0,306
+BRDA:11,35,0,306
+BRDA:11,54,0,306
+BRDA:11,68,0,306
 BRDA:11,7,1,0
 BRDA:11,16,1,0
 BRDA:11,35,1,0
 BRDA:11,54,1,0
 BRDA:11,68,1,0
 FN:17,System.Int32 Testing.Shared.MovieEqualityComparer::GetHashCode(DomainLayer.Movie)
-FNDA:0,System.Int32 Testing.Shared.MovieEqualityComparer::GetHashCode(DomainLayer.Movie)
-DA:18,0
-DA:19,0
-DA:20,0
+FNDA:612,System.Int32 Testing.Shared.MovieEqualityComparer::GetHashCode(DomainLayer.Movie)
+DA:18,612
+DA:19,612
+DA:20,612
 LF:8
-LH:0
+LH:8
 BRF:10
-BRH:0
+BRH:5
 FNF:2
-FNH:0
+FNH:2
 end_of_record
 SF:d:\Source\Repos\MovieServiceYouTube\Testing.Shared\MovieAssertions.cs
 FN:12,System.Void Testing.Shared.MovieAssertions::AssertMoviesAreEqual(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
-FNDA:0,System.Void Testing.Shared.MovieAssertions::AssertMoviesAreEqual(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
-DA:13,0
-DA:14,0
-DA:15,0
-DA:16,0
-DA:18,0
-DA:19,0
-DA:20,0
+FNDA:5,System.Void Testing.Shared.MovieAssertions::AssertMoviesAreEqual(System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie>)
+DA:13,5
+DA:14,5
+DA:15,5
+DA:16,5
+DA:18,5
+DA:19,5
+DA:20,5
 DA:23,0
 DA:24,0
 DA:25,0
@@ -1100,10 +1100,10 @@ DA:38,0
 DA:39,0
 DA:40,0
 DA:42,0
-DA:43,0
-BRDA:18,31,0,0
+DA:43,5
+BRDA:18,31,0,5
 BRDA:18,31,1,0
-BRDA:18,49,0,0
+BRDA:18,49,0,5
 BRDA:18,49,1,0
 BRDA:24,73,0,0
 BRDA:27,248,1,0
@@ -1114,33 +1114,33 @@ BRDA:36,454,1,0
 BRDA:36,454,0,0
 BRDA:33,279,1,0
 LF:26
-LH:0
+LH:8
 BRF:12
-BRH:0
+BRH:2
 FNF:1
-FNH:0
+FNH:1
 end_of_record
 SF:d:\Source\Repos\MovieServiceYouTube\Testing.Shared\RandomMovieGenerator.cs
 FN:10,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie> Testing.Shared.RandomMovieGenerator::GenerateRandomMovies(System.Int32)
-FNDA:0,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie> Testing.Shared.RandomMovieGenerator::GenerateRandomMovies(System.Int32)
-DA:11,0
-DA:12,0
-DA:13,0
-DA:14,0
-DA:15,0
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:22,0
-DA:23,0
-BRDA:13,82,1,0
-BRDA:13,82,0,0
+FNDA:5,System.Collections.Generic.IEnumerable`1<DomainLayer.Movie> Testing.Shared.RandomMovieGenerator::GenerateRandomMovies(System.Int32)
+DA:11,5
+DA:12,5
+DA:13,228
+DA:14,109
+DA:15,109
+DA:16,109
+DA:17,109
+DA:18,109
+DA:19,109
+DA:20,109
+DA:22,5
+DA:23,5
+BRDA:13,82,1,109
+BRDA:13,82,0,5
 LF:12
-LH:0
+LH:12
 BRF:2
-BRH:0
+BRH:2
 FNF:1
-FNH:0
+FNH:1
 end_of_record
