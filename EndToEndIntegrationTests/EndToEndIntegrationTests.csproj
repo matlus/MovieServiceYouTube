@@ -27,8 +27,8 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.4" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
-		<PackageReference Include="MSTest.TestAdapter" Version="3.2.0" />
-		<PackageReference Include="MSTest.TestFramework" Version="3.2.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="3.3.1" />
+		<PackageReference Include="MSTest.TestFramework" Version="3.3.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -38,7 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Update="SonarAnalyzer.CSharp" Version="9.19.0.84025">
+		<PackageReference Update="SonarAnalyzer.CSharp" Version="9.23.2.88755">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
