@@ -25,4 +25,8 @@ MovieServiceYouTube is a full-stack web application built with ASP.NET Core (.NE
 - **Testing**: MSTest framework with custom assertion helpers
 - **Frontend**: Razor Pages with Bootstrap CSS framework
 
-## Project Structure
+## Related articles
+
+- [Always Use the "as" Operator? No Thank You!](https://matlus.com/writing/always-use-as-operator-no-thank-you/) uses examples from this project to discuss casts.
+- [Extension Methods? No Thank You!](https://matlus.com/writing/extension-methods-no-thank-you/) uses examples from this project to discuss extension methods.
+- [Separate State from Behavior? Yes Please!](https://matlus.com/writing/separate-state-from-behavior/) uses this project to illustrate the separation.
